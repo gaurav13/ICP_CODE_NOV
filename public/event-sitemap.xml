@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/page_sitemap.xsl"?>
+ <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ 
+           <url>
+		       <loc>https://jp.blockza.io/event-details/1712594329571927319/</loc>
+		       <lastmod>2024-08-10T08:38:23+00:00</lastmod>
+	         </url>
+           
+           <url>
+		       <loc>https://jp.blockza.io/event-details/1712585183001498061/</loc>
+		       <lastmod>2024-08-10T08:35:11+00:00</lastmod>
+	         </url>
+           
+           <url>
+		       <loc>https://jp.blockza.io/event-details/1711072605035841186/</loc>
+		       <lastmod>2024-08-10T08:34:26+00:00</lastmod>
+	         </url>
+           </urlset>

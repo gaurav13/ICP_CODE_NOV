@@ -1,0 +1,473 @@
+.Take-Quiz-Pnl {
+  display: inline-block;
+  width: 100%;
+  max-width: 550px;
+  position: relative;
+  background-color: $white;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
+  background-image: url(../assets/Img/blue-ci.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 260px;
+  text-align: center;
+  z-index: 1;
+
+  @media (max-width: 1400px) {
+    padding: 20px 10px;
+    background-size: 100% 220px;
+  }
+
+  @media (max-width: 1200px) {
+    background-size: 100% 200px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 400px;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $blue;
+    border-radius: 20px 20px 0 0;
+    height: 70px;
+    z-index: -1;
+  }
+
+  span {
+    position: absolute;
+    border-radius: 50%;
+
+    img {
+      border-radius: 50%;
+    }
+
+    &:nth-of-type(1) {
+      width: 32px;
+      height: 32px;
+      left: 15px;
+      top: 200px;
+    }
+
+    &:nth-of-type(2) {
+      width: 32px;
+      height: 32px;
+      right: 30px;
+      top: 160px;
+    }
+
+    &:nth-of-type(3) {
+      width: 22px;
+      height: 22px;
+      top: 190px;
+      left: 70px;
+    }
+
+    &:nth-of-type(4) {
+      width: 22px;
+      height: 22px;
+      right: 20px;
+      top: 20px;
+    }
+
+    &:nth-of-type(5) {
+      width: 18px;
+      height: 18px;
+      left: 30px;
+      top: 170px;
+    }
+
+    &:nth-of-type(6) {
+      width: 18px;
+      height: 18px;
+      right: 5px;
+      top: 120px;
+    }
+
+    &:nth-of-type(7) {
+      width: 18px;
+      height: 18px;
+      right: 45%;
+      top: 10px;
+    }
+  }
+.custom{
+    color: $white;
+    font-size: 60px;
+    font-weight: 700;
+}
+.margin{
+  margin-top: 120px;
+}
+  h1, div.h1takequiz{
+    display: flex;
+    color: $white;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 700;
+
+    img {
+      max-width: 90px;
+      max-height: 90px;
+    }
+
+    @media (max-width: 1400px) {
+      font-size: 60px;
+
+      img {
+        max-width: 60px;
+        height: unset;
+        max-height: unset;
+      }
+    }
+  }
+
+  h2,p.h2txt {
+    font-size: 14px;
+    color: $white;
+    font-weight: 400;
+    max-width: 300px;
+    margin: 0 auto 70px;
+
+    @media (max-width: 1400px) {
+      margin-bottom: 50px;
+    }
+  }
+
+  h6, div.h6takequiz {
+    color: $white;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 auto;
+    background-color: $blue;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    padding: 5px 15px 3px 10px;
+
+    img {
+      width: 30px;
+    }
+  }
+
+  p {
+    font-size: 15px;
+    color: $blue;
+    font-weight: 500;
+  }
+
+  ul {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 30px;
+
+    li {
+      display: flex;
+      width: 100%;
+      padding: 10px 0px 0;
+      position: relative;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .img-pnl {
+        background-color: $blue;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+
+        img {
+          max-width: 30px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 16px;
+        width: calc(100% - 70px);
+        background-color: $color;
+        border-radius: 25px;
+        color: $black;
+        height: 50px;
+        margin: 0;
+        margin-left: 20px;
+        padding: 5px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media (max-width: 1400px) {
+          width: calc(100% - 50px);
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .blue-button {
+    background-color: $color;
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    text-transform: uppercase;
+    color: $black;
+    padding: 0 20px;
+    font-size: 22px;
+    border: 3px solid #ffa600;
+    border-radius: 15px;
+
+    &:hover {
+      background-color: $blue;
+      color: $white;
+      border-color: $white;
+    }
+  }
+
+}
+
+.Take-Quiz-Pnl.leadrship-quiz {
+  padding-top: 40px;
+  padding-bottom: 15px;
+  @media (max-width: 1600px) {
+    background-size: 100% 250px;
+    padding: 20px 10px;
+  }
+  @media (max-width: 1400px) {
+    background-size: 100% 280px;
+    padding: 20px 10px;
+  }
+
+  @media (max-width: 1330px) {
+    background-size: 100% 270px;
+    max-width: 350px;
+  }
+
+  @media (max-width: 767px) {
+    background-size: 100% 270px;
+  }
+
+  @media (max-width: 575px) {
+    background-size: 100% 240px;
+  }
+
+  &:before {
+    height: 85px;
+  }
+
+  .learnmore-bt {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    z-index: 2;
+    font-size: 14px;
+    color: $white;
+
+    i {
+      background-color: $color;
+      color: black;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  span:nth-of-type(1) {
+    left: 86px;
+    top: 20px;
+  }
+
+  span:nth-of-type(2) {
+    width: 36px;
+    height: 36px;
+    right: 10px;
+    top: 40px;
+  }
+
+  span:nth-of-type(4) {
+    width: 22px;
+    height: 22px;
+    right: 46px;
+    top: 60px;
+  }
+
+  .blue-button {
+    padding: 6px 15px;
+
+    &:hover {
+      background-color: $color;
+    }
+  }
+
+  .hddr {
+    display: flex;
+  }
+
+  .im {
+    width: 130px;
+    padding-top: 15px;
+  }
+
+  .txt {
+    text-align: left;
+    padding-left: 15px;
+
+    h1,strong {
+      font-size: 40px;
+      text-align: left;
+      display: block;
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0;
+     
+    }
+    strong{
+      color: white;
+    }
+    h3 , strong.h3 {
+      font-size: 20px;
+      color: $color;
+      position: relative;
+      top: -5px;
+      margin: 0;
+      margin-bottom: 0px;
+    }
+  }
+
+  table {
+    img {
+      max-width: 25px;
+    }
+
+    .img-pnl {
+      margin-right: 10px;
+
+      img {
+        max-width: 35px;
+        clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+        border-radius: 5px;
+      }
+    }
+
+    .txt-pnl {
+      h4,p.h4txt {
+        font-weight: 700;
+        margin: 0;
+        font-size: 15px;
+
+        @media (max-width: 1600px) {
+          font-size: 14px;
+        }
+      }
+      p.h4txt {
+        color: $black !important;
+      }
+
+      h5 ,p.h5txt{
+        font-weight: 400;
+        color: $black;
+        font-size: 15px;
+        margin: 0;
+
+        @media (max-width: 1600px) {
+          font-size: 14px;
+        }
+      }
+    }
+
+    th {
+      background-color: $blue;
+      color: $white;
+      font-weight: 400;
+    }
+
+    td {
+      background-color: transparent;
+      color: $black;
+      font-size: 15px;
+      font-weight: 600;
+      border-color: $black;
+
+      @media (max-width: 1600px) {
+        padding: 0.5rem 5px;
+      }
+
+      b {
+        font-size: 18px;
+
+        @media (max-width: 1600px) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.icp-leadership-pnl.hm {
+  .Take-Quiz-Pnl.leadrship-quiz {
+    background-size: 100% 270px;
+
+    @media (max-width: 1600px) {
+      background-size: 100% 290px;
+    }
+
+    @media (max-width: 1400px) {
+      background-size: 100% 250px;
+    }
+
+    @media (max-width: 767px) {
+      background-size: 100% 275px;
+    }
+
+    @media (max-width: 575px) {
+      max-width: 380px;
+      background-size: 100% 270px;
+
+      .table-container .table-container-inner table {
+        min-width: unset;
+      }
+    }
+  }
+}
+
+.main-inner.event-detail-page.pod {
+  @media (max-width: 1200px) {
+    .Take-Quiz-Pnl span:nth-of-type(1) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .Take-Quiz-Pnl {
+      margin: 0 auto 30px;
+
+      span:nth-of-type(1) {
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 575px) {
+    .Take-Quiz-Pnl span:nth-of-type(1) {
+      display: none;
+    }
+  }
+}
+
+.fs-max {
+  font-size: 60px !important;
+}

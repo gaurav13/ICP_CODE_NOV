@@ -1,0 +1,412 @@
+/* Footer Starts Here
+===================== */
+#main,
+#main.black,
+body {
+  .footer {
+    background-color: $blue;
+    padding: 30px 30px 20px;
+    border-top: 14px solid $color;
+    background-image: url(../assets/Img/footer-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    text-align: center;
+    .footer-inner {
+      max-width: 1800px;
+      margin: 0 auto;
+      text-align: initial;
+    }
+    @media (max-width: 991px) {
+      width: 100%;
+      margin-left: 0;
+    }
+    @media (max-width: 1200px) {
+      padding: 50px 30px 20px;
+    }
+
+    @media (max-width: 991px) {
+      padding: 30px 15px 20px;
+    }
+    @media (max-width: 767px) {
+      padding: 30px 15px 100px;
+    }
+
+    .footer-logo {
+      max-width: 220px;
+      margin-top: 20px;
+    }
+    .footer-bottom {
+      border-top: 1px solid;
+      border-color: $graish;
+      margin-top: 20px;
+      padding-top: 30px;
+    }
+
+    h4 {
+      color: $graish;
+      font-size: 16px;
+
+      &.blue-text {
+        margin-top: 20px;
+        color: $white;
+        margin-bottom: 100px;
+        max-width: 330px;
+
+        @media (max-width: 1200px) {
+          max-width: 100%;
+          margin-bottom: 15px;
+        }
+      }
+    }
+    div {
+     
+
+      &.blue-text {
+        margin-top: 20px;
+        color: $white;
+        margin-bottom: 100px;
+        max-width: 330px;
+
+        @media (max-width: 1200px) {
+          max-width: 100%;
+          margin-bottom: 15px;
+        }
+      }
+    }
+    h6,div.heading6 
+    p {
+      font-size: 16px;
+      font-weight: 500;
+      color: $graish;
+      margin-bottom: 10px;
+      line-height: 23.36px;
+
+      @media (max-width: 991px) {
+        margin-bottom: 5px;
+      }
+
+      @media (max-width: 575px) {
+        margin-bottom: 15px;
+      }
+    }
+    h6,div.heading6 {
+      font-weight: 700;
+    }
+    p {
+      color: $graish;
+      font-weight: 400;
+      @media (max-width: 767px) {
+        text-align: left;
+      }
+      a {
+        color: $graish;
+        text-decoration: underline !important;
+
+        &:hover {
+          color: $color;
+        }
+      }
+    }
+
+    ul {
+      display: inline-block;
+      width: 100%;
+      float: left;
+
+      @media (max-width: 575px) {
+        margin-bottom: 30px;
+      }
+
+      li {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 10px;
+
+        @media (max-width: 575px) {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        a {
+          font-size: 16px;
+          font-weight: 500;
+          color: $graish;
+
+          &:hover {
+            color: $color;
+          }
+        }
+      }
+
+      &.footer-social-list {
+        margin: 0;
+        text-align: right;
+        position: relative;
+        left: -30%;
+        display: flex;
+
+        @media (max-width: 1200px) {
+          left: 0%;
+        }
+        @media (max-width: 767px) {
+          margin-top: 50px;
+          justify-content: flex-end;
+        }
+        @media (max-width: 575px) {
+          text-align: left;
+          margin-top: 10px;
+          display: inline-block;
+        }
+
+        li {
+          width: auto;
+          margin-left: 5px;
+
+          @media (max-width: 575px) {
+            margin-left: 0px;
+            margin-right: 12px;
+            margin-bottom: 0;
+            margin-top: 20px;
+            @media (max-width: 767px) {
+              margin-right: 0;
+              margin-left: 12px;
+            }
+            @media (max-width: 575px) {
+              margin-left: 8px;
+            }
+            &:first-child {
+              width: 100%;
+              margin-left: 0;
+              margin-right: 0;
+              @media (max-width: 575px) {
+                width: auto;
+              }
+            }
+          }
+
+          a {
+            width: 35px;
+            height: 35px;
+            @include bd-radius(50%);
+            color: $graish;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            @media (max-width: 991px) {
+              font-size: 20px;
+            }
+            @media (max-width: 767px) {
+              width: 28px;
+              height: 28px;
+              font-size: 20px;
+              svg {
+                max-width: 16px;
+              }
+            }
+            @media (max-width: 575px) {
+              display: inline-block;
+              text-align: left;
+              width: 10px;
+              height: 10px;
+              font-size: 14px;
+              svg {
+                max-width: 10px;
+              }
+            }
+
+            i {
+              color: $graish;
+            }
+
+            &:hover {
+              background: $color;
+              color: $white;
+              transform: scale(1.1);
+              @media (max-width: 575px) {
+                background-color: transparent;
+                transform: none;
+              }
+              i {
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.anime {
+      .footer-logo,
+      h4,
+      h5,
+      h6 {
+        @include animation-anime(transleft, 1s, linear);
+      }
+
+      ul li {
+        @include animation-anime(transdown, 1s, linear);
+      }
+
+      p,
+      ul.footer-social-list li {
+        @include animation-anime(transright, 1s, linear);
+      }
+    }
+    div.heading6{
+      color: #fff;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+/* Footer Ends Here
+=================== */
+
+.mobile-scl-cntnr {
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 575px) {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1200px) {
+  body .footer h6 ,div.heading6{
+    margin-top: 20px;
+  }
+}
+@media (max-width: 575px) {
+  body .footer h4 {
+    font-size: 14px;
+    display: inline-block;
+  }
+  body .footer h6 ,div.heading6 {
+    font-size: 18px;
+  }
+  body .footer ul li a,
+  body .footer p {
+    font-size: 16px;
+  }
+  #main .footer ul.footer-social-list,
+  #main.black .footer ul.footer-social-list,
+  body .footer ul.footer-social-list {
+    justify-content: flex-start;
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    li {
+      margin-top: 0;
+      margin-left: 15px;
+      a {
+        font-size: 20px;
+        width: auto;
+        height: auto;
+        svg {
+          max-width: 20px;
+        }
+      }
+    }
+  }
+}
+
+.footer-scroller {
+  display: none;
+}
+@media (max-width: 767px) {
+  .footer .footer-scroller {
+    display: inline-block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: #cfcfcf;
+    background-color: $white;
+    &:before {
+      position: absolute;
+      content: '';
+      left: calc(50% - 30px);
+      top: -15px;
+      background-color: #fff;
+      width: 60px;
+      height: 50px;
+      border-top: 1px solid;
+      border-radius: 50%;
+      border-color: #cfcfcf;
+      z-index: -5;
+
+      @media (max-width: 575px) {
+        max-width: 45px;
+        max-height: 35px;
+        left: calc(50% - 22.5px);
+        top: -10px;
+      }
+    }
+    ul {
+      display: flex;
+      margin: 0;
+      padding: 10px 15px 5px;
+      @media (max-width: 575px) {
+        padding: 10px 0 5px;
+      }
+
+      li {
+        width: 20%;
+        text-align: center;
+        position: relative;
+        &:first-child {
+          img {
+            max-width: 22px;
+
+            @media (max-width: 575px) {
+              max-width: 20px;
+              max-height: 18px;
+            }
+          }
+        }
+        &:nth-last-of-type(3) {
+          img {
+            max-width: 50px;
+            max-height: 50px;
+            position: relative;
+            top: -10px;
+
+            @media (max-width: 575px) {
+              max-width: 40px;
+              max-height: 40px;
+            }
+          }
+        }
+        img {
+          max-width: 28px;
+          max-height: 28px;
+          cursor: pointer;
+          @media (max-width: 575px) {
+            max-width: 22px;
+            max-height: 22px;
+          }
+        }
+        p {
+          font-size: 18px;
+          color: $black;
+          margin: 0;
+          text-align: center;
+          cursor: pointer;
+          @media (max-width: 575px) {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

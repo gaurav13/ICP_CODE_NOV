@@ -1,0 +1,1452 @@
+type anon_class_25_1 = 
+ service {
+   addCategory: (text, text, text) -> (vec text);
+   addEvent: (InputEvent, text, text) -> (Result_4);
+   addMultipleQuestions: (text, vec InputQuestion, text) -> (Result_3);
+   addMultipleQuestionsToSurvey: (text, vec InputServayQuestion, text) ->
+    (Result_3);
+   addQuestion: (text, InputQuestion, text) -> (Result_3);
+   addQuiz: (InputQuiz, text) -> (Result_3);
+   addServay: (InputServay, text) -> (Result_3);
+   addServayQuestion: (text, InputServayQuestion, text) -> (Result_3);
+   addView: (Key) -> (bool);
+   addWeb3View: (Key) -> (bool);
+   addWeb3postCount: (Key, text) -> (bool);
+   add_campaign: (InputFeaturedCampaign, text) -> (Result_3);
+   add_category: (InputCategory, text, text) -> (Result_2);
+   adminDeleteEntry: (Key, text, text) -> (Result_16);
+   approveArticle: (text, text, Key, bool) -> (Result_18);
+   approvePodcast: (text, text, Key, bool) -> (Result_18);
+   buyNFTStudio24Tokens: (text, nat, nat) -> (Result_17);
+   changeStatusOfServay: (bool, text, text) -> (Result_3);
+   changeTheStatusOfQuiz: (bool, text, text) -> (Result_3);
+   child_to_category: (vec CategoryId) -> (ListCategories) query;
+   deleteDraftEntry: (Key, text) -> (Result_16);
+   deleteQuestion: (text, text, text) -> (Result_3);
+   deleteServayQuestion: (text, text, text) -> (Result_3);
+   deleteSurveyQuestions: (text, vec text, text) -> (Result_3);
+   delete_campaign: (text, text) -> (Result_3);
+   delete_category: (CategoryId, text, text) -> (Result_15);
+   delete_event: (text, text, text) -> (Result_3);
+   delete_quiz: (text, text) -> (Result_3);
+   delete_servay: (text, text) -> (Result_3);
+   delete_web3: (Key, text, text) -> (Result_3);
+   deletequizQuestions: (text, vec text, text) -> (Result_3);
+   editViews: (Key, nat, text, text) -> (bool);
+   editWeb3Views: (Key, nat, text, text) -> (bool);
+   event_types: () -> (EventCount) query;
+   getAllCategoriesIds: () -> (vec SlugWithData) query;
+   getAllEntries: (text) -> (vec record {
+                                   Key;
+                                   Entry;
+                                 }) query;
+   getAllEntryIds: (bool) -> (vec SlugWithData) query;
+   getAllEventsIds: () -> (vec SlugWithData) query;
+   getAllWeb3Ids: () -> (vec SlugWithData) query;
+   getAnalysis: (text, text) -> (Result_14);
+   getApprovedWeb3List: (nat) -> (vec record {
+                                        Key;
+                                        Web3;
+                                      }) query;
+   getCampaignById_forAdmin: (text) -> (opt FeaturedCampaign) query;
+   getCategories: () -> (vec text) query;
+   getEntriesByCategory: (text) -> (vec record {
+                                          Key;
+                                          Entry;
+                                        }) query;
+   getEntriesList: (text, bool, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      ListEntryItem;
+                    };
+     }) query;
+   getEntriesNew: (CategoryId, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getEntriesNewlatest: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getEntriesOfWeb3: (text, text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getEntry: (Key) -> (opt Entry) query;
+   getEntryMeta: (Key) -> (EntryMetadata) query;
+   getEntry_admin: (Key) -> (opt Entry) query;
+   getEventMeta: (Key) -> (EventMetadata) query;
+   getEventsOfWeb3: (text, nat, nat, opt nat, opt text, opt text, text,
+    text) -> (record {
+                amount: nat;
+                entries: Events;
+              }) query;
+   getFeaturedCampaignList: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      FeaturedCampaignItem;
+                    };
+     }) query;
+   getFeaturedEntriesList: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      ListEntryItem;
+                    };
+     }) query;
+   getOnlyActiveQuizOfArticle: (text) -> (vec text);
+   getOnlyActiveQuizOfArticles: (text) -> (vec record {
+                                                 text;
+                                                 opt nat;
+                                               });
+   getOnlyActiveSurveyOfArticle: (Key) -> (vec text);
+   getOnlyArticles: (nat, vec text) -> (vec record {
+                                              Key;
+                                              Entry;
+                                            }) query;
+   getOnlyPressRelease: (nat, vec text) -> (vec record {
+                                                  Key;
+                                                  Entry;
+                                                }) query;
+   getPaginatedEntries: (nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getPendingWeb3List: (nat) -> (vec record {
+                                       Key;
+                                       Web3;
+                                     }) query;
+   getPressEntries: (text) -> (vec record {
+                                     Key;
+                                     Entry;
+                                   }) query;
+   getPromotedEntries: (nat) -> (vec record {
+                                       Key;
+                                       Entry;
+                                     }) query;
+   getPromotionAmountOfQuiz: (text) -> (opt nat) query;
+   getQuestionsOfQuiz: (text) -> (Result_13);
+   getQuestionsOfQuiz_admin: (text, text, nat, nat) -> (Result_12);
+   getQuestionsOfServay_admin: (text, text, nat, nat) -> (Result_11);
+   getQuestionsOfSurvey: (text) -> (Result_10);
+   getQuizAndServayTransectionForAdmin: (InputTransectionTypes, text, 
+    nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      TransactionHistoryOfServayAndQuiz;
+                    };
+     });
+   getQuizById: (text) -> (opt Quiz) query;
+   getQuizById_foradmin: (text) -> (opt Quiz) query;
+   getQuizIdsList_Of_article: (text) -> (vec text);
+   getQuizList: (opt text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      QuizForUser;
+                    };
+     });
+   getQuizList_for_admin: (opt text, int, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      ReturnQuizWithTitle;
+                    };
+     });
+   getQuizList_for_auther: (opt text, int, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      ReturnQuizWithTitle;
+                    };
+     });
+   getQuriedEntries: (opt CategoryId, text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getReviewEntries: (text, text, EntryStatus__1, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      ListEntryItem;
+                    };
+     });
+   getReviewPodcast: (text, text, EntryStatus__1, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      ListPodcastItem;
+                    };
+     });
+   getRewardsOfQuizandSurvey: (text) -> (nat) query;
+   getSearchedEntries: (text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getServayById: (text) -> (opt Servay) query;
+   getServayById_foradmin: (text) -> (opt Servay) query;
+   getServayList: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      ServayForUser;
+                    };
+     });
+   getServayList_for_admin: (opt text, int, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      ServaywithTitle;
+                    };
+     });
+   getServayList_for_auther: (opt text, int, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      ServaywithTitle;
+                    };
+     });
+   getSurveyIdsList_Of_article: (Key) -> (vec text);
+   getTakenQuizOfUser: (UserId, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      TakenByWithTitle;
+                    };
+     });
+   getTakenSurveyOfUser: (UserId, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      text;
+                      ServayTakenByList;
+                    };
+     });
+   getUniqueDataList: (text, bool, text, nat, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      ListPodcastItem;
+                    };
+     }) query;
+   getUserEntries: (UserId, bool, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getUserEntriesList: (text, bool, text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      ListEntryItem;
+                    };
+     }) query;
+   getUserFavouriteDirectories: (UserId, text, nat, nat) ->
+    (record {
+       amount: nat;
+       web3List: vec record {
+                       Key;
+                       Web3;
+                     };
+     }) query;
+   getUserFavouritePost: (UserId, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: vec record {
+                      Key;
+                      Entry;
+                    };
+     }) query;
+   getUserSeggestionList: (text, text, text, nat, nat, text) -> (Result_9);
+   getUserWeb3List: (text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       web3List: vec record {
+                       Key;
+                       Web3;
+                     };
+     }) query;
+   getWeb3: (Key) -> (opt Web3) query;
+   getWeb3DirectoriesDashboard: (text, Web3Status__1, text, text, nat,
+    nat) ->
+    (record {
+       amount: nat;
+       web3List: vec record {
+                       Key;
+                       Web3DashboardList;
+                     };
+     });
+   getWeb3List: (text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       web3List: vec record {
+                       Key;
+                       Web3List;
+                     };
+     }) query;
+   getWeb3ListOfAllUsers: (text, text, nat, nat) ->
+    (record {
+       amount: nat;
+       web3List: vec record {
+                       Key;
+                       Web3;
+                     };
+     }) query;
+   getWeb3Meta: (Key) -> (Web3MetaData) query;
+   getWeb3_for_admin: (Key, text) -> (opt Web3);
+   get_categories: (text, nat, nat, bool) ->
+    (record {
+       amount: nat;
+       entries: TopWeb3Categories;
+     }) query;
+   get_categories_by_name: (vec text) ->
+    (vec record {
+           CategoryId;
+           Category;
+         }) query;
+   get_category: (text) -> (opt Category) query;
+   get_event: (text) -> (opt Event__1) query;
+   get_events: (text, nat, nat, opt nat, opt text, opt text, text) ->
+    (record {
+       amount: nat;
+       entries: Events;
+     }) query;
+   get_like_reward: () -> (nat) query;
+   get_list_categories: (text, nat, nat, bool) ->
+    (record {
+       amount: nat;
+       entries: ListCategories;
+     }) query;
+   get_list_category: (text) -> (opt ListCategory) query;
+   get_reward: () -> (RewardConfig) query;
+   get_upcoming_events: (text, nat, nat, EventStatus, opt nat, opt text,
+    opt text, text) -> (record {
+                          amount: nat;
+                          entries: Events;
+                        }) query;
+   insertEntry: (InputEntry, text, bool, text, text) -> (Result_8);
+   insertWeb3: (InputWeb3, text, text, text, bool) -> (Result_7);
+   isEntryPodcast: (Key) -> (Result_6) query;
+   isEntryVerifiedPublicFn: (text) -> (bool);
+   isMinted: (Key) -> (bool);
+   likeEntry: (Key, text, text) -> (Result);
+   likeWeb3: (Key, text, text) -> (Result);
+   makeStatic: (Key) -> (bool);
+   makeStaticEvent: (Key) -> (bool);
+   makeStaticWeb3: (Key) -> (bool);
+   mintEntry: (Key, text) -> (Result);
+   promoteTheServay: (nat, text, text) -> (Result_3);
+   promotedTheQuiz: (nat, text, text) -> (Result_3);
+   promotedarticles_count: () -> (PromotedArticles) query;
+   quiz_list: () -> (QuizCount) query;
+   saveUserResponseToServay: (text, vec UserServayResponse, text) ->
+    (Result_5);
+   survey_list: () -> (SurveyCount) query;
+   total_events: () -> (int) query;
+   trendingEntryItemSidebar: (nat) ->
+    (vec record {
+           Key;
+           TrendingEntryItemSidebar;
+         }) query;
+   trendingPressReleaseItemSidebar: (nat) ->
+    (vec record {
+           Key;
+           TrendingEntryItemSidebar;
+         }) query;
+   updateEntry: (Entry, text) -> (bool);
+   updateEvent: (InputEvent, text, text, text) -> (Result_4);
+   updateQuestion: (text, text, InputQuestion, text) -> (Result_3);
+   updateQuiz: (InputQuiz, text, text) -> (Result_3);
+   updateServay: (InputServay, text, text) -> (Result_3);
+   updateServayQuestion: (text, text, InputServayQuestion, text) ->
+    (Result_3);
+   updateUserEntries: (UserId, text) -> (bool);
+   update_campaign: (text, InputFeaturedCampaign, text) -> (Result_3);
+   update_category: (InputCategory, CategoryId, text, text) -> (Result_2);
+   update_count_category: (CategoryId, text) -> (Result);
+   update_like_reward: (text, LikeReward) -> (LikeReward);
+   update_reward: (text, RewardConfig) -> (RewardConfig);
+   user_count: () -> (EntryCount) query;
+   validateQuiz: (text, int, vec QuestionAnswer, text) -> (Result_1);
+   verifyWeb3: (Key, text, text, bool) -> (Result);
+   web_list: () -> (Web3Count) query;
+ };
+type Web3Status__1 = 
+ variant {
+   all;
+   un_verfied;
+   verfied;
+ };
+type Web3Status = 
+ variant {
+   all;
+   un_verfied;
+   verfied;
+ };
+type Web3MetaData = 
+ record {
+   catagory: text;
+   categoryId: text;
+   company: text;
+   companyBanner: NewImageObject;
+   companyDetail: text;
+   companyLogo: NewImageObject;
+   companyUrl: opt text;
+   creation_time: int;
+   dateModified: int;
+   discord: opt text;
+   facebook: opt text;
+   founderDetail: text;
+   founderImage: NewImageObject;
+   founderName: text;
+   instagram: opt text;
+   linkedin: opt text;
+   shortDescription: text;
+   status: Web3Status;
+   telegram: opt text;
+   twitter: opt text;
+   user: UserId__1;
+ };
+type Web3List = 
+ record {
+   articleCount: int;
+   catagory: text;
+   company: text;
+   creation_time: int;
+   founderEmail: text;
+   isStatic: bool;
+   podcastCount: int;
+   pressReleaseCount: int;
+   totalCount: int;
+   views: nat;
+ };
+type Web3Id = text;
+type Web3DashboardList = 
+ record {
+   catagory: text;
+   company: text;
+   companyLogo: NewImageObject;
+   companyUrl: opt text;
+   creation_time: int;
+   founderEmail: text;
+   founderName: text;
+   isStatic: bool;
+   status: Web3Status;
+   user: UserId__1;
+   views: nat;
+ };
+type Web3Count = 
+ record {
+   total_web: int;
+   un_verified: int;
+   verified: int;
+ };
+type Web3 = 
+ record {
+   articleCount: int;
+   catagory: text;
+   company: text;
+   companyBanner: NewImageObject;
+   companyDetail: text;
+   companyLogo: NewImageObject;
+   companyUrl: opt text;
+   creation_time: int;
+   discord: opt text;
+   facebook: opt text;
+   founderDetail: text;
+   founderEmail: text;
+   founderImage: NewImageObject;
+   founderName: text;
+   instagram: opt text;
+   isStatic: bool;
+   likedUsers: vec principal;
+   likes: nat;
+   linkedin: opt text;
+   podcastCount: int;
+   pressReleaseCount: int;
+   shortDescription: text;
+   status: Web3Status;
+   telegram: opt text;
+   totalCount: int;
+   twitter: opt text;
+   user: UserId__1;
+   views: nat;
+ };
+type UserServayResponse = 
+ record {
+   seggestion: text;
+   selectedOption: vec text;
+   title: text;
+ };
+type UserId__1 = principal;
+type UserId = principal;
+type TrendingEntryItemSidebar = 
+ record {
+   category: vec text;
+   companyId: text;
+   creation_time: int;
+   image: opt NewImageObject;
+   isCompanySelected: bool;
+   isDraft: bool;
+   isPromoted: bool;
+   isStatic: bool;
+   likes: nat;
+   pressRelease: bool;
+   seoExcerpt: text;
+   status: EntryStatus;
+   title: text;
+   user: UserId__1;
+   userName: text;
+   views: nat;
+ };
+type TransectionTypes = 
+ variant {
+   quiz;
+   survey;
+ };
+type TransactionHistoryOfServayAndQuiz = 
+ record {
+   admin: nat;
+   creation_time: int;
+   entryType: TransectionTypes;
+   gasFee: nat;
+   id: text;
+   platform: nat;
+   promotional: nat;
+   user: principal;
+ };
+type TopWeb3Category = 
+ record {
+   articleCount: int;
+   children: opt vec CategoryId__1;
+   creation_time: int;
+   directoryCount: int;
+   eventsCount: int;
+   isChild: bool;
+   logo: NewImageObject;
+   name: text;
+   parentCategoryId: opt CategoryId__1;
+   podcastCount: int;
+   pressReleaseCount: int;
+   slug: text;
+   totalCount: int;
+ };
+type TopWeb3Categories = 
+ vec record {
+       CategoryId;
+       TopWeb3Category;
+     };
+type TakenByWithTitle = 
+ record {
+   attemptAt: int;
+   remainingAttempts: int;
+   reward: opt nat;
+   score: int;
+   status: int;
+   timestamp: int;
+   title: text;
+   user: principal;
+ };
+type TakenBy = 
+ record {
+   attemptAt: int;
+   remainingAttempts: int;
+   reward: opt nat;
+   score: int;
+   status: int;
+   timestamp: int;
+   user: principal;
+ };
+type SurveyCount = 
+ record {
+   active: int;
+   all: int;
+   not_active: int;
+ };
+type SlugWithData = 
+ record {
+   creation_time: int;
+   key: text;
+   modification_date: int;
+ };
+type ServaywithTitle = 
+ record {
+   attemptsPerUser: nat;
+   createdBy: principal;
+   creation_time: int;
+   description: text;
+   entryId: text;
+   entryTitle: text;
+   isAtive: bool;
+   oldRewardPerUser: opt nat;
+   questionCount: int;
+   remaningUserCanTakeReward: int;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   takenBy: vec ServayTakenBy;
+   title: text;
+   usersWillGetReward: int;
+ };
+type ServayTakenByList = 
+ record {
+   attemptAt: int;
+   reward: opt nat;
+   title: text;
+   user: principal;
+ };
+type ServayTakenBy = 
+ record {
+   attemptAt: int;
+   reward: opt nat;
+   user: principal;
+ };
+type ServayQuestionTakenBy__1 = 
+ record {
+   creation_time: int;
+   selectedOption: vec text;
+   user: principal;
+   userName: text;
+   userSuggestion: text;
+ };
+type ServayQuestionTakenBy = 
+ record {
+   creation_time: int;
+   selectedOption: vec text;
+   user: principal;
+   userName: text;
+   userSuggestion: text;
+ };
+type ServayQuestion = 
+ record {
+   creation_time: int;
+   ifSelected: opt int;
+   options: vec text;
+   takenBy: vec ServayQuestionTakenBy__1;
+   title: text;
+ };
+type ServayForUser = 
+ record {
+   attemptsPerUser: nat;
+   createdBy: principal;
+   creation_time: int;
+   description: text;
+   entryId: text;
+   isAtive: bool;
+   isTaken: bool;
+   oldRewardPerUser: opt nat;
+   questionCount: int;
+   remaningUserCanTakeReward: int;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   title: text;
+   usersWillGetReward: int;
+ };
+type Servay = 
+ record {
+   attemptsPerUser: nat;
+   createdBy: principal;
+   creation_time: int;
+   description: text;
+   entryId: text;
+   isAtive: bool;
+   oldRewardPerUser: opt nat;
+   questionCount: int;
+   remaningUserCanTakeReward: int;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   takenBy: vec ServayTakenBy;
+   title: text;
+   usersWillGetReward: int;
+ };
+type RewardConfig = 
+ record {
+   admin: nat;
+   master: nat;
+   platform: nat;
+ };
+type ReturnQuizWithTitle = 
+ record {
+   attemptsPerUser: nat;
+   createdBy: principal;
+   creation_time: int;
+   description: text;
+   duration: nat;
+   entryId: text;
+   entryTitle: text;
+   isAtive: bool;
+   isGeneral: bool;
+   oldRewardPerUser: opt nat;
+   passingMarks: nat;
+   questionCount: int;
+   remaningUserCanTakeReward: int;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   takenBy: vec TakenBy;
+   title: text;
+   usersWillGetReward: int;
+ };
+type Result_9 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok:
+    record {
+      text;
+      record {
+        amount: nat;
+        entries: vec ServayQuestionTakenBy;
+      };
+    };
+ };
+type Result_8 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         EntryId;
+       };
+ };
+type Result_7 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         Web3Id;
+       };
+ };
+type Result_6 = 
+ variant {
+   err;
+   ok: record {
+         isPodcast: bool;
+         isStatic: bool;
+       };
+ };
+type Result_5 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         text;
+         opt nat;
+         bool;
+       };
+ };
+type Result_4 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         EventId;
+       };
+ };
+type Result_3 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         text;
+         bool;
+       };
+ };
+type Result_2 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         Category;
+       };
+ };
+type Result_18 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         Entry;
+       };
+ };
+type Result_17 = 
+ variant {
+   err: text;
+   ok: text;
+ };
+type Result_16 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         opt Entry;
+       };
+ };
+type Result_15 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         opt Category;
+       };
+ };
+type Result_14 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         text;
+         text;
+         vec AnalysedData;
+       };
+ };
+type Result_13 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         opt Quiz;
+         vec Question;
+       };
+ };
+type Result_12 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         opt Quiz;
+         record {
+           amount: nat;
+           entries: vec Question;
+         };
+       };
+ };
+type Result_11 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         opt Servay;
+         record {
+           amount: nat;
+           entries: vec ServayQuestion;
+         };
+       };
+ };
+type Result_10 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         opt Servay;
+         vec ServayQuestion;
+       };
+ };
+type Result_1 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         text;
+         int;
+         int;
+         int;
+       };
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         bool;
+       };
+ };
+type QuizForUser = 
+ record {
+   creation_time: int;
+   duration: nat;
+   entryId: text;
+   isAtive: bool;
+   isTaken: bool;
+   participatedCount: int;
+   questionCount: int;
+   rewardPerUser: opt nat;
+   title: text;
+   usersWillGetReward: int;
+ };
+type QuizCount = 
+ record {
+   active: int;
+   all: int;
+   not_active: int;
+ };
+type Quiz = 
+ record {
+   attemptsPerUser: nat;
+   createdBy: principal;
+   creation_time: int;
+   description: text;
+   duration: nat;
+   entryId: text;
+   isAtive: bool;
+   isGeneral: bool;
+   oldRewardPerUser: opt nat;
+   passingMarks: nat;
+   questionCount: int;
+   remaningUserCanTakeReward: int;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   takenBy: vec TakenBy;
+   title: text;
+   usersWillGetReward: int;
+ };
+type QuestionAnswer = 
+ record {
+   correctAnswer: vec text;
+   title: text;
+ };
+type Question = 
+ record {
+   correctAnswer: vec text;
+   creation_time: int;
+   options: vec text;
+   title: text;
+ };
+type PromotedArticles = 
+ record {
+   promotionIcp: int;
+   totalEntries: int;
+ };
+type NewImageObject = text;
+type ListPodcastItem = 
+ record {
+   category: vec text;
+   companyId: text;
+   creation_time: int;
+   image: opt NewImageObject;
+   isCompanySelected: bool;
+   isDraft: bool;
+   isPodcast: bool;
+   isStatic: bool;
+   likedUsers: vec principal;
+   likes: nat;
+   minters: vec principal;
+   podcastImg: opt NewImageObject;
+   podcastVideoLink: text;
+   pressRelease: bool;
+   seoExcerpt: text;
+   status: EntryStatus;
+   title: text;
+   user: UserId__1;
+   userName: text;
+   views: nat;
+ };
+type ListEntryItem = 
+ record {
+   category: vec text;
+   companyId: text;
+   creation_time: int;
+   image: opt NewImageObject;
+   isCompanySelected: bool;
+   isDraft: bool;
+   isPodcast: bool;
+   isPromoted: bool;
+   isStatic: bool;
+   likes: nat;
+   minters: vec principal;
+   modificationDate: int;
+   podcastImg: opt NewImageObject;
+   podcastImgCation: text;
+   podcastVideoLink: text;
+   pressRelease: bool;
+   seoExcerpt: text;
+   status: EntryStatus;
+   title: text;
+   user: UserId__1;
+   userName: text;
+   views: nat;
+ };
+type ListCategory = 
+ record {
+   articleCount: int;
+   children: opt vec CategoryId__1;
+   creation_time: int;
+   description: text;
+   directoryCount: int;
+   eventsCount: int;
+   isChild: bool;
+   logo: NewImageObject;
+   name: text;
+   parentCategoryId: opt CategoryId__1;
+   podcastCount: int;
+   pressReleaseCount: int;
+   slug: text;
+   totalCount: int;
+   user: principal;
+ };
+type ListCategories = 
+ vec record {
+       CategoryId;
+       ListCategory;
+     };
+type List = 
+ opt record {
+       int;
+       List;
+     };
+type LikeReward = nat;
+type Key = text;
+type InputWeb3 = 
+ record {
+   catagory: text;
+   company: text;
+   companyBanner: NewImageObject;
+   companyDetail: text;
+   companyLogo: NewImageObject;
+   companyUrl: text;
+   discord: text;
+   facebook: text;
+   founderDetail: text;
+   founderEmail: text;
+   founderImage: NewImageObject;
+   founderName: text;
+   instagram: text;
+   linkedin: text;
+   shortDescription: text;
+   telegram: text;
+   twitter: text;
+ };
+type InputTransectionTypes = 
+ variant {
+   all;
+   quiz;
+   survey;
+ };
+type InputServayQuestion = 
+ record {
+   ifSelected: opt int;
+   options: vec text;
+   title: text;
+ };
+type InputServay = 
+ record {
+   attemptsPerUser: nat;
+   description: text;
+   entryId: text;
+   isAtive: bool;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   title: text;
+   usersWillGetReward: int;
+ };
+type InputQuiz = 
+ record {
+   attemptsPerUser: nat;
+   description: text;
+   duration: nat;
+   entryId: text;
+   isAtive: bool;
+   isGeneral: bool;
+   passingMarks: nat;
+   rewardPerUser: opt nat;
+   shouldRewarded: bool;
+   title: text;
+   usersWillGetReward: int;
+ };
+type InputQuestion = 
+ record {
+   correctAnswer: vec text;
+   options: vec text;
+   title: text;
+ };
+type InputFeaturedCampaign = 
+ record {
+   endDate: int;
+   entryId: text;
+   isActive: bool;
+   startDate: int;
+ };
+type InputEvent = 
+ record {
+   applyTicket: text;
+   category: vec text;
+   city: text;
+   country: text;
+   date: int;
+   description: text;
+   discountTicket: text;
+   endDate: int;
+   facebook: text;
+   freeTicket: text;
+   image: NewImageObject;
+   instagram: text;
+   lat: float64;
+   linkdin: text;
+   lng: float64;
+   location: text;
+   month: nat;
+   organiser: text;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   shortDescription: text;
+   tags: vec text;
+   telegram: text;
+   title: text;
+   twitter: text;
+   website: text;
+ };
+type InputEntry = 
+ record {
+   caption: text;
+   category: vec text;
+   companyId: text;
+   description: text;
+   image: opt NewImageObject;
+   isCompanySelected: bool;
+   isDraft: bool;
+   isPodcast: bool;
+   isPromoted: bool;
+   podcastImg: opt NewImageObject;
+   podcastImgCation: text;
+   podcastVideoLink: text;
+   pressRelease: bool;
+   promotionICP: nat;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   subscription: bool;
+   tags: vec text;
+   title: text;
+   userName: text;
+ };
+type InputCategory = 
+ record {
+   banner: NewImageObject;
+   description: text;
+   logo: NewImageObject;
+   name: text;
+   parentCategoryId: opt CategoryId__1;
+   slug: text;
+ };
+type FeaturedCampaignItem = 
+ record {
+   createdBy: principal;
+   creation_time: int;
+   endDate: int;
+   entryId: text;
+   isActive: bool;
+   startDate: int;
+   title: text;
+ };
+type FeaturedCampaign = 
+ record {
+   createdBy: principal;
+   creation_time: int;
+   endDate: int;
+   entryId: text;
+   isActive: bool;
+   startDate: int;
+ };
+type Events = 
+ vec record {
+       EventId__1;
+       Event;
+     };
+type Event__1 = 
+ record {
+   applyTicket: text;
+   category: vec text;
+   city: text;
+   country: text;
+   creation_time: int;
+   date: int;
+   description: text;
+   discountTicket: text;
+   endDate: int;
+   facebook: text;
+   freeTicket: text;
+   image: NewImageObject;
+   instagram: text;
+   isStatic: bool;
+   lat: float64;
+   linkdin: text;
+   lng: float64;
+   location: text;
+   month: nat;
+   organiser: text;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   shortDescription: text;
+   tags: vec text;
+   telegram: text;
+   title: text;
+   twitter: text;
+   user: UserId__1;
+   website: text;
+ };
+type EventStatus = 
+ variant {
+   all;
+   ongoing;
+   past;
+   upcoming;
+ };
+type EventMetadata = 
+ record {
+   applyTicket: text;
+   category: vec text;
+   categoryIds: vec text;
+   city: text;
+   country: text;
+   creation_time: int;
+   date: int;
+   dateModified: int;
+   description: text;
+   endDate: int;
+   freeTicket: text;
+   image: NewImageObject;
+   location: text;
+   month: nat;
+   organiser: text;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   shortDescription: text;
+   tags: vec text;
+   title: text;
+   user: UserId__1;
+   website: text;
+ };
+type EventId__1 = text;
+type EventId = text;
+type EventCount = 
+ record {
+   all: int;
+   ongoing: int;
+   pasts: int;
+   upcoming: int;
+ };
+type Event = 
+ record {
+   applyTicket: text;
+   category: vec text;
+   city: text;
+   country: text;
+   creation_time: int;
+   date: int;
+   description: text;
+   discountTicket: text;
+   endDate: int;
+   facebook: text;
+   freeTicket: text;
+   image: NewImageObject;
+   instagram: text;
+   isStatic: bool;
+   lat: float64;
+   linkdin: text;
+   lng: float64;
+   location: text;
+   month: nat;
+   organiser: text;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   shortDescription: text;
+   tags: vec text;
+   telegram: text;
+   title: text;
+   twitter: text;
+   user: UserId__1;
+   website: text;
+ };
+type EntryStatus__1 = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type EntryStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type EntryMetadata = 
+ record {
+   caption: text;
+   category: vec text;
+   categoryIds: vec text;
+   companyId: text;
+   creation_time: int;
+   dateModified: int;
+   description: text;
+   image: opt NewImageObject;
+   isCompanySelected: bool;
+   isPodcast: bool;
+   isPromoted: bool;
+   podcastImg: opt NewImageObject;
+   podcastImgCation: text;
+   podcastVideoLink: text;
+   pressRelease: bool;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   status: EntryStatus;
+   tags: vec text;
+   title: text;
+   user: UserId__1;
+   userName: text;
+ };
+type EntryId = text;
+type EntryCount = 
+ record {
+   approved: int;
+   articlesapproved: int;
+   articlesdrafts: int;
+   articlespendings: int;
+   articlesrejected: int;
+   drafts: int;
+   pendings: int;
+   podcastapproved: int;
+   podcastdrafts: int;
+   podcastpendings: int;
+   podcastrejected: int;
+   pressreleaseapproved: int;
+   pressreleasedrafts: int;
+   pressreleasependings: int;
+   pressreleaserejected: int;
+   rejected: int;
+   totalEntries: int;
+   totalarticles: int;
+   totalpodcasts: int;
+   totalpressrelease: int;
+ };
+type Entry = 
+ record {
+   caption: text;
+   category: vec text;
+   companyId: text;
+   creation_time: int;
+   description: text;
+   image: opt NewImageObject;
+   isCompanySelected: bool;
+   isDraft: bool;
+   isPodcast: bool;
+   isPromoted: bool;
+   isStatic: bool;
+   likedUsers: vec principal;
+   likes: nat;
+   minters: vec principal;
+   podcastImg: opt NewImageObject;
+   podcastImgCation: text;
+   podcastVideoLink: text;
+   pressRelease: bool;
+   promotionHistory: List;
+   promotionICP: nat;
+   seoDescription: text;
+   seoExcerpt: text;
+   seoSlug: text;
+   seoTitle: text;
+   status: EntryStatus;
+   subscription: bool;
+   tags: vec text;
+   title: text;
+   user: UserId__1;
+   userName: text;
+   viewedUsers: vec principal;
+   views: nat;
+ };
+type CategoryId__1 = text;
+type CategoryId = text;
+type Category = 
+ record {
+   articleCount: int;
+   banner: NewImageObject;
+   children: opt vec CategoryId__1;
+   creation_time: int;
+   description: text;
+   directoryCount: int;
+   eventsCount: int;
+   isChild: bool;
+   logo: NewImageObject;
+   name: text;
+   parentCategoryId: opt CategoryId__1;
+   podcastCount: int;
+   pressReleaseCount: int;
+   slug: text;
+   totalCount: int;
+   user: principal;
+ };
+type AnalysedData = 
+ record {
+   count: int;
+   title: text;
+ };
+service : () -> anon_class_25_1

@@ -1,0 +1,305 @@
+.Featured-Post {
+  display: inline-block;
+  width: 100%;
+  max-width: calc(100% - 30px);
+  margin-bottom: 15px;
+  background-color: #eeeeee;
+  padding: 10px;
+  @include bd-radius(5px);
+  border-bottom: 3px solid #d9d9d9;
+  height: 315px;
+
+  @media (max-width: 1400px) {
+    min-height: auto;
+    max-width: 100%;
+  }
+
+  @media (max-width: 1200px) {
+    min-height: auto;
+    max-width: unset;
+  }
+
+  @media (max-width: 991px) {
+    min-height: unset;
+  }
+  &.max {
+    max-width: 320px;
+  }
+  &:hover {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 575px) {
+    max-width: 320px;
+    margin-bottom: 30px;
+  }
+  &.auto {
+    margin-bottom: 30px;
+    .Featured-Post-inner {
+      .txt-pnl {
+        h5 {
+          height: 54px;
+        }
+      }
+    }
+  }
+  .Featured-Post-inner {
+    display: inline-block;
+    width: 100%;
+    text-align: initial;
+
+    .txt-pnl {
+      width: 100%;
+      float: left;
+      padding: 10px 0 0;
+      @include bd-radius(0px 0px 15px 15px);
+
+      h5 {
+        color: $black;
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        height: 36px;
+        overflow: hidden;
+      }
+
+      p {
+        font-size: 14px;
+        color: $grey;
+        display: flex;
+        align-items: center;
+
+        b {
+          color: $black;
+          margin-left: 5px;
+        }
+
+        @media (max-width: 1400px) {
+          display: flex;
+        }
+
+        @media (max-width: 767px) {
+          display: inline-block;
+        }
+
+        main b {
+          color: $black;
+          margin-left: 5px;
+        }
+
+        span {
+          width: 25px;
+          height: 25px;
+          background-color: $white;
+          border-radius: 50%;
+          padding: 5px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+          margin-right: 5px;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+          img.myimg {
+            margin-right: 0 !important;
+          }
+        }
+      }
+      p a.mylink {
+        border: none !important;
+        padding: 0 !important;
+
+        &:hover {
+          background-color: unset !important;
+          color: unset !important;
+        }
+      }
+      a {
+        width: 100%;
+        background-color: transparent;
+        text-align: center;
+        color: $black;
+        border: 1px solid $grey;
+        border-radius: 5px;
+        padding: 10px 5px;
+        font-size: 14px;
+        background-color: white;
+        max-width: 80%;
+        margin: 0 auto 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        justify-content: center;
+
+        &:hover {
+          background-color: $blue;
+          color: $white;
+        }
+
+        img {
+          width: 25px;
+          margin-right: 5px;
+        }
+      }
+      p a {
+        margin-bottom: 0;
+        background-color: transparent;
+      }
+    }
+
+    .img-pnl {
+      width: 100%;
+      position: relative;
+      h2 {
+        color: $white;
+        font-size: 16px;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        padding: 8px 25px 5px 5px;
+        z-index: 2;
+        margin-bottom: 0px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        &::before {
+          position: absolute;
+          content: '';
+          left: 0;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          background-color: $blue;
+          z-index: -1;
+          clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
+        }
+      }
+
+      img {
+        max-height: 136px;
+      }
+
+      a,
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  &.press .Featured-Post-inner .txt-pnl {
+    h5 {
+      height: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+    .read-more-btn {
+      background-color: $white;
+      max-width: 80%;
+      margin: 25px auto 0;
+      &:hover {
+        background-color: $color;
+      }
+    }
+  }
+}
+.comingsoonlb,
+.comingsoonlb1 {
+  color: $white;
+  font-size: 16px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding: 6px 25px 5px 5px;
+  z-index: 2;
+  margin-bottom: 0px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  &::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $blue;
+    z-index: -1;
+    clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
+  }
+}
+.comingsoonlb1 {
+  color: $white;
+  font-size: 16px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding: 6px 25px 5px 5px;
+  z-index: 2;
+  margin-bottom: 0px;
+  width: 170px;
+  height: 30px;
+  left: 0;
+  bottom: 0;
+  &::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $blue;
+    z-index: -1;
+    clip-path: polygon(0 0, 90% 0%, 100% 100%, 0% 100%);
+  }
+}
+.Featured-Post .Featured-Post-inner .img-pnl {
+  height: 130px !important;
+  @media (max-width: 575px) {
+    height: 80px !important;
+  }
+  img {
+    height: 130px;
+    @media (max-width: 575px) {
+      height: 80px;
+    }
+  }
+}
+// .Featured-Post .Featured-Post-inner .img-pnl.new {
+//   height: auto !important;
+//   img {
+//     height: auto !important;
+//     max-height: none !important;
+//   }
+// }
+
+.Featured-Post .Featured-Post-inner {
+  height: unset !important;
+}
+.Featured-Post .Featured-Post-inner .txt-pnl a {
+  font-size: 12px;
+  @media (max-width: 1600px) {
+    font-size: 11px;
+  }
+}
+.Featured-Post {
+  @media (max-width: 1600px) {
+    min-height: 310px;
+  }
+  @media (max-width: 1400px) {
+    min-height: 340px;
+  }
+  @media (max-width: 1200px) {
+    min-height: 320px;
+  }
+  @media (max-width: 767px) {
+    min-height: unset;
+    height: auto;
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "DIP721": {
+    "ic": "xp6hi-syaaa-aaaal-adfqq-cai"
+  },
+  "DIP721_JP": {
+    "ic": "ngktb-pqaaa-aaaam-ab6za-cai"
+  },
+  "NFTStudio24": {
+    "ic": "7uioq-vyaaa-aaaal-ac6ea-cai"
+  },
+  "NFTStudio24_JP": {
+    "ic": "pvvqb-hiaaa-aaaam-ab6xq-cai"
+  },
+  "NFTStudio24_SG": {
+    "ic": "rxqpk-hyaaa-aaaam-actvq-cai"
+  },
+  "collection": {
+    "ic": "plghn-riaaa-aaaal-qce6a-cai"
+  },
+  "comment": {
+    "ic": "4s7mu-riaaa-aaaal-addsa-cai"
+  },
+  "comment_JP": {
+    "ic": "nblvv-ciaaa-aaaam-ab6zq-cai"
+  },
+  "comment_SG": {
+    "ic": "rzscc-4iaaa-aaaam-actuq-cai"
+  },
+  "entry": {
+    "ic": "ogidd-6aaaa-aaaal-qcezq-cai"
+  },
+  "entry_JP": {
+    "ic": "numey-daaaa-aaaam-ab62a-cai"
+  },
+  "entry_SG": {
+    "ic": "qt5ay-6yaaa-aaaam-acttq-cai"
+  },
+  "hello": {
+    "ic": "s7ngy-liaaa-aaaak-ae7yq-cai"
+  },
+  "hello_assets": {
+    "ic": "pmhbz-4qaaa-aaaal-qce6q-cai"
+  },
+  "image": {
+    "ic": "pfekf-kyaaa-aaaal-qce7a-cai"
+  },
+  "subscriber": {
+    "ic": "5aclj-ryaaa-aaaal-adekq-cai"
+  },
+  "subscriber_JP": {
+    "ic": "n2ojq-yqaaa-aaaam-ab63a-cai"
+  },
+  "subscriber_SG": {
+    "ic": "rqrj6-kaaaa-aaaam-actva-cai"
+  },
+  "token_canister": {
+    "ic": "fdk2c-7qaaa-aaaal-ajiba-cai"
+  },
+  "user": {
+    "ic": "6zgk6-2qaaa-aaaal-ac6dq-cai"
+  },
+  "user_JP": {
+    "ic": "ntncm-oyaaa-aaaam-ab62q-cai"
+  },
+  "user_SG": {
+    "ic": "r6tew-rqaaa-aaaam-actua-cai"
+  }
+}

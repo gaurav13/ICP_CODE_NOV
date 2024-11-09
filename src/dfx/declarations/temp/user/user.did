@@ -1,0 +1,400 @@
+type anon_class_25_1 = 
+ service {
+   addReaderOfEntry: (EntryId, text) -> (bool);
+   add_reward: (principal, nat, text) -> (bool);
+   add_user: () -> (Result_1);
+   admin_update_user: (Id, InputUser, text) -> (Result);
+   assign_role: (principal, text, Role__1) -> (Result_1);
+   block_sub_admin: (text, text) -> (Result_1);
+   block_user: (text, text) -> (Result_1);
+   check_user_exists: (principal) -> (bool);
+   claim_rewards_of_user: () -> (bool);
+   entry_require_permission: (principal, Permission) -> (bool) query;
+   getArticleReadReward: () -> (nat) query;
+   getBalanceOfMyWallets: (text) ->
+    (record {
+       admin: nat;
+       master: nat;
+       plateform: nat;
+     });
+   getDailyLoginReward: () -> (nat) query;
+   getEmailVerificationReward: () -> (nat) query;
+   getListOfArtificialAndMenualRewardList: (bool, text, nat, nat) ->
+    (record {
+       amount: nat;
+       reward: ReturnMenualAndArtificialRewardList;
+     }) query;
+   getListOfBurner: (opt principal, nat, nat, text) ->
+    (record {
+       burners: Burners;
+       total: nat;
+     });
+   getListOfMinters: (opt principal, nat, nat, text) ->
+    (record {
+       minters: Minters;
+       total: nat;
+     });
+   getMinimumClaimReward: () -> (nat) query;
+   getProfileCompReward: () -> (nat) query;
+   getRewardChangerList: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: RewardValuesChangeRecordReturnList;
+     }) query;
+   getTokensClaimedRequests: (text, nat, nat, TokensClaimStatus__1,
+    opt principal) ->
+    (record {
+       amount: nat;
+       entries: TokenClaimRequests;
+     }) query;
+   getTokensClaimedRequestsForUser: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       entries: TokenClaimRequests;
+       totallAproved: nat;
+     }) query;
+   get_NFT24Coin: () -> (nat) query;
+   get_authorized_users: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       users: vec record {
+                    Id;
+                    ListUserDashboard;
+                  };
+     }) query;
+   get_newUserReward: () -> (nat) query;
+   get_reward_of_user: (nat, nat) ->
+    (record {
+       amount: nat;
+       reward: UsersRewards__1;
+     }) query;
+   get_reward_of_user_count: () ->
+    (record {
+       all: nat;
+       claimed: nat;
+       unclaimed: nat;
+     }) query;
+   get_subAdmin_users: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       users: vec record {
+                    Id;
+                    ListAdminUser;
+                  };
+     }) query;
+   get_user_details: (UserId) -> (Result_3) query;
+   get_user_email: (principal) -> (opt record {email: opt text;}) query;
+   get_user_name: (principal) ->
+    (opt
+      record {
+        designation: opt text;
+        image: opt NewImageObject__1;
+        name: opt text;
+      }) query;
+   get_user_name_only: (principal) -> (opt text) query;
+   get_users: (text, bool, nat, nat) ->
+    (record {
+       amount: nat;
+       users: vec record {
+                    Id;
+                    ListUser;
+                  };
+     }) query;
+   get_winner_users: (text, nat, nat) ->
+    (record {
+       amount: nat;
+       users: vec record {
+                    Id;
+                    TopWinnerUserList;
+                  };
+     }) query;
+   give_reward: (Id, nat, bool) -> (bool);
+   isAlreadyReadTheEntry: (EntryId) -> (bool) query;
+   isAlreadyVerifiedEmail: (Id) -> (bool) query;
+   make_admin: (principal, Role__1) -> (bool);
+   request_verification: (NewImageObject__1) -> (Result);
+   saveRewardValuesChangerInterCanister: (Id, RewardConfig, RewardConfig) ->
+    () oneway;
+   saveRewardValuesChangers: (Id, nat, nat, text) -> () oneway;
+   token_request_approve: (text) -> (Result_2);
+   token_request_reject: (text) -> (Result_2);
+   unBlock_sub_admin: (text, text) -> (Result_1);
+   unBlock_user: (text, text) -> (Result_1);
+   un_verify_user: (text, text) -> (Result);
+   updateArticleReadReward: (nat) -> (bool);
+   updateDailyLoginReward: (nat) -> (bool);
+   updateEmailVerificationReward: (nat) -> (bool);
+   updateMinimumClaimReward: (nat) -> (bool);
+   updateNewUserReward: (nat) -> (bool);
+   updateProfileCompReward: (nat) -> (bool);
+   update_NFT24Coin: (nat) -> (bool);
+   update_user: (InputUser, text) -> (Result);
+   user_count: () -> (int) query;
+   verified_user_count: () -> (UserCount) query;
+   verify_user: (text, text) -> (Result);
+ };
+type UsersRewards__1 = vec UsersReward;
+type UsersRewards = vec UsersReward;
+type UsersReward = 
+ record {
+   amount: nat;
+   claimed_at: opt int;
+   creation_time: int;
+   isClaimed: bool;
+   reward_type: text;
+ };
+type UserId = opt text;
+type UserCount = 
+ record {
+   Unblocked: int;
+   Users: int;
+   blocked: int;
+   unverified: int;
+   verified: int;
+ };
+type User = 
+ record {
+   authorDescription: opt text;
+   authorInfo: opt text;
+   authorTitle: opt text;
+   bannerImg: opt NewImageObject;
+   designation: opt text;
+   dob: opt text;
+   email: opt text;
+   facebook: opt text;
+   gender: opt text;
+   identificationImage: opt NewImageObject;
+   instagram: opt text;
+   isAdminBlocked: bool;
+   isBlocked: bool;
+   isVerificationRequested: bool;
+   isVerified: bool;
+   joinedFrom: int;
+   linkedin: opt text;
+   name: opt text;
+   profileImg: opt NewImageObject;
+   rewards: Rewards;
+   role: Role;
+   twitter: opt text;
+   website: opt text;
+ };
+type TopWinnerUserList = 
+ record {
+   dob: opt text;
+   gender: opt text;
+   joinedFrom: int;
+   name: text;
+   profileImg: opt NewImageObject;
+   rewards: UsersRewards;
+   totalReward: int;
+ };
+type TokensClaimStatus__1 = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type TokensClaimStatus = 
+ variant {
+   approved;
+   pending;
+   rejected;
+ };
+type TokenMinter = 
+ record {
+   creation_time: int;
+   name: text;
+   tokens: nat;
+   user: principal;
+   wallet: principal;
+ };
+type TokenClaimRequests = 
+ vec record {
+       text;
+       TokenClaimRequest;
+     };
+type TokenClaimRequest = 
+ record {
+   creation_time: int;
+   status: TokensClaimStatus;
+   tokens: nat;
+   transectionFee: nat;
+   user: principal;
+ };
+type TokenBurn = 
+ record {
+   creation_time: int;
+   name: text;
+   tokens: nat;
+   user: principal;
+ };
+type Role__1 = 
+ variant {
+   admin;
+   article_admin;
+   authorized;
+   sub_admin;
+   user_admin;
+ };
+type Role = 
+ variant {
+   admin;
+   article_admin;
+   authorized;
+   sub_admin;
+   user_admin;
+ };
+type Rewards = vec Reward;
+type RewardValuesChangeRecordReturnList = 
+ vec record {
+       text;
+       RewardValuesChangeRecordReturn;
+     };
+type RewardValuesChangeRecordReturn = 
+ record {
+   changer: Id__1;
+   changerName: text;
+   creation_time: int;
+   newValue: nat;
+   oldValue: nat;
+   rewardType: text;
+ };
+type RewardConfig = 
+ record {
+   admin: nat;
+   master: nat;
+   platform: nat;
+ };
+type Reward = 
+ record {
+   amount: nat;
+   claimed_at: opt int;
+   creation_time: int;
+   isClaimed: bool;
+ };
+type ReturnMenualAndArtificialRewardList = 
+ vec record {
+       text;
+       ReturnMenualAndArtificialReward;
+     };
+type ReturnMenualAndArtificialReward = 
+ record {
+   amount: nat;
+   creation_time: int;
+   from: Id__1;
+   isMenual: bool;
+   receiverName: text;
+   senderName: text;
+   to: Id__1;
+ };
+type Result_3 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         User;
+         bool;
+       };
+ };
+type Result_2 = 
+ variant {
+   err: record {
+          text;
+          bool;
+        };
+   ok: record {
+         text;
+         bool;
+       };
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         User;
+       };
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: record {
+         text;
+         User;
+         opt User;
+       };
+ };
+type Permission = 
+ variant {
+   assign_role;
+   manage_article;
+   manage_user;
+   write;
+ };
+type NewImageObject__1 = text;
+type NewImageObject = text;
+type Minters = 
+ vec record {
+       text;
+       TokenMinter;
+     };
+type ListUserDashboard = 
+ record {
+   claimedReward: nat;
+   email: opt text;
+   identificationImage: opt NewImageObject;
+   isAdminBlocked: bool;
+   isBlocked: bool;
+   isVerificationRequested: bool;
+   isVerified: bool;
+   joinedFrom: int;
+   name: opt text;
+   unclaimedReward: nat;
+ };
+type ListUser = 
+ record {
+   email: opt text;
+   identificationImage: opt NewImageObject;
+   isAdminBlocked: bool;
+   isBlocked: bool;
+   isVerificationRequested: bool;
+   isVerified: bool;
+   joinedFrom: int;
+   name: opt text;
+ };
+type ListAdminUser = 
+ record {
+   email: opt text;
+   isAdminBlocked: bool;
+   isBlocked: bool;
+   joinedFrom: int;
+   name: opt text;
+   role: Role;
+ };
+type InputUser = 
+ record {
+   authorDescription: text;
+   authorInfo: text;
+   authorTitle: text;
+   bannerImg: opt NewImageObject;
+   designation: text;
+   dob: text;
+   email: text;
+   facebook: text;
+   gender: text;
+   instagram: text;
+   linkedin: text;
+   name: text;
+   profileImg: opt NewImageObject;
+   twitter: text;
+   website: text;
+ };
+type Id__1 = principal;
+type Id = principal;
+type EntryId = text;
+type Burners = 
+ vec record {
+       text;
+       TokenBurn;
+     };
+service : () -> anon_class_25_1

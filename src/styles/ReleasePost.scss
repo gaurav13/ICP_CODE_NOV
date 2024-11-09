@@ -1,0 +1,231 @@
+.release-post {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: initial;
+  @include trans1;
+  border-radius: 10px;
+
+  &:hover {
+    .img-pnl {
+      img {
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  .release-post-inner {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 1200px) {
+      display: flex;
+    }
+
+    @media (max-width: 575px) {
+      display: flex;
+      width: 100%;
+      text-align: left;
+    }
+
+    .img-pnl {
+      width: 180px;
+
+      @media (max-width: 1400px) {
+        width: 180px;
+      }
+
+      @media (max-width: 1200px) {
+        width: 180px;
+      }
+
+      @media (max-width: 767px) {
+        width: 245px;
+      }
+      @media (max-width: 575px) {
+        width: 140px;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .txt-pnl {
+      width: calc(100% - 180px);
+      padding-left: 10px;
+
+      @media (max-width: 1600px) {
+        width: calc(100% - 180px);
+      }
+      @media (max-width: 1400px) {
+        width: calc(100% - 180px);
+      }
+
+      @media (max-width: 1200px) {
+        width: calc(100% - 180px);
+      }
+      @media (max-width: 767px) {
+        width: calc(100% - 245px);
+        padding-left: 20px;
+      }
+
+      @media (max-width: 575px) {
+        width: calc(100% - 140px);
+        padding-left: 10px;
+      }
+
+      span {
+        font-size: 15px;
+        color: $black;
+      }
+
+      h6 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 18px;
+        color: $blue;
+        font-weight: 600;
+        max-height: 21.53px;
+        overflow: hidden;
+        a {
+          color: $blue !important;
+          font-size: 18px;
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          @media (max-width: 1600px) {
+            font-size: 16px;
+          }
+          @media (max-width: 1200px) {
+            font-size: 22px;
+          }
+          @media (max-width: 767px) {
+            font-size: 18px;
+          }
+        }
+        @media (max-width: 1600px) {
+          font-size: 18px;
+        }
+
+        @media (max-width: 1200px) {
+          font-size: 22px;
+        }
+
+        @media (max-width: 767px) {
+          font-size: 16px;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        display: inline-block;
+        color: $black;
+      }
+
+      a {
+        font-size: 14px;
+        color: $black;
+
+        i {
+          color: $color;
+          font-size: 18px;
+          position: relative;
+          top: 3px;
+          margin-left: 5px;
+        }
+
+        &:hover {
+          color: $color;
+        }
+      }
+    }
+    &.small {
+      @media (max-width: 1400px) {
+        display: flex;
+      }
+      // flex-wrap: wrap;
+      // @media (max-width: 575px) {
+      // display: inline-block;
+      // width: 100%;
+      // text-align: left;
+      .img-pnl {
+        // width: 100%;
+      }
+      .txt-pnl {
+        // width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // padding-left: 0;
+      }
+      // }
+    }
+  }
+
+  &.big {
+    margin-bottom: 50px;
+
+    .release-post-inner {
+      align-items: center;
+      text-align: left;
+
+      @media (max-width: 1400px) {
+        display: inline-block;
+        width: 100%;
+      }
+
+      .img-pnl {
+        @media (max-width: 1400px) {
+          width: 100%;
+        }
+      }
+
+      .txt-pnl {
+        padding: 0 50px 0 0;
+
+        @media (max-width: 1400px) {
+          display: inline-block;
+          width: 100%;
+        }
+
+        span {
+          font-size: 22px;
+          font-weight: 700;
+
+          @media (max-width: 1600px) {
+            font-size: 18px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 16px;
+          }
+        }
+
+        h6 {
+          font-size: 30px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+
+          @media (max-width: 1600px) {
+            font-size: 26px;
+          }
+
+          @media (max-width: 767px) {
+            font-size: 20px;
+          }
+        }
+
+        p {
+          font-size: 20px;
+
+          @media (max-width: 1600px) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

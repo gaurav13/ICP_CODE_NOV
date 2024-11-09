@@ -1,0 +1,32 @@
+type User__1 = text;
+type User = text;
+type Key = text;
+type InputCollection = 
+ record {
+   description: text;
+   image: ImageObject;
+   name: text;
+   user: User;
+ };
+type ImageObject = vec nat8;
+type CollectionId = text;
+type Collection = 
+ record {
+   creation_time: int;
+   description: text;
+   image: ImageObject;
+   name: text;
+   user: User;
+ };
+service : {
+  getAllCollections: () -> (vec record {
+                                  Key;
+                                  Collection;
+                                }) query;
+  getCollection: (Key) -> (opt Collection) query;
+  getUserCollection: (User__1) -> (vec record {
+                                         Key;
+                                         Collection;
+                                       }) query;
+  insertCollection: (InputCollection) -> (CollectionId);
+}

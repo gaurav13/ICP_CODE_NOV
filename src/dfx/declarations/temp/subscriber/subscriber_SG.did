@@ -1,0 +1,37 @@
+type _anon_class_20_1 = 
+ service {
+   addSubscriber: (principal, text, text, text) -> (Result_1);
+   getSubscribers: (nat, nat) -> (Result) query;
+   isSubscriber: (principal) -> (bool) query;
+   searchPaginateSubscribersByLatest: (vec Subscriber, text, text, nat,
+    nat) -> (record {
+               amount: nat;
+               entries: vec Subscriber;
+             });
+   searchSubscribers: (text, text, nat, nat) -> (Result);
+ };
+type Subscriber = 
+ record {
+   subscribed_on: int;
+   user: principal;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: record {
+         Subscriber;
+         text;
+       };
+ };
+type Result = 
+ variant {
+   err: text;
+   ok: record {
+         record {
+           amount: nat;
+           entries: vec Subscriber;
+         };
+         text;
+       };
+ };
+service : () -> _anon_class_20_1

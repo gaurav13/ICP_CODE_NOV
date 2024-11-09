@@ -1,0 +1,188 @@
+{
+  "canisters": {
+    "english": {
+      "comment": "English Canisters"
+    },
+    "entry": {
+      "main": "backend/service/Entry.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/entry"
+      }
+    },
+    "user": {
+      "main": "backend/service/User.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/user"
+      }
+    },
+    "collection": {
+      "main": "backend/service/Collection.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/collection"
+      }
+    },
+    "comment": {
+      "main": "backend/service/Comment.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/comment"
+      }
+    },
+    "subscriber": {
+      "main": "backend/service/Subscriber.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/subscriber"
+      }
+    },
+    "DIP721": {
+      "main": "backend/service/DIP721.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/DIP721"
+      }
+    },
+    "NFTStudio24": {
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
+      "source": ["out", "domains/en"],
+      "type": "assets",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/NFTStudio24"
+      }
+    },
+    "staging": {
+      "comment": "staging Canisters"
+    },
+    "entry_SG": {
+      "main": "backend/service/Entry.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/entry"
+      }
+    },
+    "user_SG": {
+      "main": "backend/service/User.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/user"
+      }
+    },
+    "comment_SG": {
+      "main": "backend/service/Comment.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/comment"
+      }
+    },
+    "subscriber_SG": {
+      "main": "backend/service/Subscriber.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/subscriber"
+      }
+    },
+    "NFTStudio24_SG": {
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
+      "dependencies": ["user_SG", "entry_SG", "comment_SG", "subscriber_SG"],
+      "source": ["out"],
+      "type": "assets",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/NFTStudio24"
+      }
+    },
+    "japnese": {
+      "comment": "Japnese Canisters"
+    },
+    "entry_JP": {
+      "main": "backend/service/Entry.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/entry"
+      }
+    },
+    "user_JP": {
+      "main": "backend/service/User.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/user"
+      }
+    },
+    "comment_JP": {
+      "main": "backend/service/Comment.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/comment"
+      }
+    },
+    "subscriber_JP": {
+      "main": "backend/service/Subscriber.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/subscriber"
+      }
+    },
+    "DIP721_JP": {
+      "main": "backend/service/DIP721.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/DIP721"
+      }
+    },
+    "NFTStudio24_JP": {
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
+      "source": ["out", "domains/jp"],
+      "type": "assets",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/NFTStudio24_JP"
+      }
+    },
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "declarations": {
+        "output": "src/dfx/declarations/temp/internet_identity"
+      }
+    },
+    "icp_ledger_canister": {
+      "type": "custom",
+      "candid": "https://raw.githubusercontent.com/dfinity/ic/d73659a2baf78302b88e29e5c2bc891cde1e3e0b/rs/rosetta-api/icp_ledger/ledger.did",
+      "wasm": "https://download.dfinity.systems/ic/d73659a2baf78302b88e29e5c2bc891cde1e3e0b/canisters/ledger-canister.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+        }
+      },
+      "declarations": {
+        "output": "src/dfx/declarations/temp/icp_ledger_canister"
+      }
+    },
+    "token_canister": {
+      "main": "backend/service/Token.mo",
+      "type": "motoko",
+      "declarations": {
+        "output": "src/dfx/declarations/temp/token_canister"
+      }
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  }
+}

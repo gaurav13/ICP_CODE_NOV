@@ -1,0 +1,162 @@
+.related-post-container {
+  display: inline-block;
+  width: 100%;
+  background-color: $white;
+  padding: 30px 20px 15px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+
+  .related-post:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+    padding-bottom: 10px;
+  }
+  &.rlf {
+    .related-post .related-post-inner {
+      @media (max-width: 1400px) {
+        display: flex;
+      }
+
+      @media (max-width: 575px) {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.related-post {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: initial;
+  @include trans1;
+  border-radius: 10px;
+
+  &:hover {
+    .img-pnl {
+      img {
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  .related-post-inner {
+    display: flex;
+    justify-content: space-between;
+
+    // align-items: center;
+    @media (max-width: 1400px) {
+      display: inline-block;
+    }
+
+    @media (max-width: 1200px) {
+      display: flex;
+    }
+
+    @media (max-width: 767px) {
+      display: inline-block;
+      width: 100%;
+      text-align: left;
+    }
+
+    .img-pnl {
+      width: 265px;
+
+      @media (max-width: 1400px) {
+        width: 100%;
+      }
+
+      @media (max-width: 1200px) {
+        width: 265px;
+      }
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      img {
+        width: 100%;
+        border-radius: 15px;
+      }
+    }
+
+    .txt-pnl {
+      width: calc(100% - 265px);
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0 10px 10px;
+      justify-content: space-between;
+
+      @media (max-width: 1400px) {
+        width: 100%;
+      }
+
+      @media (max-width: 1200px) {
+        width: calc(100% - 265px);
+      }
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      span {
+        font-size: 14px;
+        color: $grey;
+        display: inline-block;
+        width: 100%;
+        line-height: 14px !important;
+        a,
+        a.rmLine {
+          margin: 0;
+          font-size: 16px;
+          text-decoration: none !important;
+          color: $black;
+          margin-bottom: 0px;
+          font-weight: 600;
+          height: unset;
+          line-height: 14px;
+          position: relative;
+          top: 5px;
+        }
+      }
+
+      a {
+        font-weight: 400;
+      }
+
+      p {
+        font-size: 16px;
+        color: $black;
+        margin-bottom: 5px;
+      }
+
+      a {
+        font-size: 18px;
+        color: $black;
+        text-decoration: underline !important;
+        margin-bottom: 5px;
+
+        i {
+          color: $color;
+          font-size: 18px;
+          position: relative;
+          top: 3px;
+          margin-left: 5px;
+        }
+
+        &:hover {
+          color: $blue;
+        }
+      }
+      a.rmLine {
+        text-decoration: underline !important;
+        color: $blue;
+        font-size: 24px;
+        line-height: 28px;
+        max-height: 58px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
