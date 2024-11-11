@@ -47,7 +47,7 @@ import EntriesSlider from '@/components/ArticlesList/ArticleSlider';
 import EventSlider from '@/components/EventSlider/EventSlider';
 import { TopEvent } from '@/types/article';
 import { Expiry } from '@dfinity/agent';
-
+import LinkndindataComponent  from '@/components/linkendindata/linkndindata';
 export default function Web3DirectoryDetail({
   directoryId,
 }: {
@@ -773,6 +773,11 @@ getdirectoryfn(tempWeb3);
                           </div>
                         </div>
                       </div>
+                      <div className="row">
+                      <div className="col-md-12">
+                      <LinkndindataComponent />
+                        </div>
+                        </div> 
 {directory[0]?.discord[0] =="yes" && <><div className='mt-5'>
   <EntriesSlider contentType={EntryTypes.PressRelease} web3Id={directoryId} directoryName={directory[0]?.company}/>
 </div>
