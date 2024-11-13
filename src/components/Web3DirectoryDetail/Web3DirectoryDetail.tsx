@@ -48,6 +48,8 @@ import EventSlider from '@/components/EventSlider/EventSlider';
 import { TopEvent } from '@/types/article';
 import { Expiry } from '@dfinity/agent';
 import LinkndindataComponent  from '@/components/linkendindata/linkndindata';
+import MarketSentimentChart  from '@/components/MediaGraph/LineChart';
+import NewsComponent  from '@/components/googlenews/news';
 export default function Web3DirectoryDetail({
   directoryId,
 }: {
@@ -437,7 +439,7 @@ getdirectoryfn(tempWeb3);
                                 ? directory[0].company
                                 : ''}
                             </h1>
-                            <strong>
+                           {/* <strong>
                               { directory[0].companyUrl[0].length > 30
                                   ? `${directory[0].companyUrl[0].slice(
                                       0,
@@ -445,7 +447,7 @@ getdirectoryfn(tempWeb3);
                                     )}...`
                                   : directory[0].companyUrl[0]
                                 }
-                            </strong>
+                            </strong>*/}
                           </div>
                         </div>
                         <ul className='inline-list'>
@@ -744,7 +746,18 @@ getdirectoryfn(tempWeb3);
                           {' '}
                           { parse(directory[0].companyDetail ?? '')}
                         </p>
+                        <div className="container">
+                          <div className="row">
+                          <div className="col-md-5">
+                          <MarketSentimentChart />
+                          </div>
+                          <div className="col-md-7 mt-3">
+                          <NewsComponent /> 
+                          </div>
+                          </div>
+                          </div>
                       </div>
+                        
                       <div className='full-div'>
                         <div className='shadow-txt-pnl'>
                           <p>
