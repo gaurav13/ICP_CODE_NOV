@@ -46,10 +46,9 @@ import TopEventsSlider from '@/components/EntryListNewHome/EventSliderHome';
 import EntriesSlider from '@/components/ArticlesList/ArticleSlider';
 import EventSlider from '@/components/EventSlider/EventSlider';
 import { TopEvent } from '@/types/article';
-import { Expiry } from '@dfinity/agent';
-import LinkndindataComponent  from '@/components/linkendindata/linkndindata';
 import MarketSentimentChart  from '@/components/MediaGraph/LineChart';
 import NewsComponent  from '@/components/googlenews/news';
+import LinkndindataComponent  from '@/components/linkendindata/linkndindata';
 export default function Web3DirectoryDetail({
   directoryId,
 }: {
@@ -146,20 +145,18 @@ export default function Web3DirectoryDetail({
     if (directoryId) {
       setIsLoading(true);
       let TempDirectory: null | any = null;
-      let  tempWeb3 = await entryActor.getWeb3(directoryId);
+      let tempWeb3;
+      if (userAuth?.userPerms?.articleManagement) {
+        tempWeb3 = await entryActor.getWeb3_for_admin(
+          directoryId,
+          userCanisterId
+        );
+        getdirectoryfn(tempWeb3);
+      } else {
+        tempWeb3 = await entryActor.getWeb3(directoryId);
+        getdirectoryfn(tempWeb3);
+      }
 
-if(tempWeb3.length == 0 && userAuth?.userPerms?.articleManagement){
- 
-
-  tempWeb3 = await entryActor.getWeb3_for_admin(
-    directoryId,
-    userCanisterId
-  );
-  
-}
-getdirectoryfn(tempWeb3);
-
-    
       if (tempWeb3.length != 0) {
         if (
           DIRECTORY_DYNAMIC_PATH_2.startsWith(location) &&
@@ -277,13 +274,6 @@ getdirectoryfn(tempWeb3);
     // logger(promted, 'PROMTED ENTRIES');
   };
   useEffect(() => {
-    if (auth.state === 'initialized') {
-      if (userAuth.userPerms?.articleManagement && !userAuth.isAdminBlocked && (!directory || directory.lenght==0)) {
-        getWeb3();
-    } 
-  }
-  }, [userAuth, auth,directoryId]);
-  useEffect(() => {
     getWeb3();
   }, [directoryId]);
 /**
@@ -300,7 +290,7 @@ getdirectoryfn(tempWeb3);
       },
     });
     const resp = await entryActor.getEventsOfWeb3(searched, 0, 6, [], [], [],tags,directoryId);
-    // setIsLoading(true);
+    setIsLoading(true);
     const unEvents = resp.entries;
     if (unEvents.length > 0) {
       const refinedEvents = unEvents.map((raw: any) => {
@@ -333,7 +323,7 @@ getdirectoryfn(tempWeb3);
     } else {
       setTopEvents(null);
     }
-    // setIsLoading(false);
+    setIsLoading(false);
   }
   // router.push('/route')
   let addViewfn = async () => {
@@ -348,10 +338,7 @@ getdirectoryfn(tempWeb3);
   };
   useEffect(() => {
     addViewfn();
-    
-      if(directoryId) getEvents(directoryId)
-
-    
+   if(directoryId) getEvents(directoryId)
   }, [directoryId]);
   useEffect(() => {
     if (location.startsWith(DIRECTORY_STATIC_PATH) && !location.endsWith('/')) {
@@ -361,6 +348,18 @@ getdirectoryfn(tempWeb3);
      }, [])
   return (
     <>
+       <style jsx>{`
+        .market-sentiment-chart:empty + .news-column {
+          flex: 0 0 100%;
+          max-width: 100%; /* Make it take full width */
+        }
+        .market-sentiment-chart:empty {
+          display: none; /* Hide the first column if empty */
+        }
+        .news-column {
+          transition: all 0.3s ease; /* Optional: Add a smooth transition effect */
+        }
+      `}</style>
       <main id='main'>
         <ins
           className='adsbygoogle'
@@ -415,11 +414,14 @@ getdirectoryfn(tempWeb3);
                 {/* <nav aria-label="breadcrumb" class="new-breadcrumb web"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" role="button" tabindex="0"><a href="/">HOME </a></a></li><li class="breadcrumb-item active" aria-current="page"><a href="/category-detail?category=undefined" style="pointer-events: none;">Web3 Directory</a></li></ol></nav> */}
               </Col>
               {isLoading ? (
-                <div className='d-flex justify-content-center my-3'>
+                <div className='tets d-flex justify-content-center my-3'><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <div style={{ width: '300px' }}>
+                
+                </div>
+              </div>
                   <Spinner />
                 </div>
               ) : (
-                directory.length != 0 ? (
                 <Col xl='12' lg='12'>
                   <Row>
                     <Col xxl='6' xl='7' lg='12'>
@@ -427,7 +429,11 @@ getdirectoryfn(tempWeb3);
                         <div className='top-us-pnl'>
                           <div className='img-pnl'>
                             <Image
-                              src={ directory[0]?.companyLogo }
+                              src={
+                                directory.length != 0
+                                  ? directory[0]?.companyLogo
+                                  : usericon
+                              }
                               alt='founder image'
                               height={50}
                               width={50}
@@ -439,15 +445,7 @@ getdirectoryfn(tempWeb3);
                                 ? directory[0].company
                                 : ''}
                             </h1>
-                           {/* <strong>
-                              { directory[0].companyUrl[0].length > 30
-                                  ? `${directory[0].companyUrl[0].slice(
-                                      0,
-                                      30
-                                    )}...`
-                                  : directory[0].companyUrl[0]
-                                }
-                            </strong>*/}
+                            
                           </div>
                         </div>
                         <ul className='inline-list'>
@@ -495,7 +493,7 @@ getdirectoryfn(tempWeb3);
                               <i className='fa fa-share-alt' /> {t('Share')}
                             </a>
                           </li>
-                         
+                          {directory.length != 0 && (
                             <li>
                               <a
                                 className='reg-btn yellow small d-flex justify-content-center align-items-center dark'
@@ -543,10 +541,12 @@ getdirectoryfn(tempWeb3);
                                   : t('Verified')}
                               </a>
                             </li>
-                         
+                          )}
                         </ul>
                         <p>
-                          { directory[0].shortDescription}
+                          {directory.length != 0
+                            ? directory[0].shortDescription
+                            : ''}
                         </p>
                         {/* <p>
                         Blockchain.com (formerly Blockchain.info) is a
@@ -561,7 +561,7 @@ getdirectoryfn(tempWeb3);
                         and analytics.
                       </p> */}
                         <ul className='post-social-list-2 d-flex flex-wrap'>
-                          {
+                          {directory.length != 0 ? (
                             directory[0].twitter[0].length != 0 ? (
                               <li>
                                 <Link href={directory[0].twitter[0]}>
@@ -571,8 +571,10 @@ getdirectoryfn(tempWeb3);
                             ) : (
                               ''
                             )
-                         }
-                          {
+                          ) : (
+                            ''
+                          )}
+                          {directory.length != 0 ? (
                             directory[0].telegram[0].length != 0 ? (
                               <li>
                                 <Link href={directory[0].telegram[0]}>
@@ -582,9 +584,11 @@ getdirectoryfn(tempWeb3);
                             ) : (
                               ''
                             )
-                         }
+                          ) : (
+                            ''
+                          )}
                           
-                          {
+                          {directory.length != 0 ? (
                             directory[0].instagram[0].length != 0 ? (
                               <li>
                                 <Link href={directory[0].instagram[0]}>
@@ -594,8 +598,10 @@ getdirectoryfn(tempWeb3);
                             ) : (
                               ''
                             )
-                         }
-                          {
+                          ) : (
+                            ''
+                          )}
+                          {directory.length != 0 ? (
                             directory[0].facebook[0].length != 0 ? (
                               <li>
                                 <Link href={directory[0].facebook[0]}>
@@ -605,8 +611,10 @@ getdirectoryfn(tempWeb3);
                             ) : (
                               ''
                             )
-                          }
-                          {
+                          ) : (
+                            ''
+                          )}
+                          {directory.length != 0 ? (
                             directory[0].linkedin[0].length != 0 ? (
                               <li>
                                 <Link href={directory[0].linkedin[0]}>
@@ -615,11 +623,14 @@ getdirectoryfn(tempWeb3);
                               </li>
                             ) : (
                               ''
-                            )}
+                            )
+                          ) : (
+                            ''
+                          )}
                         </ul>
                         <ul className='directoryBtn'>
-                          {
-                            directory[0].companyUrl[0].length != 0 && (
+                          {directory.length != 0 ? (
+                            directory[0].companyUrl[0].length != 0 ? (
                               <>
                               <li className='me-3'>
                                 <Link
@@ -639,28 +650,47 @@ getdirectoryfn(tempWeb3);
                           
                               </li>
                               </>
-                            )}
+                            ) : (
+                              ''
+                            )
+                          ) : (
+                            ''
+                          )}
                           
                         </ul>
                       </div>
-                      
+                      {/* <div>
+            
+                                <Link
+                                  className='reg-btn small yellow dark'
+                               href={CONTACT_US}
+                                >
+                                  {t('Contact Us')}{' '}
+                                </Link>
+                          
+                      </div> */}
                     </Col>
                     <Col xxl='4' xl='5' lg='6' md='8'>
                       <div className='img-box-pnl'>
                         <Image
-                          src={ directory[0]?.companyBanner }
+                          src={
+                            directory.length != 0
+                              ? directory[0]?.companyBanner
+                              : bg
+                          }
                           alt='founder image'
                           height={100}
                           width={100}
                           style={{ height: '100%', width: '100%' }}
                         />
                       </div>
+                      {/* <Image src={bg} alt='Infinity' /> */}
                     </Col>
                     <Col xl='12'>
                       <div className='spacer-40' />
                     </Col>
                   </Row>
-                </Col>):<p className='text-center'>{t("Company not found")}</p>
+                </Col>
               )}
               <Col xxl='12' xl='12' lg='12'>
                 <div className='flex-details-pnl'>
@@ -735,8 +765,9 @@ getdirectoryfn(tempWeb3);
                       </Link>
                     </div>
                   </div>
-                  {(!isLoading && directory.length != 0) && (
+                  {!isLoading && (
                     <div className='right-detail-pnl pr'>
+                                      
                       <h3>
                         <Image src={bard} alt='Bard' /> {t('Company Detail')}
                       </h3>
@@ -744,32 +775,40 @@ getdirectoryfn(tempWeb3);
                       <div>
                         <p>
                           {' '}
-                          { parse(directory[0].companyDetail ?? '')}
+                          {directory.length != 0
+                            ? parse(directory[0].companyDetail ?? '')
+                            : ''}
                         </p>
                         <div className="container">
-                          <div className="row">
-                          <div className="col-md-5">
-                          <MarketSentimentChart />
-                          </div>
-                          <div className="col-md-7 mt-3">
-                          <NewsComponent /> 
-                          </div>
-                          </div>
-                          </div>
+                                       <div className="row">
+         <div className="col-md-6 market-sentiment-chart">
+        <MarketSentimentChart />
+        </div>
+        <div className="col-md-6 news-column">
+        <NewsComponent />
+        </div>
+                 </div>
+      
+         </div>
                       </div>
-                        
                       <div className='full-div'>
                         <div className='shadow-txt-pnl'>
                           <p>
                             <i>
-                              { directory[0].founderDetail}
+                              {directory.length != 0
+                                ? directory[0].founderDetail
+                                : ''}
                             </i>
                           </p>
                           <div className='d-flex'>
                             <div className='img-pnl radius'>
                               {/* <Image src={usericon} alt='Infinity' /> */}
                               <Image
-                                src={ directory[0]?.founderImage }
+                                src={
+                                  directory.length != 0
+                                    ? directory[0]?.founderImage
+                                    : usericon
+                                }
                                 alt='founder image'
                                 height={50}
                                 width={50}
@@ -778,19 +817,23 @@ getdirectoryfn(tempWeb3);
                             <div className='txt-pnl mx-2'>
                               <h6 className='m-0'>
                                 <b>
-                                  {directory[0].founderName}
+                                  {directory.length != 0
+                                    ? directory[0].founderName
+                                    : ''}
                                 </b>
                               </h6>
                               <p className='m-0'>{t('Founder')}</p>
                             </div>
                           </div>
                         </div>
+                        
                       </div>
                       <div className="row">
                       <div className="col-md-12">
                       <LinkndindataComponent />
                         </div>
                         </div> 
+                      
 {directory[0]?.discord[0] =="yes" && <><div className='mt-5'>
   <EntriesSlider contentType={EntryTypes.PressRelease} web3Id={directoryId} directoryName={directory[0]?.company}/>
 </div>

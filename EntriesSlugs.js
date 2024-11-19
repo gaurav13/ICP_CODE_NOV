@@ -1,4 +1,4 @@
-const LANG = 'en';
+const LANG = 'jp';
 const axios = require('axios');
 require('dotenv').config({ path: './.env.production' });
 const BASE_URL = process.env.BASE_URL;

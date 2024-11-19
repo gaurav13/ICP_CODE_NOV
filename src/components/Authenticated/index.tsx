@@ -1163,15 +1163,7 @@ export default function Authenticated() {
                   <div className='right-side'>
                     <div className='log-home '>
                       <div className='anime-right dashleft-pnl'>
-                        <Row>
-                          <Col>
-                         <iframe
-                              src={LANG=="en"?'https://www.chatbase.co/chatbot-iframe/vXOyMigraOFfiJ7f5O1Il':"https://www.chatbase.co/chatbot-iframe/384SXpy6Uf9FJnTpRTgef"}
-                              frameBorder='0'
-                              className='bootIframe'
-                            ></iframe>
-                          </Col>
-                        </Row>
+                        
                         <Row>
                           {isArticleLoading && latestEntry.length == 0 ? (
                             <ArticleShimmer />

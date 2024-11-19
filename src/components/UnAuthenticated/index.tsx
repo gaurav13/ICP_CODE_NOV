@@ -487,15 +487,6 @@ export default function UnAuthenticated() {
               </Col>
             </Row>
           </div>
-          <Row>
-            <Col>
-              <iframe
-                src={LANG=="en"?'https://www.chatbase.co/chatbot-iframe/vXOyMigraOFfiJ7f5O1Il':"https://www.chatbase.co/chatbot-iframe/384SXpy6Uf9FJnTpRTgef"}
-                frameBorder='0'
-                className='bootIframe'
-              ></iframe>
-            </Col>
-          </Row>
           <div className='section scroll-anime anime-down pmyb-0' id='news'>
             <Row>
               <Col xl='12' lg='12' md='12' sm='12' className='web-view-display'>

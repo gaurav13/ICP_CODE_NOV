@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { LANG } from '@/constant/language';
 type Article = {
   title: string;
   link: string;
@@ -39,7 +39,7 @@ const NewsComponent = () => {
     const fetchNews = async () => {
       if (directoryId) {
         try {
-          const response = await axios.get(`https://blockza.io/chart/newss.php?id=${directoryId}`);
+          const response = await axios.get(`https://blockza.io/chart/test6.php?id=${directoryId}`);
           console.log("url:", response);
           console.log("News data:", response.data);
 
@@ -60,14 +60,14 @@ const NewsComponent = () => {
   }, [directoryId]); // Trigger only when directoryId changes
 
   // Helper function to format the published date
-  const formatDate = (dateString: string) => {
+ {/* const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
     });
-  };
+  };*/}
 
   // Function to truncate titles
   const truncateTitle = (title: string, length: number = 100) => {
@@ -82,7 +82,13 @@ const NewsComponent = () => {
 
   return (
     <div className="container">
-  <h2 className="mb-1">Latest News <span  className="float-md-end">Weekly Update</span></h2>
+  <h2 className="mb-1">
+  {LANG === 'jp' ? "最新ニュース" : "Latest News"} 
+  <span className="float-md-end">
+    {LANG === 'jp' ? "週間アップデート" : "Weekly Update"}
+  </span>
+</h2>
+
   <div className="row news-scroll-container">
     {error ? (
       <p className="text-center text-danger">{error}</p>
@@ -106,7 +112,7 @@ const NewsComponent = () => {
                 </a>
               </strong>
               <div className="text-muted small">
-                {formatDate(article.published)}
+                {article.published}
               </div>
             </div>
           </div>

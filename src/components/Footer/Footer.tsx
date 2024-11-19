@@ -4,7 +4,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 import mobile1 from '@/assets/Img/mobile-1.png';
 import mobile2 from '@/assets/Img/mobile-2.png';
 import mobile3 from '@/assets/Img/mobile-3.png';
-import mobile4 from '@/assets/Img/mobile-4.png';
+import mobile4 from '@/assets/Img/ai-chatbot.png';
 import mobile5 from '@/assets/Img/mobile-5.png';
 import Footerlogo from '@/assets/Img/Logo/footerlogo-new.png';
 import Link from 'next/link';
@@ -447,10 +447,12 @@ let openLinkfn=(l:string)=>{
                     <Image src={mobile3} alt='Mobile' />
                   </div>
                 </li>
-                <li onClick={()=>openLinkfn(QUIZ_ROUTE)}>
-                  <Image src={mobile4} alt='Mobile' />
-                  <p>{t('earn')}</p>
-                </li>
+                <li>
+            <Link href="/ai-assistant/">
+              <Image src={mobile4} alt="Mobile" />
+              <p>{t('ChatBot')}</p>
+            </Link>
+          </li>
             
                 <li onClick={()=>openLinkfn(CONTACT_US)}>
                   <Image src={mobile5} alt='Mobile' />

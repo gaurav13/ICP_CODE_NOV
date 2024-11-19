@@ -549,22 +549,104 @@ export default function AddCompanyForm() {
           
           <div className='section admin-inner-pnl' id='top'>
           <Row>
-            <Col>
-            <h2 className='my-3'>
-              {t("Welcome to BlockZa's Web3 Directory!")}
-            </h2>
-            <p className='ps-2'>
-              {t("Step into the future of blockchain, crypto, and decentralized technologies with BlockZa's comprehensive Web3 Directory. By joining our corporate account, you can elevate your project's visibility and connect with the industry's key players. Showcase your innovation to a global audience, build trust, and network with top-tier professionals.")}
-            </p>
-            <h2 className='my-3'>
-              {t("Meet Our AI Avatar: Your 24/7 Customer Representative")}
-            </h2>
-            <p>{t("Enhance your engagement with our state-of-the-art AI avatar, your 24/7 customer representative. This cutting-edge feature offers round-the-clock support, personalized interactions, and consistent, professional representation, ensuring your project stands out in the competitive Web3 landscape.")}</p>
-            <h2 className='my-3'>{t("Click here for more information :")} <Link href={"https://blockza.io/about/advertise-with-us/#:~:text=Extra%20Charge-,CORPORATE%20ACCOUNT,-Boost%20Your%20Web3"}>{t("Corporate account")}</Link></h2>
-            <h2 className='my-4'> {t("Transform Your Web3 Presence Today")}</h2>
-            <p>{t("Don't miss the opportunity to transform your Web3 presence. Join BlockZa's Web3 Directory today and be at the forefront of the decentralized revolution.")}</p>
-            <h3>{t("Sign up now and connect with the future. Submit your company profile free on BlockZa!")}</h3>
-            </Col>
+          <Col className="mt-4 text-startmt-5 pt-4  text-start">
+  <h3>
+    <strong>
+      {LANG === 'jp' ? 'あなたのWeb3プロジェクトをBlockzaで披露する' : 'Showcase Your Web3 Project on Blockza'}
+    </strong>
+  </h3>
+  <p>
+    <strong>
+      {LANG === 'jp'
+        ? 'あなたのWeb3イノベーションをグローバルステージへ'
+        : 'Take Your Web3 Innovation to the Global Stage'}
+    </strong>
+    <br />
+    {LANG === 'jp'
+      ? 'BlockzaのWeb3ディレクトリに参加して、可視性を高め、リーダーとつながり、分散型の世界で際立つ機会を得ましょう。'
+      : 'Join Blockza’s Web3 Directory—the premier platform for blockchain innovators to gain visibility, connect with leaders, and stand out in the decentralized world.'}
+  </p>
+  <h3>
+    <strong>{LANG === 'jp' ? 'なぜプロジェクトを提出するのか？' : 'Why Submit Your Project?'}</strong>
+  </h3>
+  <ul className='ps-3'>
+    <li>
+      <strong>{LANG === 'jp' ? 'リーチを拡大する' : 'Expand Your Reach'}</strong>:
+      {LANG === 'jp'
+        ? ' 投資家、コラボレーター、Web3愛好家の世界的な観客にプロジェクトを紹介しましょう。'
+        : ' Present your project to a worldwide audience of investors, collaborators, and Web3 enthusiasts.'}
+    </li>
+    <li>
+      <strong>{LANG === 'jp' ? '権威を構築する' : 'Build Authority'}</strong>:
+      {LANG === 'jp'
+        ? ' チーム、実績、メディア露出を強調し、信頼と信頼性を確立します。'
+        : ' Highlight your team, achievements, and media exposure to establish trust and credibility.'}
+    </li>
+    <li>
+      <strong>{LANG === 'jp' ? '最高の人材とつながる' : 'Connect with the Best'}</strong>:
+      {LANG === 'jp'
+        ? ' 業界トップの専門家、潜在的なパートナー、志を同じくするイノベーターとネットワークを構築します。'
+        : ' Network with top industry professionals, potential partners, and like-minded innovators.'}
+    </li>
+    <li>
+      <strong>{LANG === 'jp' ? 'AIテクノロジーを活用する' : 'Leverage AI Technology'}</strong>:
+      {LANG === 'jp'
+        ? ' BlockzaのAI搭載ツールを通じて24時間365日利用可能なサポートとシームレスなコミュニケーションを提供します。'
+        : ' Offer 24/7 engagement through Blockza’s AI-powered tools, ensuring instant support and seamless communication.'}
+    </li>
+  </ul>
+  <h3>
+    <strong>{LANG === 'jp' ? '始め方' : 'How to Get Started'}</strong>
+  </h3>
+  <ol>
+    <li>
+      <strong>
+        {LANG === 'jp'
+          ? 'アカウント登録と会社プロフィールの提出'
+          : 'Sign Up and Submit Your Company Profile'}
+      </strong>
+      <br />
+      {LANG === 'jp'
+        ? 'アカウントを作成し、チーム情報、メディア報道、ユニークな機能を含むWeb3プロジェクトの詳細を提供してください。'
+        : 'Create an account and provide details about your Web3 project, including team information, media coverage, and unique features.'}
+    </li>
+    <li>
+      <strong>
+        {LANG === 'jp' ? 'チームによるレビュー' : 'Review by Our Team'}
+      </strong>
+      <br />
+      {LANG === 'jp'
+        ? '提出後、プロフィールは当社の専門チームによって審査され、ディレクトリ基準を満たしていることを確認します。'
+        : 'Once submitted, your profile will be reviewed by our expert team to ensure all information meets our directory standards.'}
+    </li>
+    <li>
+      <strong>
+        {LANG === 'jp' ? '登録と有効化' : 'Registration and Activation'}
+      </strong>
+      <br />
+      {LANG === 'jp'
+        ? '承認後、あなたのプロジェクトは正式にBlockza Web3ディレクトリにリストされ、類のない可視性とネットワーキングの機会を得ることができます。'
+        : 'After approval, your project will be officially listed in the Blockza Web3 Directory, giving you access to unparalleled visibility and networking opportunities.'}
+    </li>
+    <li>
+      <strong>
+        {LANG === 'jp' ? '企業アカウントに参加する' : 'Join the Corporate Account'}
+      </strong>
+      <br />
+      {LANG === 'jp'
+        ? '強化された露出、AI搭載ツール、グローバルブロックチェーン観客への直接アクセスなどのプレミアム機能をアンロックします。'
+        : 'Unlock premium features, including enhanced exposure, AI-powered tools, and direct access to a global blockchain audience.'}
+    </li>
+  </ol>
+  <p>
+    👉 <strong>{LANG === 'jp' ? '今日プロジェクトを提出しましょう！' : 'Submit Your Project Today!'}</strong>
+    <br />
+    {LANG === 'jp'
+      ? 'BlockzaであなたのWeb3プレゼンスを拡大し、分散型の世界とつながりましょう！'
+      : 'Let Blockza amplify your Web3 presence and connect you with the decentralized world!'}
+  </p>
+</Col>
+
           </Row>
             {cropperImg && (
               <ImageCropper

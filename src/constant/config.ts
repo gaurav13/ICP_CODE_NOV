@@ -141,6 +141,10 @@ web3title: 'Discover Web3: A Beginner’s Guide to the Future of the Internet',
   
   aititle: 'AI in Web3: How Artificial Intelligence is Shaping the Future',
   aidesc: 'Learn how AI is powering innovations in Web3, from data analysis to personalized experiences.',
+  aichatbottitle:'BlockZa AI Assistant - Simplifying Blockchain and Web3 for Everyone', 
+  aichatbotdesc:'BlockZa AI Assistant makes blockchain and Web3 easy to understand. Get 24/7 support, simple explanations, and quick answers to navigate the decentralized world effortlessly. Start exploring today! ',
+  adddirectorytitle: 'List Your Web3 Project in Blockza Directory - Gain Global Visibility',
+adddirectorydesc: 'Join Blockza’s Web3 Directory to showcase your innovation. Reach a global audience, build credibility, and connect with top industry leaders in the decentralized world. Submit your project today and leverage AI-powered tools to amplify your presence!',
   blockchainurl: `${EN_SITE_URL}/blockchain/`,
   web3url: `${EN_SITE_URL}/web3/`,
   cryptourl: `${EN_SITE_URL}/crypto/`,
@@ -150,6 +154,7 @@ web3title: 'Discover Web3: A Beginner’s Guide to the Future of the Internet',
   metaverseurl: `${EN_SITE_URL}/metaverse/`,
   blockchain_gameurl: `${EN_SITE_URL}/blockchain_game/`,
   aiurl: `${EN_SITE_URL}/ai/`
+  
 
 };
 const siteConfigJP = {
@@ -290,6 +295,11 @@ blockchaingamedesc: 'ブロックチェーンゲームを探り、プレイト�
 
 aititle: 'Web3におけるAI：未来を形作る人工知能',
 aidesc: 'データ分析から個別体験まで、AIがWeb3においてどのような革新をもたらしているか学びましょう。',
+aichatbottitle: '正確で迅速な結果を提供するAI検索',
+aichatbotdesc: 'BlockzaのAI搭載検索で可視性を向上！情報を掲載するだけで、迅速かつ正確な結果と直接リンクを手に入れましょう！',
+adddirectorytitle: 'BlockzaディレクトリにWeb3プロジェクトを掲載 - グローバルな可視性を獲得',
+adddirectorydesc: 'BlockzaのWeb3ディレクトリに参加して、あなたのイノベーションを披露しましょう。グローバルな観客にリーチし、信頼性を高め、分散型の世界で業界のリーダーとつながりましょう。今すぐプロジェクトを提出して、AI搭載ツールで存在感を高めましょう！',
+ 
 blockchainurl: `${JP_SITE_URL}/blockchain`,
 web3url: `${JP_SITE_URL}/web3/`,
 cryptourl: `${JP_SITE_URL}/crypto/`,

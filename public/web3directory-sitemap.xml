@@ -2,6 +2,11 @@
  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  
            <url>
+		       <loc>https://pro.blockza.io/directory/1731997842928461679/</loc>
+		       <lastmod>2024-11-19T06:30:42+00:00</lastmod>
+	         </url>
+           
+           <url>
 		       <loc>https://pro.blockza.io/directory/1726749990665560324/</loc>
 		       <lastmod>2024-09-19T13:44:16+00:00</lastmod>
 	         </url>

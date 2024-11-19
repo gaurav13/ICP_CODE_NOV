@@ -5,7 +5,7 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartOptions } from 'chart.js';
 import axios from 'axios';
 import { usePathname } from 'next/navigation';
-
+import { LANG } from '@/constant/language';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const MarketSentimentChart = () => {
@@ -94,8 +94,14 @@ const MarketSentimentChart = () => {
   return (
     <div>
       <div style={{ textAlign: 'center' }}>
-        <h2 className="mb-1">Media Exposure Summary</h2>
-        <p style={{ marginBottom: '0px' }}>Media Coverage: {mediaCoverage} Platforms</p>
+      <h2 className="mb-1">
+        {LANG === 'jp' ? "メディア露出の概要" : "Media Exposure Summary"}
+      </h2>
+      <p style={{ marginBottom: '0px' }}>
+        {LANG === 'jp' 
+          ? `メディア報道: ${mediaCoverage} プラットフォーム` 
+          : `Media Coverage: ${mediaCoverage} Platforms`}
+      </p>
       </div>
 
       {/* Custom Legend */}
@@ -108,7 +114,7 @@ const MarketSentimentChart = () => {
             backgroundColor: '#81c2af', 
             marginRight: '8px', 
             borderRadius: '50%'
-            
+          
           }}></div>
           <strong>Organic</strong>
         </div>
@@ -116,10 +122,9 @@ const MarketSentimentChart = () => {
           <div style={{ 
             width: '20px', 
             height: '20px', 
-            backgroundColor: '#f47a83', 
+            backgroundColor: '#eaca08', 
             marginRight: '8px', 
             borderRadius: '50%'
-           
           }}></div>
           <strong>Sponsored</strong>
         </div>
@@ -127,7 +132,7 @@ const MarketSentimentChart = () => {
           <div style={{ 
             width: '20px', 
             height: '20px', 
-            backgroundColor: '#84caff', 
+            backgroundColor: '#d92424', 
             marginRight: '8px', 
             borderRadius: '50%'
           }}></div>
