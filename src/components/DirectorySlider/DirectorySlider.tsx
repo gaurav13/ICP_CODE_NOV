@@ -119,6 +119,32 @@ export default React.memo(function DirectorySlider({
 
   return (
     <>
+    <style jsx>{`
+.trending-button {
+  display: inline-flex; 
+  align-items: center; 
+  background-color: #1e5fb3; 
+  color:#fff;
+  font-weight: bold; 
+  font-size: 16px;
+  padding: 2px 16px; 
+  border-radius: 30px; 
+  text-decoration: none; 
+  transition: all 0.3s ease-in-out; 
+}
+
+.trending-button .icon {
+  margin-right: 8px; 
+  font-size: 20px; 
+}
+
+.trending-button:hover {
+  background-color: #488adf; 
+  color: #c9302c; 
+  transform: scale(1.05);
+}
+
+      `}</style>
       {relatedDirectory.length != 0 ? (
         <Slider {...Directory}>
           {relatedDirectory.map((entry: any) => {
@@ -130,6 +156,7 @@ export default React.memo(function DirectorySlider({
               istrending = true;
             }
             return (
+              
               <div
                 className='Post-padding  d-flex justify-content-center mx-2'
                 key={entry[0]}
@@ -152,20 +179,20 @@ export default React.memo(function DirectorySlider({
                   className='Product-post direc'
                 >
                   <div className='Product-post-inner'>
-                    <div className='img-pnl'>
-                      <Image
-                        src={entry[1]?.companyBanner ?? tempimg}
-                        alt='founder image'
-                        height={100}
-                        width={100}
-                        className='h-100-w-auto customeImg'
-                      />
-                      {istrending ? (
-                        <p className='labelTrending'>{t('Trending')}</p>
-                      ) : (
-                        ''
-                      )}
-                    </div>
+                  <div className='img-pnl position-relative'>
+                    <Image
+                      src={entry[1]?.companyBanner ?? tempimg}
+                      alt='founder image'
+                      height={100}
+                      width={100}
+                      className='h-100-w-auto customeImg'
+                    />
+                    {istrending && (
+                      <p className='trending-button position-absolute'>
+                        <i className="fa fa-line-chart" /> {t('Trending')}
+                      </p>
+                    )}
+                  </div>
                     <div className='text-pnl'>
                       <div className='d-flex'>
                         <div className='logo-img'>
@@ -187,7 +214,7 @@ export default React.memo(function DirectorySlider({
                           </p>
                         </div>
                       </div>
-                      <ul>
+                      {/*<ul>
                         <li>
                           {formatLikesCount(Number(entry[1]?.totalCount)) ?? 0}
                           <span>{t('Posts')}</span>
@@ -200,7 +227,7 @@ export default React.memo(function DirectorySlider({
                           {formatLikesCount(Number(entry[1]?.likes)) ?? 0}
                           <span>{t('Likes')}</span>
                         </li>
-                      </ul>
+                      </ul>*/}
                     </div>
                   </div>
                   <div

@@ -210,7 +210,7 @@ const breadcrumbJson={
     {
       "@type": "ListItem",
       "position": 3,
-      "name":entry?.title,
+      "name":entry?.company,
       "item": `${siteConfig.url+ DIRECTORY_STATIC_PATH + slug}/`,
     }
   ]

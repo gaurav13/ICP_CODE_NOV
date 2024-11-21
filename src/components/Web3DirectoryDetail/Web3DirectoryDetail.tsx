@@ -359,6 +359,9 @@ export default function Web3DirectoryDetail({
         .news-column {
           transition: all 0.3s ease; /* Optional: Add a smooth transition effect */
         }
+          @media (max-width: 576px) {
+        .left-side-pnl{display:none}
+        }
       `}</style>
       <main id='main'>
         <ins
@@ -627,19 +630,26 @@ export default function Web3DirectoryDetail({
                           ) : (
                             ''
                           )}
+                              {directory.length != 0 ? (
+                            directory[0].companyUrl[0].length != 0 ? (
+                              <li>
+                                <Link href={directory[0].companyUrl[0]}>
+                                  <i className='fa fa-globe' />
+                                </Link>
+                              </li>
+                            ) : (
+                              ''
+                            )
+                          ) : (
+                            ''
+                          )}
+                           
                         </ul>
                         <ul className='directoryBtn'>
                           {directory.length != 0 ? (
                             directory[0].companyUrl[0].length != 0 ? (
                               <>
-                              <li className='me-3'>
-                                <Link
-                                  className='reg-btn small yellow dark'
-                                  href={directory[0].companyUrl[0]}
-                                >
-                                  {t('Visit Website')}{' '}
-                                </Link>
-                              </li>
+                              
                               <li>
                                   <Link
                                   className='reg-btn small yellow dark'
@@ -671,13 +681,9 @@ export default function Web3DirectoryDetail({
                       </div> */}
                     </Col>
                     <Col xxl='4' xl='5' lg='6' md='8'>
-                      <div className='img-box-pnl'>
+                    <div className='img-box-pnl'>
                         <Image
-                          src={
-                            directory.length != 0
-                              ? directory[0]?.companyBanner
-                              : bg
-                          }
+                          src={ directory[0]?.companyBanner }
                           alt='founder image'
                           height={100}
                           width={100}
@@ -784,7 +790,7 @@ export default function Web3DirectoryDetail({
          <div className="col-md-6 market-sentiment-chart">
         <MarketSentimentChart />
         </div>
-        <div className="col-md-6 news-column">
+        <div className="col-md-6 news-column mt-3">
         <NewsComponent />
         </div>
                  </div>
@@ -792,14 +798,15 @@ export default function Web3DirectoryDetail({
          </div>
                       </div>
                       <div className='full-div'>
-                        <div className='shadow-txt-pnl'>
-                          <p>
-                            <i>
-                              {directory.length != 0
-                                ? directory[0].founderDetail
-                                : ''}
-                            </i>
-                          </p>
+                        <div className='shadow-txt-pnl '>
+                        <div>
+  <p>
+    <i>
+      {directory.length !== 0 ? directory[0].founderDetail : ''}
+    </i>
+  </p>
+</div>
+
                           <div className='d-flex'>
                             <div className='img-pnl radius'>
                               {/* <Image src={usericon} alt='Infinity' /> */}

@@ -122,7 +122,7 @@ const MarketSentimentChart = () => {
           <div style={{ 
             width: '20px', 
             height: '20px', 
-            backgroundColor: '#eaca08', 
+            backgroundColor: '#f47a83', 
             marginRight: '8px', 
             borderRadius: '50%'
           }}></div>
@@ -132,7 +132,7 @@ const MarketSentimentChart = () => {
           <div style={{ 
             width: '20px', 
             height: '20px', 
-            backgroundColor: '#d92424', 
+            backgroundColor: '#84caff', 
             marginRight: '8px', 
             borderRadius: '50%'
           }}></div>

@@ -34,10 +34,14 @@ export default function HinzaAsif() {
         <div className="main-inner detail-inner-Pages pri-term-pnl">
           <div className="inner-content">
             <div>
-            <h1 class="fs-3 mb-4 text-wrap text-truncate w-100 overflow-hidden">
+            <h1 className="fs-3 mb-4 text-wrap text-truncate w-100 overflow-hidden">
             {LANG === 'jp' ? 'Blockza AIアシスタントへようこそ' : 'Welcome to Blockza AI Assistant'}
           </h1>
-
+          <p className="mb-4">
+        {LANG === 'jp'
+          ? 'BlockZa AIアシスタントは、ブロックチェーンとWeb3を簡単に理解できるようにします。24時間365日のサポート、シンプルな説明、迅速な回答で、分散型の世界をスムーズにナビゲートしましょう。今すぐ探索を始めましょう！'
+          : 'BlockZa AI Assistant makes blockchain and Web3 easy to understand. Get 24/7 support, simple explanations, and quick answers to navigate the decentralized world effortlessly. Start exploring today!'}
+      </p>
             </div>
             <div className="pri-term-inner mt-4">
               <iframe
@@ -52,11 +56,6 @@ export default function HinzaAsif() {
                 title="Blockza AI Assistant"
               ></iframe>
             </div>
-            <p class="mb-4">
-        {LANG === 'jp'
-          ? 'BlockZa AIアシスタントは、ブロックチェーンとWeb3を簡単に理解できるようにします。24時間365日のサポート、シンプルな説明、迅速な回答で、分散型の世界をスムーズにナビゲートしましょう。今すぐ探索を始めましょう！'
-          : 'BlockZa AI Assistant makes blockchain and Web3 easy to understand. Get 24/7 support, simple explanations, and quick answers to navigate the decentralized world effortlessly. Start exploring today!'}
-      </p>
 
           </div>
         </div>
