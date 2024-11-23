@@ -49,6 +49,7 @@ import { TopEvent } from '@/types/article';
 import MarketSentimentChart  from '@/components/MediaGraph/LineChart';
 import NewsComponent  from '@/components/googlenews/news';
 import LinkndindataComponent  from '@/components/linkendindata/linkndindata';
+import DirectoryModelPopup from '@/components/DirectoryModelPopup/DirectoryModelPopup';
 export default function Web3DirectoryDetail({
   directoryId,
 }: {
@@ -66,7 +67,10 @@ export default function Web3DirectoryDetail({
   const [isLoading, setIsLoading] = useState(true);
   const location = usePathname();
   const [topEvents, setTopEvents] = useState<null | TopEvent[]>();
+  const [showContactModal, setShowContactModal] = useState(false);
 
+  const handleShowContactModal = () => setShowContactModal(true);
+  const handleCloseContactModal = () => setShowContactModal(false);
   const { auth, setAuth, identity, userAuth } = useConnectPlugWalletStore(
     (state) => ({
       auth: state.auth,
@@ -652,11 +656,18 @@ export default function Web3DirectoryDetail({
                               
                               <li>
                                   <Link
-                                  className='reg-btn small yellow dark'
-                               href="/contact-us"
-                                >
-                                  {t('Contact')}{' '}
-                                </Link>
+              href="#"
+              className="reg-btn small yellow dark"
+              onClick={(e) => {
+                e.preventDefault();
+                handleShowContactModal();
+              }}
+            >
+               {t('Contact')}{' '}
+            </Link>
+            <DirectoryModelPopup show={showContactModal} handleClose={handleCloseContactModal}  companyName={directory[0]?.company} />
+
+
                           
                               </li>
                               </>
@@ -681,15 +692,23 @@ export default function Web3DirectoryDetail({
                       </div> */}
                     </Col>
                     <Col xxl='4' xl='5' lg='6' md='8'>
-                    <div className='img-box-pnl'>
-                        <Image
-                          src={ directory[0]?.companyBanner }
-                          alt='founder image'
-                          height={100}
-                          width={100}
-                          style={{ height: '100%', width: '100%' }}
-                        />
-                      </div>
+                            <div className='img-box-pnl'>
+          {isLoading ? (
+            <Spinner animation='border' />
+          ) : (
+            directory.length > 0 &&
+            directory[0]?.companyBanner && (
+              <Image
+                src={directory[0].companyBanner}
+                alt='company banner'
+                height={100}
+                width={100}
+                style={{ height: '100%', width: '100%' }}
+              />
+            )
+          )}
+        </div>
+
                       {/* <Image src={bg} alt='Infinity' /> */}
                     </Col>
                     <Col xl='12'>
@@ -798,7 +817,11 @@ export default function Web3DirectoryDetail({
          </div>
                       </div>
                       <div className='full-div'>
-                        <div className='shadow-txt-pnl '>
+                      <strong className="fs-4">
+                        {LANG === 'jp' ? 'チーム' : 'Team'}
+                      </strong>
+
+                        <div className='shadow-txt-pnl mt-1'>
                         <div>
   <p>
     <i>

@@ -126,7 +126,7 @@ export default React.memo(function DirectorySlider({
   background-color: #1e5fb3; 
   color:#fff;
   font-weight: bold; 
-  font-size: 16px;
+  font-size: 14px;
   padding: 2px 16px; 
   border-radius: 30px; 
   text-decoration: none; 
@@ -188,8 +188,8 @@ export default React.memo(function DirectorySlider({
                       className='h-100-w-auto customeImg'
                     />
                     {istrending && (
-                      <p className='trending-button position-absolute'>
-                        <i className="fa fa-line-chart" /> {t('Trending')}
+                      <p className='trending-button  mt-1'>
+                        <i className="fa fa-line-chart" style={{ marginRight: '4px' }}  /> {t('Trending')}
                       </p>
                     )}
                   </div>

@@ -27,6 +27,32 @@ export default function Web3ListbyCategoryId({
 
   return (
     <>
+     <style jsx>{`
+.trending-button {
+  display: inline-flex; 
+  align-items: center; 
+  background-color: #1e5fb3; 
+  color:#fff;
+  font-weight: bold; 
+  font-size: 14px;
+  padding: 2px 16px; 
+  border-radius: 30px; 
+  text-decoration: none; 
+  transition: all 0.3s ease-in-out; 
+}
+
+.trending-button .icon {
+  margin-right: 8px; 
+  font-size: 20px; 
+}
+
+.trending-button:hover {
+  background-color: #488adf; 
+  color: #c9302c; 
+  transform: scale(1.05);
+}
+
+      `}</style>
       {relatedDirectory.map((entry: any) => {
         let istrending = false;
         if (trendingDirectriesIds && trendingDirectriesIds.includes(entry[0])) {
@@ -71,7 +97,9 @@ export default function Web3ListbyCategoryId({
                     style={{ height: '100%', width: '100%' }}
                   />
                   {istrending ? (
-                    <h5 className='labelTrending'>{t('Trending')}</h5>
+                   <p className='trending-button  mt-1'>
+                   <i className="fa fa-line-chart" style={{ marginRight: '4px' }}  /> {t('Trending')}
+                 </p>
                   ) : (
                     ''
                   )}
@@ -99,7 +127,7 @@ export default function Web3ListbyCategoryId({
                       </p>
                     </div>
                   </div>
-                  <ul>
+                 {/* <ul>
                     <li>
                       {formatLikesCount(Number(entry[1]?.totalCount)) ?? 0}
                       <span>{t('Posts')}</span>
@@ -112,7 +140,7 @@ export default function Web3ListbyCategoryId({
                       {formatLikesCount(Number(entry[1]?.likes)) ?? 0}
                       <span>{t('Likes')}</span>
                     </li>
-                  </ul>
+                  </ul>*/}
                 </div>
               </div>
               <div className='txt-pnl' style={{ height: '135px' }}>

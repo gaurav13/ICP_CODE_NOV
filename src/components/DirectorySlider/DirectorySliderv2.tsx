@@ -181,7 +181,7 @@ export default React.memo(function DirectorySlider({
                           </p>
                         </div>
                       </div>
-                      <ul>
+                      {/*<ul>
                         <li>
                           {formatLikesCount(Number(entry[1]?.totalCount)) ?? 0}
                           <span>{t('Posts')}</span>
@@ -194,7 +194,7 @@ export default React.memo(function DirectorySlider({
                           {formatLikesCount(Number(entry[1]?.likes)) ?? 0}
                           <span>{t('Likes')}</span>
                         </li>
-                      </ul>
+                      </ul>*/}
                     </div>
                   </div>
                   <div
