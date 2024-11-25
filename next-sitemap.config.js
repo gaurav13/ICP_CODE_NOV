@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const LANG = 'en';
+const LANG = 'jp';
 const siteUrl = LANG == "en" ? 'https://pro.blockza.io/' : 'https://jp.blockza.io/';
 
 let firstPartOfMain = `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/main-sitemap.xsl"?>
@@ -53,10 +53,36 @@ async function getEventsSitemap() {
  * @returns generate sitemap of all categories and return
  */
 async function getCategoriesSitemap() {
-  const categories = await getCategoriesSlugs();
-  let data = generateSiteMapDynamic(categories, 'category-details?category=');
-  return data;
+  const staticCategories = [
+    'latest-news/',
+    'web3/',
+    'blockchain/',
+    'crypto/',
+    'defi/',
+    'dao/',
+    'nft/',
+    'metaverse/',
+    'blockchain_game/',
+    'ai/',
+  ];
+
+  let xml = firstPartOfPages;
+  const formattedDate = '2024-04-24T12:24:24.000+00:00';
+
+  staticCategories.forEach((category) => {
+    xml += `
+           <url>
+		       <loc>${siteUrl}${category}</loc>
+		       <lastmod>${formattedDate}</lastmod>
+	         </url>
+           `;
+  });
+
+  xml += `</urlset>`;
+  return xml;
 }
+
+
 
 /**
  * getDirectorySitemap use to generate sitemap of directories

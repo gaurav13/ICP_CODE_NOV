@@ -82,12 +82,12 @@ const NewsComponent = () => {
 
   return (
     <div className="container">
-  <h2 className="mb-1">
+  <h3 className="mb-1 latest-news">
   {LANG === 'jp' ? "最新ニュース" : "Latest News"} 
-  <span className="float-md-end">
+  <span className="float-md-end week-update">
     {LANG === 'jp' ? "週間アップデート" : "Weekly Update"}
   </span>
-</h2>
+</h3>
 
   <div className="row news-scroll-container">
     {error ? (
@@ -152,6 +152,13 @@ const NewsComponent = () => {
   .news-scroll-container {
     scrollbar-width: thin;
     scrollbar-color: #333 #f1f1f1;
+  }
+    @media screen and (max-width: 768px) {
+  .week-update{
+   float: right; /* Float right on medium and larger screens */
+    margin-left: 0; /* Reset margin */
+  }
+    .latest-news { margin-top: 30px; }
   }
 `}</style>
 

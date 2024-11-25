@@ -92,14 +92,6 @@ export default function DirectoryModelPopup({
     </Modal.Title>
   </Modal.Header>
   <Modal.Body>
-  <p
-  dangerouslySetInnerHTML={{
-    __html: LANG === 'jp'
-      ? `<b>${companyName}</b> に連絡し、Blockza Web3ディレクトリからビジネスパートナーシップとコラボレーションの可能性について話し合いたいです。`
-      : `I would like to connect with <b>${companyName}</b> from the Blockza Web3 Directory to discuss potential opportunities for a business partnership and collaboration.`,
-  }}
-></p>
-
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col md={12}>
@@ -114,8 +106,8 @@ export default function DirectoryModelPopup({
               rows={3}
               placeholder={
                 LANG === 'jp'
-                  ? 'Aconomyに連絡したいです！'
-                  : 'I’d like to connect with Aconomy!'
+                  ? `${companyName} に連絡し、Blockza Web3ディレクトリからビジネスパートナーシップとコラボレーションの可能性について話し合いたいです。`
+                  : `I would like to connect with ${companyName} from the Blockza Web3 Directory to discuss potential opportunities for a business partnership and collaboration.`
               }
               name="inquiry"
               value={formData.inquiry}

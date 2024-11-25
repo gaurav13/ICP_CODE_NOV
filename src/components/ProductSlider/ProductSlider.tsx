@@ -166,7 +166,7 @@ export default function ProductSlider({
                           <h5 className='ms-2 mx40'>{item[1].founderName ?? ''}</h5>
                         </div>
                       </div>
-                      <ul>
+                     {/* <ul>
                         <li>
                           {formatLikesCount(Number(item[1]?.totalCount)) ?? 0}
                           <span>{t('Posts')}</span>
@@ -179,7 +179,7 @@ export default function ProductSlider({
                           {formatLikesCount(Number(item[1].likes) ?? 0)}
                           <span>{t('Likes')}</span>
                         </li>
-                      </ul>
+                      </ul>*/}
                     </div>
                   </div>
                 </Link>

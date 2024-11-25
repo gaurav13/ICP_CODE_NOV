@@ -88,18 +88,18 @@ export default function CompanyListSidebar({
                   >
                     <Image src={entry[1].companyLogo} fill alt='Arb' />
                   </div>
-                  <div className='txty-pnl'>
-                    <Link href={entry[1].isStatic? `${DIRECTORY_STATIC_PATH +entry[0]}`:`${DIRECTORY_DINAMIC_PATH+entry[0]}`}>
-                      <h4>{entry[1]?.company}</h4>
-                    </Link>
-                    <p>{entry[1]?.shortDescription}</p>
-                    <Link
-                      href={siteConfig.twitterLink}
-                      className='follow-btn'
-                    >
-                      +{t('Follow')}
-                    </Link>
-                  </div>
+                          <div className='txty-pnl'>
+          <Link href={entry[1].isStatic ? `${DIRECTORY_STATIC_PATH + entry[0]}` : `${DIRECTORY_DINAMIC_PATH + entry[0]}`}>
+            <h4>{entry[1]?.company}</h4>
+          </Link>
+          <p>{entry[1]?.shortDescription}</p>
+          <Link
+            href={`${entry[1]?.companyPath || ''}`} // Adding company path dynamically
+            className='follow-btn'
+          >
+            +{t('Follow')}
+          </Link>
+        </div>
                 </div>
               </li>
             ); 

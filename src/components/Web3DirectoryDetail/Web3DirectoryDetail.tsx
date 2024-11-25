@@ -363,6 +363,19 @@ export default function Web3DirectoryDetail({
         .news-column {
           transition: all 0.3s ease; /* Optional: Add a smooth transition effect */
         }
+          /* Reduce the size of icons in the specific list */
+        .small-icons i {
+          font-size: 20px; /* Adjust the size as per your requirement */
+          line-height: 1;
+          width: auto; /* Ensure the icon's width adapts */
+          height: auto;
+        }
+
+        /* Optional: Add spacing between icons for better visibility */
+        .small-icons li {
+          margin-right: 10px; /* Adjust spacing as needed */
+        }
+
           @media (max-width: 576px) {
         .left-side-pnl{display:none}
         }
@@ -567,7 +580,7 @@ export default function Web3DirectoryDetail({
                         institutional markets lending business and data, charts,
                         and analytics.
                       </p> */}
-                        <ul className='post-social-list-2 d-flex flex-wrap'>
+                        <ul className='post-social-list-2 small-icons d-flex flex-wrap'>
                           {directory.length != 0 ? (
                             directory[0].twitter[0].length != 0 ? (
                               <li>
@@ -817,9 +830,9 @@ export default function Web3DirectoryDetail({
          </div>
                       </div>
                       <div className='full-div'>
-                      <strong className="fs-4">
+                      <h3 className='mt-3'>
                         {LANG === 'jp' ? 'チーム' : 'Team'}
-                      </strong>
+                      </h3>
 
                         <div className='shadow-txt-pnl mt-1'>
                         <div>
