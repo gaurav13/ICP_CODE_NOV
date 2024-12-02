@@ -36,7 +36,7 @@ import useSearchParamsHook from '@/components/utils/searchParamsHook';
 import ConnectModal from '@/components/Modal';
 import { isUserConnected } from '@/components/utils/utcToLocal';
 import { ADD_WEB3, CONTACT_US } from '@/constant/routes';
-
+import { redirect } from 'next/navigation';	
 export default function Article() {
   const { t, changeLocale } = useLocalization(LANG);
   const [user, setUser] = useState<User | null>();
@@ -371,11 +371,35 @@ export default function Article() {
   useEffect(() => {
     pageCount = Math.ceil(companyListOfIdSize / itemsPerPage);
   }, [companyListOfIdSize]);
+  if (categoryId === '1719578778026731208') {
+    redirect('/web3-directory/blockchain/');
+  } else if (categoryId === '1718641230817970431') {
+    redirect('/web3-directory/web3/');
+  } else if (categoryId === '1718641457527889243') {
+    redirect('/web3-directory/blockchain_game/');
+  } else if (categoryId === '1719210557164450999') {
+    redirect('/web3-directory/cryptocurrency/');
+  } else if (categoryId === '1719210427243611048') {
+    redirect('/web3-directory/defi/');
+  } else if (categoryId === '1719211072131510431') {
+    redirect('/web3-directory/dao/');
+  } else if (categoryId === '1718968029182069160') {
+    redirect('/web3-directory/nft/');
+  } else if (categoryId === '1718641722539268658') {
+    redirect('/web3-directory/metaverse/');
+  } else if (categoryId === '1719210909413102943') {
+    redirect('/web3-directory/blockchain_games/');
+  } else if (categoryId === '1718645044417924753') {
+    redirect('/web3-directory/artificial_intelligence/');
+  } else {
+    console.error(`Unknown categoryId: ${categoryId}`);
+  }
+  
   // router.push('/route')
   return (
     <>
       <main id='main'>
-        <div className='main-inner web-page'>
+        <div className='main-inner web-page manus'>
           <div className='inner-content'>
             <Row>
               <Col xl='12' lg='12' md='12'>

@@ -413,25 +413,34 @@ export default function CategoryDetails() {
    */
   const getNSetEntriesInfinate = async () => {
     setIsLoading(true);
-    const tempEntries = await getEntries({startIndex:page});
+  
+    // Fetch entries
+    const tempEntries = await getEntries({ startIndex: page });
+  
+    // Refine entries
     const refinedEntries = await getRefinedList(tempEntries);
-    setEntries((prevItems) => {
+  
+    setEntries((prevItems = []) => { // Default `prevItems` to an empty array
       const allItems = [...prevItems, ...refinedEntries];
-      const uniqueItems = allItems.filter((item, index, self) => 
-        index === self.findIndex((t) => (
-          t.id === item.id
-        ))
+  
+      // Ensure unique items by filtering duplicates based on `id`
+      const uniqueItems = allItems.filter((item, index, self) =>
+        index === self.findIndex((t) => t.id === item.id)
       );
+  
       return uniqueItems;
     });
-    if(pageCount <= page){
+  
+    // Determine if more items can be fetched
+    if (pageCount <= page) {
       setHasMore(false);
-    }else{
-      setPage((pre)=> pre+1);
-
+    } else {
+      setPage((prev) => prev + 1); // Increment the page
     }
-    setIsLoading(false);
+  
+    setIsLoading(false); // Update loading state
   };
+  
   const getNSetEntries = async (reset?: boolean) => {
     setIsLoading(true);
     const tempEntries = await getEntries({reset:reset,startIndex:0});
@@ -472,7 +481,7 @@ export default function CategoryDetails() {
                       category?.parents.map((parent: any, index: number) => (
                         <Breadcrumb.Item key={index}>
                           <Link
-                            href={`/category-details?category=${parent.id}`}
+                            href='/blockchain_game/'
                           >
                             {parent.name}
                           </Link>

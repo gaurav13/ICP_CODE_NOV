@@ -213,13 +213,13 @@ export default function DirectoryModelPopup({
               <option value="DEFI">DEFI</option>
               <option value="DAO">DAO</option>
               <option value="NFT">NFT</option>
-              <option value="Metavers">
-                {LANG === 'jp' ? 'メタバース' : 'Metavers'}
+              <option value="Metaverse">
+                {LANG === 'jp' ? 'メタバース' : 'Metaverse'}
               </option>
-              <option value="Blockchain Gain">
-                {LANG === 'jp' ? 'ブロックチェーン利得' : 'Blockchain Gain'}
+              <option value="Blockchain Games">
+                {LANG === 'jp' ? 'ブロックチェーン ゲーム' : 'Blockchain Games'}
               </option>
-              <option value="AI">AI</option>
+              <option value="AI">Artificial Intelligence</option>
             </Form.Control>
           </Form.Group>
         </Col>

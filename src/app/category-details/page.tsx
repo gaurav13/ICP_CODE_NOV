@@ -44,9 +44,8 @@ import {
 } from '@/constant/routes';
 import ReactPaginate from 'react-paginate';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import { redirect } from 'next/navigation';
 let CATEGORY_ENTRIES_PERPAGE = 20;
-
 
 function EntryItem({ entry, entryActor }: { entry: any; entryActor: any }) {
   const [likeCount, setLikeCount] = useState<number>(entry.likes);
@@ -244,6 +243,7 @@ function EntryItem({ entry, entryActor }: { entry: any; entryActor: any }) {
   );
 }
 export default function CategoryDetails() {
+ 
   const [category, setCategory] = useState<any | undefined>();
   const [search, setSearch] = useState('');
   const [entries, setEntries] = useState<any[]>();
@@ -263,6 +263,7 @@ export default function CategoryDetails() {
     auth: state.auth,
     identity: state.identity,
   }));
+ 
   const router = useRouter();
   const entryActor = makeEntryActor({
     agentOptions: {
@@ -414,25 +415,34 @@ export default function CategoryDetails() {
    */
   const getNSetEntriesInfinate = async () => {
     setIsLoading(true);
-    const tempEntries = await getEntries({startIndex:page});
+  
+    // Fetch entries
+    const tempEntries = await getEntries({ startIndex: page });
+  
+    // Refine entries
     const refinedEntries = await getRefinedList(tempEntries);
-    setEntries((prevItems) => {
+  
+    setEntries((prevItems = []) => { // Default `prevItems` to an empty array
       const allItems = [...prevItems, ...refinedEntries];
-      const uniqueItems = allItems.filter((item, index, self) => 
-        index === self.findIndex((t) => (
-          t.id === item.id
-        ))
+  
+      // Ensure unique items by filtering duplicates based on `id`
+      const uniqueItems = allItems.filter((item, index, self) =>
+        index === self.findIndex((t) => t.id === item.id)
       );
+  
       return uniqueItems;
     });
-    if(pageCount <= page){
+  
+    // Determine if more items can be fetched
+    if (pageCount <= page) {
       setHasMore(false);
-    }else{
-      setPage((pre)=> pre+1);
-
+    } else {
+      setPage((prev) => prev + 1); // Increment the page
     }
-    setIsLoading(false);
+  
+    setIsLoading(false); // Update loading state
   };
+  
   const getNSetEntries = async (reset?: boolean) => {
     setIsLoading(true);
     const tempEntries = await getEntries({reset:reset,startIndex:0});
@@ -453,7 +463,38 @@ export default function CategoryDetails() {
     };
     getnSetCategory();
   }, [categoryId, latestnews]);
+  {/*const categoryIds = searchParams.get('category'); // Get the `category` query parameter
+  console.log('Data in categoryid:', categoryIds);
+    useEffect(() => {
+      if (categoryIds === '1732000863567522348') {
+        router.push('/blockchain/'); // Redirect to /blockchain/ if categoryId matches
+      }
+    }, [categoryIds, router]);*/}
+    
 
+    if (categoryId === '1718641230817970431') {
+      redirect('/web3/');
+    } else if (categoryId === '1718641457527889243') {
+      redirect('/blockchain/');
+    } else if (categoryId === '1719210557164450999') {
+      redirect('/crypto/');
+    } else if (categoryId === '1719210427243611048') {
+      redirect('/defi/');
+    } else if (categoryId === '1719211072131510431') {
+      redirect('/dao/');
+    } else if (categoryId === '1718968029182069160') {
+      redirect('/nft/');
+    } else if (categoryId === '1718641722539268658') {
+      redirect('/metaverse/');
+    } else if (categoryId === '1719210909413102943') {
+      redirect('/blockchain_games/');
+    } else if (categoryId === '1718645044417924753') {
+      redirect('/ai/');
+    } else {
+      console.error(`Unknown categoryId: ${categoryId}`);
+    }
+    
+    
   return (
     <>
       <main id='main'>
