@@ -166,7 +166,7 @@ export default function NavBarNew() {
 
   return (
     <>
-      {route !== 'super-admin' && (
+      {route !== 'super-admin'  && route !="login"  && (
         <>
           <Navbar
             expand='lg'

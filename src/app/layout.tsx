@@ -9,37 +9,6 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.title,
-    template: `%s `,
-  },
-  description: siteConfig.description,
-  robots: 'index, follow',
-  icons: {
-    icon: `${siteConfig.url}/favicon/favicon.ico`,
-    shortcut: `${siteConfig.url}/favicon/favicon-16x16.png`,
-    apple: `${siteConfig.url}/favicon/apple-touch-icon.png`,
-  },
-  applicationName: 'BlockZa',
-  manifest: `${siteConfig.url}/favicon/site.webmanifest`,
-  openGraph: {
-    url: siteConfig.url,
-    title: siteConfig.title,
-    description: siteConfig.description,
-    siteName: 'BlockZa',
-    images: [`${siteConfig.url}/images/og.jpg`],
-    type: 'website',
-    locale: LanguageForSchema,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.title,
-    description: siteConfig.description,
-    images: [`${siteConfig.url}/images/og.jpg`],
-    creator: '@BlockZa',
-  },
-};
 
 import { ToastContainer } from 'react-toastify';
 import Footer from '@/components/Footer/Footer';

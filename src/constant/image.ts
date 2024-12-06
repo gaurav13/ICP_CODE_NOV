@@ -31,3 +31,8 @@ export function getCount(data: any) {
   let count = data.length;
   return count;
 }
+export const appData = {
+  name: 'Blockza',
+  logo: 'https://pro.blockza.io/favicon/favicon-16x16.png',
+  url: 'https://pro.blockza.io',
+};

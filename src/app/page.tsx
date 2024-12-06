@@ -10,7 +10,7 @@ import logger from '@/lib/logger';
 import ArticleShimmer from '@/components/Shimmers/ArticleShimmer';
 import AuthHomeShimmer from '@/components/Shimmers/AuthHomeShimmer';
 import { siteConfig } from '@/constant/config';
-import { LANG } from '@/constant/language';
+import { LANG, LanguageForSchema } from '@/constant/language';
 import Logo from "@/assets/Img/Logo/headerlogo.png"
 
   /**
@@ -106,6 +106,42 @@ export default function HomePage() {
 
   return (
     <>
+     <head>
+    <title>
+     { siteConfig.title}
+    </title>
+
+    <meta name="description" content={siteConfig.description}/>
+    <meta name="robots" content="index, follow"/>
+    
+    {/* <!-- Icons --> */}
+    <link rel="icon" href={`${siteConfig.url}/favicon/favicon.ico`} type="image/x-icon"/>
+    <link rel="shortcut icon" href={`${siteConfig.url}/favicon/favicon-16x16.png`} type="image/png"/>
+    <link rel="apple-touch-icon" href={`${siteConfig.url}/favicon/apple-touch-icon.png`}/>
+    
+    {/* <!-- Application Name --> */}
+    <meta name="application-name" content="BlockZa"/>
+
+    {/* <!-- Web App Manifest --> */}
+    <link rel="manifest" href={`${siteConfig.url}/favicon/site.webmanifest`}/>
+
+    {/* <!-- Open Graph Meta Tags --> */}
+    <meta property="og:url" content={siteConfig.url}/>
+    <meta property="og:title" content={siteConfig.title}/>
+    <meta property="og:description" content={siteConfig.description}/>
+    <meta property="og:site_name" content="BlockZa"/>
+    <meta property="og:image" content={`${siteConfig.url}/images/og.jpg`}/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content={LanguageForSchema}/>
+
+    {/* <!-- Twitter Meta Tags --> */}
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content={siteConfig.title}/>
+    <meta name="twitter:description" content={siteConfig.description}/>
+    <meta name="twitter:image" content={`${siteConfig.url}/images/og.jpg`}/>
+    <meta name="twitter:creator" content="@BlockZa"/>
+
+    </head>
       {auth.isLoading ? (
         <main id='main' className='new-home'>
           <div className='main-inner home'>

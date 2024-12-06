@@ -79,7 +79,12 @@ function ScrollToError() {
 }
 
 export default function ProfileDetails() {
- 
+  const {  identity} =
+  useConnectPlugWalletStore((state) => ({
+
+    identity: state.identity,
+  
+  }));
   const [showModal, setShowModal] = useState(false);
   const [buttonText, setButtonText] = useState('Verify Email');
   const [verify, setVerify] = React.useState(false);
@@ -608,20 +613,31 @@ export default function ProfileDetails() {
   }, [auth]);
   useEffect(() => {
     const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        if (con) {
-          const identity = await auth.client.getIdentity();
+      // if (auth.client) {
+      //   const con = await auth.client.isAuthenticated();
+      //   if (con) {
+      //     const identity = await auth.client.getIdentity();
+      //     setIsAuthenticated(true);
+      //     setIdentity(identity);
+      //   } else {
+      //     router.replace('/');
+      //     setIsAuthenticated(false);
+      //   }
+      // }
+   if(auth.isLoading) return;
+   
+        if (identity) {
+          // const identity = await auth.client.getIdentity();
           setIsAuthenticated(true);
-          setIdentity(identity);
+          // setIdentity(identity);
         } else {
           router.replace('/');
           setIsAuthenticated(false);
         }
-      }
+      
     };
     getIdentity();
-  }, [auth.client]);
+  }, [auth.client,identity]);
   React.useEffect(() => {
     let timer: any;
     if (isTimerActive) {

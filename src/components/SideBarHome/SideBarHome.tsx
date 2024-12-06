@@ -44,7 +44,7 @@ import { useConnectPlugWalletStore, useThemeStore } from '@/store/useStore';
 import authMethods from '@/lib/auth';
 import logger from '@/lib/logger';
 import { ALL_ARTICLES } from '@/constant/routes';
-
+import ConfirmationModel from '@/components/Modal/ConfirmationModel';
 export default function SidebarHome() {
   const { t, changeLocale } = useLocalization(LANG);
   const [isThemeActive, setIsThemeActive] = useState(false);
@@ -60,11 +60,12 @@ export default function SidebarHome() {
 
   const route = location?.split('/')[1];
   const sidebarRef = React.useRef<HTMLElement | null>();
-
-  const { auth, setAuth, setIdentity } = useConnectPlugWalletStore((state) => ({
+  const [loginModalShow, setLoginModalShow] = React.useState(false);
+  const { auth, setAuth, setIdentity ,identity} = useConnectPlugWalletStore((state) => ({
     auth: state.auth,
     setAuth: state.setAuth,
     setIdentity: state.setIdentity,
+    identity: state.identity,
   }));
   const { isBlack, setIsBlack, isOpen, setIsOpen } = useThemeStore((state) => ({
     isBlack: state.isBlack,
@@ -110,7 +111,8 @@ export default function SidebarHome() {
 
   const connect = async () => {
     setIsConnectLoading(true);
-    const login = await methods.login();
+    // const login = await methods.login();
+    setLoginModalShow(true)
   };
 
   const closeNavbar = (event: any) => {
@@ -135,14 +137,15 @@ export default function SidebarHome() {
     // if (window.ic) {
     // window.ic.plug.isConnected();
     // }
-    const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        setConnected(con);
+
+
+      if (identity) {
+        setConnected(true);
+      }else{
+        setConnected(false);
       }
-    };
-    getIdentity();
-  }, [auth]);
+
+  }, [identity,auth]);
   React.useEffect(() => {
     const currentTab = location;
 
@@ -465,6 +468,11 @@ export default function SidebarHome() {
             </div>
           </Modal.Body>
         </Modal>
+        <ConfirmationModel
+          show={loginModalShow}
+          handleClose={() => setLoginModalShow(false)}
+          handleConfirm={connect}
+        />
         {/* Connect Modal */}
       </>
     )

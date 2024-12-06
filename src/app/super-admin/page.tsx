@@ -9,17 +9,21 @@ import iconlogo from '@/assets/Img/Icons/icon-logo.png';
 import logo from '@/assets/Img/Logo/Footer-logo.png';
 import { ConnectPlugWalletSlice } from '@/types/store';
 import logger from '@/lib/logger';
+import { LoginEnum } from '@/lib/utils';
+import ConfirmationModel from '@/components/Modal/ConfirmationModel';
 export default function SuperAdmin() {
   const [isConnectLoading, setIsConnectLoading] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [connected, setConnected] = useState(false);
+  const [loginModalShow, setLoginModalShow] = React.useState(false);
 
-  const { auth, setAuth, setIdentity, userAuth } = useConnectPlugWalletStore(
+  const { auth, setAuth, setIdentity, userAuth,identity } = useConnectPlugWalletStore(
     (state) => ({
       auth: state.auth,
       setAuth: state.setAuth,
       setIdentity: state.setIdentity,
       userAuth: (state as ConnectPlugWalletSlice).userAuth,
+      identity: (state as ConnectPlugWalletSlice).identity,
     })
   );
 
@@ -34,7 +38,8 @@ export default function SuperAdmin() {
   });
   const connect = async () => {
     setIsConnectLoading(true);
-    const login = await methods.login();
+    setLoginModalShow(true)
+    // const login = await methods.login(LoginEnum.NFID);
   };
   const disconnect = async () => {
     await methods.logout();
@@ -45,14 +50,14 @@ export default function SuperAdmin() {
     // }
   };
   React.useEffect(() => {
-    const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        setConnected(con);
-      }
-    };
-    getIdentity();
-  }, [auth]);
+ 
+    if (identity) {
+      setConnected(true);
+    }else{
+      setConnected(false);
+    }
+
+}, [identity,,auth]);
   React.useEffect(() => {
     if (!userAuth.isAdminBlocked) {
       if (userAuth.userPerms?.userManagement) {
@@ -134,6 +139,11 @@ export default function SuperAdmin() {
           </Row>
         </Container>
       </div>
+      <ConfirmationModel
+          show={loginModalShow}
+          handleClose={() => setLoginModalShow(false)}
+          handleConfirm={connect}
+        />
     </>
   );
 }

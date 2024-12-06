@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import logger from '@/lib/logger';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
+import ConfirmationModel from '@/components/Modal/ConfirmationModel';
 
 function ConnectModal({
   handleClose,
@@ -25,6 +26,7 @@ function ConnectModal({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [connected, setConnected] = useState(false);
   const router = useRouter();
+  const [loginModalShow, setLoginModalShow] = React.useState(false);
 
   const handleConnectClose = () => {
     setIsConnectLoading(false);
@@ -39,14 +41,16 @@ function ConnectModal({
   });
   const connect = async () => {
     setIsConnectLoading(true);
-    const login = await methods.login();
-    logger(link, 'logged in ');
+    setLoginModalShow(true)
+    // const login = await methods.login();
+    // logger(link, 'logged in ');
   };
   React.useEffect(() => {
     document.body.classList.add('no-scroll');
   }, [showModal]);
   const { t, changeLocale } = useLocalization(LANG);
   return (
+    <>
     <Modal show={showModal} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <h4 className='mb-0'>{t('Connect With Internet Identity')}</h4>
@@ -75,6 +79,12 @@ function ConnectModal({
         </div>
       </Modal.Body>
     </Modal>
+     <ConfirmationModel
+     show={loginModalShow}
+     handleClose={() => setLoginModalShow(false)}
+     handleConfirm={connect}
+   />
+   </>
   );
 }
 
