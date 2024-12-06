@@ -43,6 +43,8 @@ import LoginForm from '@/components/LoginForm';
 import SignInForm from '@/components/SignInForm';
 import { STRONG_PASSWORD, STRONG_PASSWORD_SMS } from '@/constant/validations';
 import { EMAIL_VALIDATE } from '@/constant/regulerExpression';
+import Link from 'next/link';
+import { LOGIN_PAGE } from '@/constant/routes';
 
 export default function SignInButton({
   hideRewards,
@@ -180,35 +182,24 @@ export default function SignInButton({
   return (
     <>
         {emailConnected ? (  
-                              //  <Tippy
-                              //         content={
-                              //           <div>
-                              //             <p className='mb-0'>
-                              //             {userEmail}
-                              //             </p>
-                              //           </div>
-                              //         }
-                              //       >
-                              //         <span className='ps-1'>
-                              //           <i className='fa fa-circle-info' />
-                              //         </span>
-                              //       </Tippy>
-
+                           
                               <input type="text" value={userEmail} disabled
                                  className='me-2 d-none d-md-block'
                                    />
                                   ) :""}
       
-      <Button
+      <Link
         className={isPodcastLink?"reg-btn big  signinbtninpodcast":`link-btn ${hideUser ? '' : ''} ${
           hideRewards ? 'hide-on-desktop' : ''
         }`}
-        disabled={isLoggin}
-        onClick={emailConnected ? logout : handleShow}
+        // disabled={isLoggin}
+        // onClick={emailConnected ? logout : handleShow}
+        href={LOGIN_PAGE}
       >
        {emailConnected ? t('Sign out') : t('Sign In')}
-      </Button>
+      </Link>
       
+    
     
       
       <Modal centered show={show} onHide={handleClose} onClose={handleClose}>

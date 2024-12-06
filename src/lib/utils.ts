@@ -71,3 +71,12 @@ export function debounce<T extends (...args: any[]) => void>(func: T, delay: num
     }, delay);
   };
 }
+export enum LoginEnum {
+  InternetIdentity = 0,
+  NFID = 1,
+}
+export const appData = {
+  name: 'Blockza',
+  logo: 'https://pro.blockza.io/favicon/favicon-16x16.png',
+  url: 'https://pro.blockza.io',
+};

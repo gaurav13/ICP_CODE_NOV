@@ -39,7 +39,7 @@ export const SURVEY_ROUTE = '/survey/';
 export const CATEGORY_ROUTE ="/category-details?category=";
 export const EDITOR_POLICY_ROUTE ="/editor-policy";
 export const LATEST_NEW_PAGE ="/latest-news";
-
+export const LOGIN_PAGE ="/login/";
 
 
 

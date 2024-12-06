@@ -72,10 +72,12 @@ export default function Connect({
   hideRewards,
   hideUser,
   hide = false,
+  hideUi
 }: {
   hideRewards?: boolean;
   hideUser?: boolean;
   hide?: boolean;
+  hideUi?:boolean
 }) {
   const [pText, setPText] = React.useState('nothing');
   const [show, setShow] = React.useState<boolean | undefined>();
@@ -311,9 +313,9 @@ export default function Connect({
     }
   };
   const connect = async () => {
-    setLoginModalShow(false);
+    setLoginModalShow(true);
     setIsLoggin(true);
-    const login = await methods.login();
+    // const login = await methods.login();
   };
   const updateImg = async (img: any) => {
     if (img) {
@@ -427,10 +429,10 @@ export default function Connect({
     }
   };
   const getII = async () => {
-    const identity = await auth.client.getIdentity();
+    // const identity = await auth.client.getIdentity();
     const principal = await identity.getPrincipal();
     setPrincipal(principal.toString());
-    setIdentity(identity);
+    // setIdentity(identity);
   };
   const handleConnectClose = () => {
     setIsConnectLoading(false);
@@ -438,16 +440,16 @@ export default function Connect({
 
   React.useEffect(() => {
     const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        if (con) {
-          const identity = await auth.client.getIdentity();
+      // if (auth.client) {
+      //   const con = await auth.client.isAuthenticated();
+      //   if (con) {
+      //     const identity = await auth.client.getIdentity();
 
-          setIdentity(identity);
-          const pKey = await identity.getDelegation().toJSON().publicKey;
-          setPublicKey(pKey);
-        }
-      }
+      //     setIdentity(identity);
+      //     const pKey = await identity.getDelegation().toJSON().publicKey;
+      //     setPublicKey(pKey);
+      //   }
+      // }
     };
     getIdentity();
     icpTokenName();
@@ -456,7 +458,10 @@ export default function Connect({
   React.useEffect(() => {
     if (auth.state === 'initialized') {
       getUser();
-      getII();
+      if(identity){
+
+        getII();
+      }
     } else {
       methods.initAuth().then(async (res) => {
         if (res.success) {
@@ -468,22 +473,25 @@ export default function Connect({
   React.useEffect(() => {
     if (auth.state === 'anonymous') {
       // setIsOwner(false);
-      setIdentity(null);
+      // setIdentity(null);
     } else if (auth.state !== 'initialized') {
     } else {
       getUser();
-      getII();
+      if(identity){
+
+        getII();
+      }
     }
   }, [auth, pathname]);
   React.useEffect(() => {
-    const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        setConnected(con);
+ 
+      if (identity) {
+        setConnected(true);
+      }else{
+        setConnected(false);
       }
-    };
-    getIdentity();
-  }, [auth]);
+
+  }, [identity,auth]);
   React.useEffect(() => {
     if (auth.state === 'initialized' && identity) {
       getBalance();
@@ -506,7 +514,7 @@ export default function Connect({
 
   return (
     <>
-      <ul className='side-btnlist'>
+      <ul className={`side-btnlist ${hideUi && "hideUi"}`}>
         <li>{route !== 'super-admin' && <GlobalSearch />}</li>
         {isLoading ? (
           <li className='remove'>

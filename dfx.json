@@ -50,6 +50,7 @@
         "entrypoint": "out/index.html"
       },
       "source": ["out", "domains/en"],
+      "build": [""],
       "type": "assets",
       "declarations": {
         "output": "src/dfx/declarations/temp/NFTStudio24"
@@ -90,9 +91,9 @@
       "frontend": {
         "entrypoint": "out/index.html"
       },
-      "dependencies": ["user_SG", "entry_SG", "comment_SG", "subscriber_SG"],
       "source": ["out"],
       "type": "assets",
+ 
       "declarations": {
         "output": "src/dfx/declarations/temp/NFTStudio24"
       }

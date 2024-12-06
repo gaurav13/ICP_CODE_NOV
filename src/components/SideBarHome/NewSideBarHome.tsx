@@ -59,10 +59,11 @@ export default function NewSidebarHome() {
   const route = location.split('/')[1];
   const sidebarRef = React.useRef<HTMLElement | null>();
 
-  const { auth, setAuth, setIdentity } = useConnectPlugWalletStore((state) => ({
+  const { auth, setAuth, setIdentity ,identity} = useConnectPlugWalletStore((state) => ({
     auth: state.auth,
     setAuth: state.setAuth,
     setIdentity: state.setIdentity,
+    identity: state.identity,
   }));
   const { isBlack, setIsBlack, isOpen, setIsOpen } = useThemeStore((state) => ({
     isBlack: state.isBlack,
@@ -234,9 +235,9 @@ export default function NewSidebarHome() {
   // Dark Theme
 
   const connect = async () => {
-    setLoginModalShow(false);
+    setLoginModalShow(true);
     setIsConnectLoading(true);
-    const login = await methods.login();
+    // const login = await methods.login();
   };
 
   const closeNavbar = (event: any) => {
@@ -280,14 +281,13 @@ export default function NewSidebarHome() {
     // if (window.ic) {
     // window.ic.plug.isConnected();
     // }
-    const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        setConnected(con);
+  logger(identity,"identityidentity")
+      if (identity) {
+        setConnected(true);
+      }else{
+        setConnected(false);
       }
-    };
-    getIdentity();
-  }, [auth]);
+  }, [identity,auth]);
   React.useEffect(() => {
     const currentTab = location;
 
@@ -298,7 +298,7 @@ export default function NewSidebarHome() {
   };
   return (
     route != 'blocked' &&
-    route != 'super-admin' && (
+    route != 'super-admin' && route !="login"  &&  (
       <>
         <div
           ref={sidebarRef as React.RefObject<HTMLDivElement>}

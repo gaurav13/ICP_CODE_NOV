@@ -319,15 +319,47 @@ export default function Profiles() {
     }
   }, [identity]);
   useEffect(() => {
+    // const getIdentity = async () => {
+    //   if (auth.client) {
+    //     const con = await auth.client.isAuthenticated();
+    //     if (con) {
+    //       const identity = await auth.client.getIdentity();
+    //       // const principal = await identity.getDelegation().toJSON().publicKey;
+    //       // logger({ identity, principal }, 'WE GOT THIS BOZO');
+    //       setIsAuthenticated(true);
+    //       setIdentity(identity);
+    //     } else {
+    //       if (!userId) {
+    //         let tempurl = window.location.search;
+    //         const searchParams = await new URLSearchParams(tempurl);
+    //         const tempuserId = searchParams.get('userId');
+    //         if (!tempuserId) {
+    //           router.replace('/');
+    //           setIsAuthenticated(false);
+    //         }
+    //       } else {
+    //         auth.actor
+    //           .get_user_details([userId])
+    //           .then(() => {
+    //             setIsAuthenticated(true);
+    //           })
+    //           .catch(() => {
+    //             setNotFound(true);
+    //           });
+    //       }
+    //     }
+    //   }
+    // };
+   
     const getIdentity = async () => {
-      if (auth.client) {
-        const con = await auth.client.isAuthenticated();
-        if (con) {
-          const identity = await auth.client.getIdentity();
+      if(auth.isLoading) return;
+
+        if (identity) {
+          // const identity = await auth.client.getIdentity();
           // const principal = await identity.getDelegation().toJSON().publicKey;
           // logger({ identity, principal }, 'WE GOT THIS BOZO');
           setIsAuthenticated(true);
-          setIdentity(identity);
+          // setIdentity(identity);
         } else {
           if (!userId) {
             let tempurl = window.location.search;
@@ -348,11 +380,12 @@ export default function Profiles() {
               });
           }
         }
-      }
+      
     };
     getIdentity();
-  }, [auth.client]);
+  }, [auth.client,identity]);
 useEffect(() => {
+  if(auth.isLoading) return;
   if (auth.state === 'initialized') {
     if (userAuth.userPerms?.articleManagement && !userAuth.isAdminBlocked) {
       setIsAdmin(true)
