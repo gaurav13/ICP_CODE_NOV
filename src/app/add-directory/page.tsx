@@ -16,6 +16,7 @@ import {
 import { canisterId as commentCanisterId } from '@/dfx/declarations/comment';
 import { toast } from 'react-toastify';
 import logger from '@/lib/logger';
+import '../../styles/add_directory.css';
 import {
   makeEntryActor,
 } from '@/dfx/service/actor-locator';
@@ -45,6 +46,7 @@ import { useRouter } from 'next/navigation';
 import { ADD_WEB3 } from '@/constant/routes';
 import ConnectModal from '@/components/Modal';
 import Link from 'next/link';
+import { FaLinkedin, FaTwitter, FaTelegram, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import Tippy from '@tippyjs/react';
 function ScrollToError() {
   const formik = useFormikContext();
@@ -548,106 +550,63 @@ export default function AddCompanyForm() {
         <div className='main-inner admin-main'>
           
           <div className='section admin-inner-pnl' id='top'>
+          <div className="container-fluid  py-4">
           <Row>
-          <Col className="mt-4 text-startmt-5 pt-4  text-start">
-  <h3>
-    <strong>
-      {LANG === 'jp' ? 'あなたのWeb3プロジェクトをBlockzaで披露する' : 'Showcase Your Web3 Project on Blockza'}
-    </strong>
-  </h3>
-  <p>
-    <strong>
-      {LANG === 'jp'
-        ? 'Web3のイノベーションをグローバルな舞台へ'
-        : 'Take Your Web3 Innovation to the Global Stage'}
-    </strong>
-    <br />
-    {LANG === 'jp'
-      ? 'Blockza Web3ディレクトリに参加し、プロジェクトの可視性を高め、業界のリーダーとつながり、分散型の世界で新たなチャンスを掴みましょう。Web3プロジェクトを、投資家やコラボレーター、Web3愛好者に紹介する絶好の機会です。'
-      : 'Join Blockza’s Web3 Directory—the premier platform for blockchain innovators to gain visibility, connect with leaders, and stand out in the decentralized world.'}
-  </p>
-  <h3>
-    <strong>{LANG === 'jp' ? 'なぜプロジェクトを提出するのか？' : 'Why Submit Your Project?'}</strong>
-  </h3>
-  <ul className='ps-3'>
-    <li>
-      <strong>{LANG === 'jp' ? 'リーチの拡大' : 'Expand Your Reach'}</strong>:
-      {LANG === 'jp'
-        ? ' 世界中の投資家、コラボレーター、Web3愛好者にプロジェクトを紹介し、グローバルな可視性を獲得できます。'
-        : ' Present your project to a worldwide audience of investors, collaborators, and Web3 enthusiasts.'}
-    </li>
-    <li>
-      <strong>{LANG === 'jp' ? '権威の構築' : 'Build Authority'}</strong>:
-      {LANG === 'jp'
-        ? 'チーム、成果、メディア露出を強調し、信頼性と権威を確立することで、Web3エコシステムにおける信用を築きます。'
-        : ' Highlight your team, achievements, and media exposure to establish trust and credibility.'}
-    </li>
-    <li>
-      <strong>{LANG === 'jp' ? 'トップタレントとのネットワーキング' : 'Connect with the Best'}</strong>:
-      {LANG === 'jp'
-        ? '業界の専門家や潜在的なパートナー、共通の目標を持つイノベーターとネットワーキングを行い、プロジェクトの次のステップを支えるつながりを作ります。'
-        : ' Network with top industry professionals, potential partners, and like-minded innovators.'}
-    </li>
-    <li>
-      <strong>{LANG === 'jp' ? 'AIテクノロジーの活用' : 'Leverage AI Technology'}</strong>:
-      {LANG === 'jp'
-        ? ' BlockzaのAI搭載ツールを利用して、24時間365日利用可能なサポートとシームレスなコミュニケーションを提供します。プロジェクトの円滑な進行をサポートします。'
-        : ' Offer 24/7 engagement through Blockza’s AI-powered tools, ensuring instant support and seamless communication.'}
-    </li>
-  </ul>
-  <h3>
-    <strong>{LANG === 'jp' ? '申し込みの流れ' : 'How to Get Started'}</strong>
-  </h3>
-  <ol>
-    <li>
-      <strong>
-        {LANG === 'jp'
-          ? 'アカウント登録とプロジェクトの提出'
-          : 'Sign Up and Submit Your Company Profile'}
-      </strong>
-      <br />
-      {LANG === 'jp'
-        ? 'アカウントを作成し、チーム情報、メディア報道、ユニークな機能など、Web3プロジェクトの詳細をご提供ください。'
-        : 'Create an account and provide details about your Web3 project, including team information, media coverage, and unique features.'}
-    </li>
-    <li>
-      <strong>
-        {LANG === 'jp' ? '専門チームによるレビュー' : 'Review by Our Team'}
-      </strong>
-      <br />
-      {LANG === 'jp'
-        ? '提出後、専門チームがプロジェクトを審査し、ディレクトリ基準を満たしていることを確認します。'
-        : 'Once submitted, your profile will be reviewed by our expert team to ensure all information meets our directory standards.'}
-    </li>
-    <li>
-      <strong>
-        {LANG === 'jp' ? '承認と登録完了' : 'Registration and Activation'}
-      </strong>
-      <br />
-      {LANG === 'jp'
-        ? '承認後、プロジェクトは正式にBlockza Web3ディレクトリにリストされ、他にはない可視性とネットワーキングのチャンスを得ることができます。'
-        : 'After approval, your project will be officially listed in the Blockza Web3 Directory, giving you access to unparalleled visibility and networking opportunities.'}
-    </li>
-    <li>
-      <strong>
-        {LANG === 'jp' ? '企業アカウントへのアップグレード' : 'Join the Corporate Account'}
-      </strong>
-      <br />
-      {LANG === 'jp'
-        ? 'プレミアム機能にアクセスし、強化された露出、AIツール、グローバルなブロックチェーンコミュニティへの直接アクセスなどの特典をアンロックします。'
-        : 'Unlock premium features, including enhanced exposure, AI-powered tools, and direct access to a global blockchain audience.'}
-    </li>
-  </ol>
-  <p>
-    👉 <strong>{LANG === 'jp' ? '今すぐプロジェクトを提出し、Web3プレゼンスを拡大しましょう！' : 'Submit Your Project Today!'}</strong>
-    <br />
-    {LANG === 'jp'
-      ? 'BlockzaでWeb3プロジェクトの可視性を広げ、分散型の未来に向けてつながりを築いていきましょう。'
-      : 'Let Blockza amplify your Web3 presence and connect you with the decentralized world!'}
-  </p>
-</Col>
+        {/* Left Column */}
+        <Col md={8} className="text-start pt-4">
+          <h1 style={{color:'#1e5fb3'}} className='blue-title'>
+           Get Your Web3 Project in Front of the Right People—For Free!</h1>
+          <p className='text-14'>
+            Join Blockza's Web3 Directory, the go-to platform for blockchain innovators to shine. 
+            Gain global visibility, connect with industry leaders, and build trust in the Web3 space—all at no cost.
+          </p>
+          <ul className='text-14'>
+            <li>
+              <strong>Showcase Your Brand:</strong> Highlight your company, team, achievements, and media exposure.
+            </li>
+            <li>
+              <strong>Book a Meeting with Web3 Experts:</strong> Connect directly with investors, collaborators, and industry leaders.
+            </li>
+            <li>
+              <strong>Engage Smarter:</strong> Use AI-powered tools for 24/7 seamless interaction. 
+              <span className="text-muted"> (Paid Option)</span>
+            </li>
+          </ul>
+          <a style={{color:'#1e5fb3'}} 
+            href="https://blockza.io"
+            className="blue-text-color fw-bold"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn how Blockza Web3 Directory features can help you build a more engaging and impactful project page&nbsp;
+            <i className="fa fa-external-link" />
+          </a>
+        </Col>
 
-          </Row>
+        {/* Right Column */}
+        <Col md={4} className='pt-5'>
+          <div className="contact-card p-3 shadow-sm rounded">
+            <h6 className="fw-bold mb-2">📧 Contact the sales team</h6>
+            <a
+              href="mailto:support@blockza.io"
+              className="blue-text-color fw-bold"
+            >
+              support@blockza.io
+            </a>
+          </div>
+
+          {/*<div className="mt-3 p-3 shadow-sm rounded d-flex align-items-center justify-content-between">
+            <div>
+              <h6 className="mb-0">BlockZa Sales Kit</h6>
+            </div>
+            <a href="#" className="btn btn-light btn-sm">
+              <i className="fa fa-download" />
+            </a>
+          </div>*/}
+        </Col>
+    
+      </Row></div>
+
             {cropperImg && (
               <ImageCropper
                 show={showCropper}
@@ -656,7 +615,7 @@ export default function AddCompanyForm() {
               />
             )}
 
-            <Formik
+<Formik
               initialValues={initialWeb3Values}
               innerRef={web3FormikRef}
               enableReinitialize
@@ -671,7 +630,8 @@ export default function AddCompanyForm() {
               }}
             >
               {({ errors, touched, handleChange, handleBlur }) => (
-                <FormikForm
+       <div className="container-fluid py-4"><div className="row"><div className="form-container col-md-8">
+       <FormikForm
                   className='flex flex-col items-center justify-center px-3'
                   // onChange={(e) => handleImageChange(e)}
                 >
@@ -690,6 +650,7 @@ export default function AddCompanyForm() {
                           >
                             <Form.Label className='mt-2'>
                               {t('Company Name')}
+                              <span className='required_icon'>*</span>
                             </Form.Label>
                             <Form.Control
                               type='text'
@@ -723,8 +684,10 @@ export default function AddCompanyForm() {
                             className='mb-2'
                             controlId='exampleForm.ControlInput1'
                           >
+
                             <Form.Label className='mt-2'>
                               {t('Company short description')}
+                              <span className='required_icon'>*</span>
                             </Form.Label>
                             <Form.Control
                               type='text'
@@ -753,7 +716,7 @@ export default function AddCompanyForm() {
                     <Col xl='12' lg='12' md='12' className='mb-3'>
                       
                       <div className='full-div my-3'>
-                        <Form.Label>{t('Company Detail')}</Form.Label>
+                        <Form.Label>{t('Company Detail')} <span className='required_icon'>*</span></Form.Label>
                         <Texteditor
                           initialValue={web3Content}
                           value={web3Content}
@@ -781,7 +744,7 @@ export default function AddCompanyForm() {
                             className='mb-2'
                             controlId='exampleForm.ControlInput2'
                           >
-                            <Form.Label>{t('Founder Name')}</Form.Label>
+                            <Form.Label>{t('Founder Name')} <span className='required_icon'>*</span></Form.Label>
                             <Form.Control
                               type='text'
                               placeholder={t('Enter Founder Name here')}
@@ -806,7 +769,7 @@ export default function AddCompanyForm() {
                       <Field name='founderDetail'>
                         {({ field, formProps }: any) => (
                           <Form.Group className='mb-2'>
-                            <Form.Label>{t('Founder Details')}</Form.Label>
+                            <Form.Label>{t('Founder Details')} <span className='required_icon'>*</span></Form.Label>
                             <Form.Control
                               as='textarea'
                               rows={2}
@@ -834,7 +797,7 @@ export default function AddCompanyForm() {
                       <Field name='companyUrl'>
                         {({ field, formProps }: any) => (
                           <Form.Group className='mb-2'>
-                            <Form.Label>{t('Company Url')}</Form.Label>
+                            <Form.Label>{t('Company Url')} <span className='required_icon'>*</span></Form.Label>
                             <Form.Control
                               type='text'
                               placeholder={t('Enter Company URL  Here...')}
@@ -905,6 +868,7 @@ export default function AddCompanyForm() {
                       </div>
                     </Col>
                     <Col xl='6' lg='6' md='6' className='mb-3'>
+                    
                       <Field name='linkedin'>
                         {({ field, formProps }: any) => (
                           <Form.Group className='mb-2'>
@@ -935,7 +899,7 @@ export default function AddCompanyForm() {
   {({ field }: any) => (
     <Form.Group className='mb-2'>
         <Form.Label>
-        {t('Feature directory')}
+        {t('Promote your Directory Listing')}
                                       <Tippy
                                         content={
                                           <div>
@@ -956,19 +920,23 @@ export default function AddCompanyForm() {
     
 <div className='d-flex'>
 
-              <label className='d-flex align-items-center'>
+              <label className='text-14 d-flex align-items-center'>
                 <Field type="radio" name="discord" value="yes" className="me-2"/>
                 {t('Yes')}
               </label>
           
-              <label className='d-flex align-items-center ms-3'>
+              <label className='text-14 d-flex align-items-center ms-3'>
                 <Field type="radio" name="discord" value="no" className="me-2"/>
                 {t('No')}
               </label>
-           
-            <ErrorMessage name="discord" component="div" />
-            
 
+
+            <ErrorMessage name="discord" component="div" />
+
+</div>
+<div style={{ fontSize: '12px',color: '#1e5fb3', lineHeight: '1.2', marginTop: '5px' }}>
+  Are you interested in promoting your project or arranging meetings with
+  experts for business partnerships or consultations?
 </div>
      
 
@@ -1031,7 +999,7 @@ export default function AddCompanyForm() {
                       <Field name='founderEmail'>
                         {({ field, formProps }: any) => (
                           <Form.Group className='mb-2'>
-                            <Form.Label>{t('Founder Email')}</Form.Label>
+                            <Form.Label>{t('Founder Email')} <span className='required_icon'>*</span></Form.Label>
                             <Form.Control
                               type='text'
                               placeholder={t(
@@ -1059,7 +1027,7 @@ export default function AddCompanyForm() {
                       <Field name='catagory'>
                         {({ field, form }: any) => (
                           <Form.Group className='mb-2'>
-                            <Form.Label>{t('Category')}</Form.Label>
+                            <Form.Label>{t('Category')} <span className='required_icon'>*</span></Form.Label>
                             <Form.Select
                               value={field.value}
                               onChange={handleChange}
@@ -1088,177 +1056,208 @@ export default function AddCompanyForm() {
                         />
                       </div>
                     </Col>
-                    <Col xl='6' lg='6' md='6' className='mb-4'>
-                      <div className='d-flex flex-column align-items-center photo-editor-pnl'>
-                        {tempweb3ComapnyPreviewLogo && (
-                          <div
-                            style={{
-                              // height: '252px',
-                              width: '250px',
-                              // overflow: 'hidden',
-                            }}
-                          >
-                            <Image
-                              // fill={true}
-                              // style={{ maxHeight: '200px', maxWidth: '200px' }}
-                              width={250}
-                              height={250}
-                              // fill={true}
-                              src={tempweb3ComapnyPreviewLogo}
-                              alt='Banner'
-                            />
-                          </div>
-                        )}
-                        <Form.Group controlId='formFile2' className='mb-4'>
-                          {/* <Form.Label>Select Company Banner Image</Form.Label> */}
-                          <div className='input-group d-flex justify-content-center'>
-                            <Form.Control
-                              id='previewweb3companylogo'
-                              className='d-none'
-                              // onChange={handleCompanyLogoChange}
-                              onChange={(e) =>
-                                handleImageChageCommon(e, 'logo')
-                              }
-                              name='founder image'
-                              type='file'
-                            />
-                            <Button
-                              type='button'
-                              className='reg-btn blue-btn  mt-2 rounded'
-                            >
-                              <i className='fa fa-upload me-1' />{' '}
-                              <label
-                                className='text-white'
-                                htmlFor='previewweb3companylogo'
-                              >
-                                {t('Select Company Logo')}
-                              </label>
-                            </Button>
-                          </div>
-                        </Form.Group>
-                      </div>
-                      {logoError && (
-                        <div className='text-danger mb-2'>
-                          {t('Company logo is required')}
-                        </div>
-                      )}
-                    </Col>
-                    <Col xl='6' lg='6' md='6' className='mb-4'>
-                      <div className='d-flex  flex-column align-items-center photo-editor-pnl'>
-                        {tempweb3PreviewImg && (
-                          <div
-                            style={{
-                              // height: '252px',
-                              width: '250px',
-                              // overflow: 'hidden',
-                            }}
-                          >
-                            <Image
-                              // fill={true}
-                              // style={{ maxHeight: '200px', maxWidth: '200px' }}
-                              width={250}
-                              height={250}
-                              // fill={true}
-                              src={tempweb3PreviewImg}
-                              alt='Banner'
-                            />
-                          </div>
-                        )}
-                        <Form.Group controlId='formFile' className='mb-3'>
-                          {/* <Form.Label>Select Company Banner Image</Form.Label> */}
-                          <div className='input-group d-flex justify-content-center'>
-                            <Form.Control
-                              id='previewweb3Img'
-                              className='d-none'
-                              // onChange={handleFounderImageChange}
-                              onChange={(e) =>
-                                handleImageChageCommon(e, 'founder')
-                              }
-                              name='founder image'
-                              type='file'
-                            />
-                            <Button
-                              type='button'
-                              className='reg-btn blue-btn  mt-2 rounded'
-                            >
-                              <i className='fa fa-upload me-2' />
-                              <label
-                                className='text-white'
-                                htmlFor='previewweb3Img'
-                              >
-                                {t('Select Founder Image')}
-                              </label>
-                            </Button>
-                          </div>
-                        </Form.Group>
-                      </div>
-                      {founderError && (
-                        <div className='text-danger mb-2'>
-                          {t('Founder Image is required')}
-                        </div>
-                      )}
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xl='12' lg='12' md='12' className='mb-4'>
-                      <div className='d-flex flex-column align-items-center photo-editor-pnl'>
-                        {tempweb3BannerPreviewImg && (
-                          <div
-                            style={{
-                              // height: '252px',
-                              width: '250px',
-                              // overflow: 'hidden',
-                            }}
-                          >
-                            <Image
-                              // fill={true}
-                              // style={{ maxHeight: '200px', maxWidth: '200px' }}
-                              width={250}
-                              height={250}
-                              // fill={true}
-                              src={tempweb3BannerPreviewImg}
-                              alt='Banner'
-                            />
-                          </div>
-                        )}
-                        <Form.Group controlId='formFile' className='mb-3'>
-                          {/* <Form.Label>Select Company Banner Image</Form.Label> */}
-                          <div className='input-group d-flex justify-content-center'>
-                            <Form.Control
-                              id='previewweb3companyBannerImg'
-                              className='d-none'
-                              // onChange={handleCompanyBannerChange}
-                              onChange={(e) =>
-                                handleImageChageCommon(e, 'banner')
-                              }
-                              name='founder image'
-                              type='file'
-                            />
-                            <Button
-                              type='button'
-                              className='reg-btn blue-btn mt-2 rounded'
-                            >
-                              <i className='fa fa-upload me-1' />{' '}
-                              <label
-                                className='text-white'
-                                htmlFor='previewweb3companyBannerImg'
-                              >
-                                {t('Select Company Banner Image')}
-                              </label>
-                            </Button>
-                          </div>
-                        </Form.Group>
-                      </div>
-                      {bannerError && (
-                        <div className='text-danger mb-2'>
-                          {t('Company Banner Image is required')}
-                        </div>
-                      )}
-                    </Col>
+                    <Row>
+  {/* Screenshot 1 */}
+  <Col xl="4" lg="4"  sm="12" className="mb-4">
+  <div className="mb-2 text-center">
+    <h6 className="fw-bold">{t("Company Logo")} <span className='required_icon'>*</span></h6>
+  </div>
+  <div className="media-upload-container text-center border rounded p-3">
+    {tempweb3ComapnyPreviewLogo ? (
+      <div className="preview-image mb-2">
+        <Image
+          src={tempweb3ComapnyPreviewLogo}
+          alt="Company Logo"
+          width={250}
+          height={150}
+          className="img-fluid"
+        />
+      </div>
+    ) : (
+      <div className="upload-placeholder mb-2">
+        <i className="fa fa-cloud-upload fa-3x text-muted" />
+      </div>
+    )}
+    <Form.Group controlId="formFile1">
+      <Form.Control
+        id="previewweb3companylogo"
+        className="d-none"
+        type="file"
+        onChange={(e) => handleImageChageCommon(e, "logo")}
+      />
+      <label
+        htmlFor="previewweb3companylogo"
+        className="btn button-color btn-primary btn-sm"
+      >
+        {t("Browse files")}
+      </label>
+    </Form.Group>
+    <small className="text-muted">
+      {t("Max 600x600px, 1MB")}
+    </small>
+  </div>
+  {logoError && (
+    <div className="text-danger mt-2">
+      {t("Company logo is required")}
+    </div>
+  )}
+</Col>
+
+
+  {/* Screenshot 2 */}
+  <Col xl="4" lg="4" sm="12" className="mb-4">
+  <div className="mb-2 text-center">
+    <h6 className="fw-bold">{t("Founder Image")} <span className='required_icon'>*</span></h6>
+  </div>
+  <div className="media-upload-container text-center border rounded p-3">
+    {tempweb3PreviewImg ? (
+      <div className="preview-image mb-2">
+        <Image
+          src={tempweb3PreviewImg}
+          alt="Founder Image"
+          width={250}
+          height={150}
+          className="img-fluid"
+        />
+      </div>
+    ) : (
+      <div className="upload-placeholder mb-2">
+        <i className="fa fa-cloud-upload fa-3x text-muted" />
+      </div>
+    )}
+    <Form.Group controlId="formFile2">
+      <Form.Control
+        id="previewweb3Img"
+        className="d-none"
+        type="file"
+        onChange={(e) => handleImageChageCommon(e, "founder")}
+      />
+      <label htmlFor="previewweb3Img" className="btn button-color btn-primary btn-sm">
+        {t("Browse files")}
+      </label>
+    </Form.Group>
+    <small className="text-muted">
+      {t("Max 600x600px, 1MB")}
+    </small>
+  </div>
+  {founderError && (
+    <div className="text-danger mt-2">{t("Founder Image is required")}</div>
+  )}
+</Col>
+
+
+  {/* Screenshot 3 */}
+  <Col xl="4" lg="4" sm="12" className="mb-4">
+  <div className="mb-2 text-center">
+    <h6 className="fw-bold">{t("Company Banner")} <span className='required_icon'>*</span></h6>
+  </div>
+  <div className="media-upload-container text-center border rounded p-3">
+    {tempweb3BannerPreviewImg ? (
+      <div className="preview-image mb-2">
+        <Image
+          src={tempweb3BannerPreviewImg}
+          alt="Company Banner"
+          width={250}
+          height={150}
+          className="img-fluid"
+        />
+      </div>
+    ) : (
+      <div className="upload-placeholder mb-2">
+        <i className="fa fa-cloud-upload fa-3x text-muted" />
+      </div>
+    )}
+    <Form.Group controlId="formFile3">
+      <Form.Control
+        id="previewweb3companyBannerImg"
+        className="d-none"
+        type="file"
+        onChange={(e) => handleImageChageCommon(e, "banner")}
+      />
+      <label
+        htmlFor="previewweb3companyBannerImg"
+        className="btn button-color btn-primary btn-sm"
+      >
+        {t("Browse files")}
+      </label>
+    </Form.Group>
+    <small className="text-muted">
+      {t("Max 600x600px, 1MB")}
+    </small>
+  </div>
+  {bannerError && (
+    <div className="text-danger mt-2">{t("Company Banner Image is required")}</div>
+  )}
+</Col>
+
+</Row>
+<Col xl="12" lg="12" md="12" className="mb-3">
+  {/* Custom Checkbox Section */}
+  <div className="mb-3">
+    <h5 className="fw-bold blue-text-color text-start">
+      {t("Promoting your Project & Referral Programs")}
+    </h5>
+
+    <div className="d-flex align-items-start mb-2">
+      <Form.Check.Input
+        type="checkbox"
+        id="promoteDapp"
+        className="me-2 mt-1"
+      />
+      <span className="text-14 text-start">
+        {t(
+          "Are you interested in promoting your project or arranging meetings with experts for business partnerships or consultations?"
+        )}
+      </span>
+    </div>
+
+    <div className="d-flex align-items-start mb-2">
+      <Form.Check.Input
+        type="checkbox"
+        id="affiliateProgram"
+        className="me-2 mt-1"
+      />
+      <span className="text-14 text-start">
+        {t("Does your project have an affiliate program?")}
+      </span>
+    </div>
+
+    <div className="d-flex align-items-start mb-2">
+      <Form.Check.Input
+        type="checkbox"
+        id="termsOfUse"
+        className="me-2 mt-1"
+      />
+      <span className="text-14 text-start">
+        {t("I've read the")}{" "}
+        <Link href="/terms-of-use/" className="blue-text-color fw-bold text-start">
+          {t("Terms of use")}
+        </Link>{" "}
+        {t("and I agree to be bound by the provisions indicated therein.")}
+      </span>
+    </div>
+
+    <div className="d-flex align-items-start mb-2">
+      <Form.Check.Input
+        type="checkbox"
+        id="privacyPolicy"
+        className="me-2 mt-1"
+      />
+      <span className="text-14 text-start">
+        {t("I've read and accept the")}{" "}
+        <Link href="/privacy-policy/" className="blue-text-color fw-bold">
+          {t("Privacy Policy")}
+        </Link>{" "}
+        {t("of BlockZa.")}
+      </span>
+    </div>
+  </div>
+</Col>
+
 
                     <Col xl='12' lg='12' md='12' className='mb-4'>
                       <Button
-                        className='w-100 reg-btn blue-btn'
+                        className='w-100 reg-btn blue-btn button-color'
                         disabled={isWeb3Submitting}
                         onClick={(e) => submitWeb3form(e)}
                       >
@@ -1274,7 +1273,7 @@ export default function AddCompanyForm() {
                   </Row>
 
                   <ScrollToError />
-                </FormikForm>
+                </FormikForm></div></div></div>
               )}
             </Formik>
 

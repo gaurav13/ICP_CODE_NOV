@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LANG } from '@/constant/language';
+import { FaEnvelope, FaLinkedin,FaTwitter,FaUsers,FaNewspaper,FaBuilding,FaCheckCircle,FaBullhorn  } from 'react-icons/fa';
 type Article = {
   title: string;
   link: string;
@@ -82,12 +83,12 @@ const NewsComponent = () => {
 
   return (
     <div className="container">
-  <h3 className="mb-1 latest-news">
+  <h4 className="mb-1 latest-news"><FaBullhorn  size={25} color="#1e5fb3" />&nbsp;
   {LANG === 'jp' ? "最新ニュース" : "Latest News"} 
   <span className="float-md-end week-update">
     {LANG === 'jp' ? "週間アップデート" : "Weekly Update"}
   </span>
-</h3>
+</h4>
 
   <div className="row news-scroll-container">
     {error ? (

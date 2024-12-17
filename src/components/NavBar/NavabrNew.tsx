@@ -6,7 +6,7 @@ import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import logo from '@/assets/Img/Logo/headerlogo.png';
 // import logo2 from '@/assets/Img/Logo/Logo-2.png';
 import logo2 from '@/assets/Img/Logo/headerlogo.png';
-
+import { FaArrowRight } from "react-icons/fa";
 import Connect from '@/components/Connect/Connect';
 import { useConnectPlugWalletStore, useThemeStore } from '@/store/useStore';
 import SocialList from '@/components/SocialList/SocialList';
@@ -15,7 +15,7 @@ import logger from '@/lib/logger';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
 import useSearchParamsHook from '@/components/utils/searchParamsHook';
-import LanguageBtn from '@/components/LanguageBtn/LanguageBtn';
+
 import { CAMPAIGNS, EVENTS, PRESSRELEASE } from '@/constant/routes';
 
 export default function NavBarNew() {
@@ -166,22 +166,22 @@ export default function NavBarNew() {
 
   return (
     <>
-      {route !== 'super-admin'  && route !="login"  && (
+      {route !== 'super-admin' && (
         <>
-          <Navbar
+         <Navbar
             expand='lg'
             expanded={toggle}
             id='him'
-            className='bg-body-tertiary my-nav new'
+            className='bg-body-tertiary my-nav new shadow-sm'
             ref={navbarRef}
             // style={{ zIndex: 1 }}
           >
+            <div className="bg-top top-bar-wrap"><div className='top-bar-content'>Your <span>Web3</span> Journey Starts Here – <span>Participate in Surveys</span>, <span className="orange">Connect with experts</span>, <span>Get Earn Daily Rewards</span> 🚀. <a href="/login/">Sign Up Today!🎉</a></div> <FaArrowRight /></div>
+         
             <div className='navbar-inner'>
               {/* <Container fluid> */}
               <Navbar.Brand>
-                <span className='d-none d-lg-block lngcontainer'>
-                  <LanguageBtn id='navbarLngBtn' />
-                </span>
+                
                 <Link href='/'>
                   <Image src={logo} alt='Blockza' />
                   <Image src={logo2} alt='Blockza' />
@@ -288,7 +288,9 @@ export default function NavBarNew() {
 
                 {/* <div id='google_translate_element' className='width-80'/> */}
 
-                <div className='d-flex'>
+                
+              </Navbar.Collapse>
+              <div className='d-flex pe-3 top-btns-wrap'>
                   <Button
                     className={`themebtn ${isThemeActive ? 'active' : ''}`}
                     onClick={() => {
@@ -301,8 +303,8 @@ export default function NavBarNew() {
                   </Button>
 
                   <Connect hideUser />
+                 
                 </div>
-              </Navbar.Collapse>
             </div>
           </Navbar>
         </>

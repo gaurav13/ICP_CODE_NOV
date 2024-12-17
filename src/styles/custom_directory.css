@@ -151,12 +151,84 @@ color: #0056b3;
  
 }
 @media (max-width: 767px) { /* For mobile screens */
-  .responsive-banner {
-    margin-left: 25px; /* Aligns the image to the center */
+  .view-more {
+      float: right;
+      margin: -12px;
+      padding-bottom: 5px;
   }
   
 }
 @media (max-width: 575.98px){
 .slide-cntnr .Post-padding {max-width:inherit !important;flex:1 0 100%;padding:0}
 .slide-cntnr .Post-padding .Product-post{max-width: inherit!important;width:100%}
+}
+.slick-prev,.slick-next
+{ 
+  width: 25px; 
+  height: 25px;
+}
+.slick-prev:before,
+.slick-next:before {
+  content: ''; /* Keep it empty for custom arrow */
+  display: block;
+  border: solid #000; /* Apply the custom color */
+  border-width: 3px 3px 0 0; /* Bold border for the arrow */
+  width: 10px; /* Adjust arrow size */
+  height: 10px;
+  margin: 2px 8px;
+}
+
+.slick-prev:before {
+  transform: rotate(-135deg); /* Arrow pointing left */
+}
+
+.slick-next:before {
+  transform: rotate(45deg); /* Arrow pointing right */
+}
+.companypostshort p{text-align: left;}
+.company-description{text-align: left;}
+.company-name{text-align: left;}
+
+.info-box {
+  background-color: #f8f9fa; /* Light gray background */
+  border: 1px solid #e0e0e0; /* Border for boxes */
+  padding: 20px; /* Spacing inside boxes */
+  text-align: center; /* Center align content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+}
+.btn-custom {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.btn-custom:hover {
+  background-color: #0056b3;
+}
+.box-container {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Default spacing for larger screens */
+  padding: 20px; /* Inner spacing */
+}
+
+/* Responsive Margin for Mobile */
+@media (max-width: 768px) {
+  .info-box {
+    margin-bottom: 16px; /* Smaller spacing between boxes on mobile */
+  }
+}
+.text-button-background{background: #1e5fb3;}
+
+@media (min-width: 992px) {
+  .directory-details .flex-details-pnl .right-detail-pnl.pr{width: calc(90% - 200px)!important}
 }

@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   let categoryData;
 
   try {
-    const response = await fetch(`${siteConfig.aiurl}/categories/${params.category}`);
+    const response = await fetch(`${siteConfig.aiurl}/categories/${params.category}/`);
     
     // Check if the response is JSON
     const contentType = response.headers.get("content-type");
@@ -100,6 +100,57 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         banner: "https://blockza.io/category_banner/artificial_Intelligence.jpg",
       };
     }
+    else if (params.category === "crypto_casinos") {
+      categoryData = {
+        name: "Crypto Casinos: Gamble with Digital Assets",
+        description: "Explore the world of crypto casinos where blockchain technology ensures fairness and transparency. Discover platforms offering thrilling games and opportunities to win using digital currencies.",
+        logo: "https://blockza.io/category_banner/crypto_casinos.jpg",
+        banner: "https://blockza.io/category_banner/crypto_casinos.jpg",
+      };
+    } else if (params.category === "crypto_exchange") {
+      categoryData = {
+        name: "Crypto Exchanges: Your Gateway to Digital Assets",
+        description: "Find the most trusted and reliable crypto exchanges to trade, buy, and sell digital currencies. Compare platforms for fees, security, and user-friendly features.",
+        logo: "https://blockza.io/category_banner/crypto_exchange.jpg",
+        banner: "https://blockza.io/category_banner/crypto_exchange.jpg",
+      };
+    } else if (params.category === "metaverse_event") {
+      categoryData = {
+        name: "Metaverse Events: Enter Virtual Reality",
+        description: "Stay updated on the latest metaverse events and conferences. Engage with cutting-edge projects, network with innovators, and explore the evolving virtual universe.",
+        logo: "https://blockza.io/category_banner/metaverse_event.jpg",
+        banner: "https://blockza.io/category_banner/metaverse_event.jpg",
+      };
+    } else if (params.category === "decentralized_identity") {
+      categoryData = {
+        name: "Decentralized Identity: Take Control of Your Data",
+        description: "Learn about decentralized identity solutions that empower individuals to manage their personal data securely. Discover platforms prioritizing privacy and user autonomy.",
+        logo: "https://blockza.io/category_banner/decentralized_identity.jpg",
+        banner: "https://blockza.io/category_banner/decentralized_identity.jpg",
+      };
+    } else if (params.category === "play_to_earn_platform") {
+      categoryData = {
+        name: "Play-to-Earn Platforms: Gaming Meets Rewards",
+        description: "Discover play-to-earn platforms where gaming meets earning potential. Explore projects offering unique in-game assets, tokens, and rewards for your skills.",
+        logo: "https://blockza.io/category_banner/play_to_earn_platform.jpg",
+        banner: "https://blockza.io/category_banner/play_to_earn_platform.jpg",
+      };
+    } else if (params.category === "yield_aggregators") {
+      categoryData = {
+        name: "Yield Aggregators: Maximize Your Returns",
+        description: "Learn about yield aggregators that optimize your DeFi earnings. Find platforms that automate strategies for the best returns in the decentralized finance space.",
+        logo: "https://blockza.io/category_banner/yield_aggregators.jpg",
+        banner: "https://blockza.io/category_banner/yield_aggregators.jpg",
+      };
+    } else if (params.category === "stabelcoins") {
+      categoryData = {
+        name: "Stablecoins: Stability in the Crypto Market",
+        description: "Explore the world of stablecoins, designed to minimize volatility and offer a secure store of value. Discover projects pegged to real-world assets or currencies.",
+        logo: "https://blockza.io/category_banner/stablecoins.jpg",
+        banner: "https://blockza.io/category_banner/stablecoins.jpg",
+      };
+    }
+    
     else {
       categoryData = {
         name: `${params.category.charAt(0).toUpperCase()}${params.category.slice(1)} Web3 Directory`,
@@ -122,8 +173,8 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
       creator: siteConfig.twitterCreator,
     },
     openGraph: {
-      url: `${siteConfig.url}/web3-directory/${params.category}`,
-      title: `${categoryData.name} Companies | BlockZa`,
+      url: `${siteConfig.url}/web3-directory/${params.category}/`,
+      title: `${categoryData.name}  | BlockZa`,
       description: categoryData.description,
       siteName: 'BlockZa',
       images: [categoryData.banner],
@@ -138,7 +189,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   let categoryData;
 
   try {
-    const response = await fetch(`${siteConfig.aiurl}/categories/${params.category}`);
+    const response = await fetch(`${siteConfig.aiurl}/categories/${params.category}/`);
     
     // Ensure the response is JSON
     const contentType = response.headers.get('content-type');

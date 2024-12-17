@@ -1,30 +1,105 @@
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import tempimg from '@/assets/Img/banner-1.png';
-import React from 'react';
 import logger from '@/lib/logger';
-import { formatLikesCount } from '@/components/utils/utcToLocal';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
+import { makeEntryActor } from '@/dfx/service/actor-locator';
 import {
   DIRECTORY_DINAMIC_PATH,
   DIRECTORY_STATIC_PATH,
 } from '@/constant/routes';
-
 export default function Web3ListbyCategoryId({
   relatedDirectory,
   trendingDirectriesIds,
+  categoryId,
 }: {
   relatedDirectory: any;
   trendingDirectriesIds?: any[];
+  categoryId: string;
 }) {
-  const { t, changeLocale } = useLocalization(LANG);
+  const { t } = useLocalization(LANG);
   const router = useRouter();
-  let openArticleLink = (entryLink: any) => {
+
+  // Declare subcategories in the state
+  const [subcategories, setSubcategories] = useState<{ [key: string]: string }>({});
+
+  const openArticleLink = (entryLink: any) => {
     router.push(entryLink);
   };
 
+  useEffect(() => {
+    const fetchSubcategories = async (categoryId: string) => {
+      try {
+        console.log('Fetching subcategories for categoryId:', categoryId);
+
+        const defaultEntryActor = makeEntryActor({ agentOptions: {} });
+
+        const resp = await defaultEntryActor.get_list_categories(
+          '', // Search query
+          0, // Start index
+          100, // Length
+          false // Include all categories
+        );
+
+        console.log('Raw categories response:', resp);
+
+        const allCategories = resp.entries || [];
+        const parentCategory = allCategories.find(
+          ([id]: [string, any]) => id === categoryId
+        );
+
+        if (!parentCategory) {
+          console.warn(`Parent category with ID ${categoryId} not found.`);
+          return {};
+        }
+
+        console.log('Parent category found:', parentCategory);
+
+        const children = parentCategory[1]?.children || [];
+
+        if (children.length === 0) {
+          console.warn(`No subcategories available for categoryId: ${categoryId}`);
+          return {};
+        }
+
+        console.log('Subcategory IDs:', children);
+
+        const flattenedChildren = children.flat();
+        const subcategories = flattenedChildren.reduce(
+          (acc: { [key: string]: string }, subcategoryId: string) => {
+            const subcategory = allCategories.find(
+              ([id]: [string, any]) => String(id) === String(subcategoryId)
+            );
+
+            if (subcategory) {
+              acc[subcategory[1].name || 'Unnamed Subcategory'] = subcategoryId;
+            } else {
+              console.warn(
+                `Subcategory with ID ${subcategoryId} not found in allCategories.`
+              );
+            }
+
+            return acc;
+          },
+          {}
+        );
+
+        console.log('Formatted Subcategories JSON:', subcategories);
+        return subcategories;
+      } catch (error) {
+        console.error('Error fetching subcategories:', error);
+        return {};
+      }
+    };
+
+    if (categoryId) {
+      fetchSubcategories(categoryId).then((fetchedSubcategories) => {
+        setSubcategories(fetchedSubcategories); // Update state
+      });
+    }
+  }, [categoryId]);
   return (
     <>
      <style jsx>{`
@@ -169,8 +244,25 @@ export default function Web3ListbyCategoryId({
   }}
   className="Product-post direc"
 >
-  <div className="card">
+<div className="card">
     {/* Company Banner */}
+    <Link
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    openArticleLink(
+                      entry[1].isStatic
+                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+                        : `${
+                            entry.length != 0
+                              ? DIRECTORY_DINAMIC_PATH + entry[0]
+                              : DIRECTORY_DINAMIC_PATH + '#'
+                          }`
+                    );
+                  }}
+                  className='Product-post direc'
+                >
     <div className="card-image">
       <Image
         src={entry[1]?.companyBanner ?? tempimg}
@@ -188,9 +280,37 @@ export default function Web3ListbyCategoryId({
           {t("Trending")}
         </p>
       )}
-    </div>
+    </div> </Link>
+    <div style={{ padding: "10px" }}>
+  {/* Add padding around the container */}
+  
+  {Object.keys(subcategories).length > 0 && (
+    <ul className="list-unstyled d-flex flex-wrap gap-2" style={{ margin: 0, padding: 0 }}>
+      {Object.entries(subcategories)
+        .filter(([_, id]) => entry[1]?.catagory === id) // Filter condition
+        .map(([name, id]) => (
+          <li key={id}>
+            {/* Add a Link for each subcategory */}
+            <Link
+              href={`/web3-directory/?category=${id}`}
+              className="inline-flex items-center shadow border border-solid rounded px-2 py-1 leading-3 text-decoration-none"
+              style={{
+                borderColor: "#1e5fb3", // Border color
+                color: "#1e5fb3", // Text color
+                borderRadius: "4px", // Slight rounding
+                textAlign: "center",
+                background: "#ffc1073b", // Semi-transparent yellow background
+                fontSize: "12px", // Font size
+              }}
+            >
+              {name}
+            </Link>
+          </li>
+        ))}
+    </ul>
+  )}
+</div>
 
-    {/* Company Info */}
     <div className="card-body">
       <div className="company-header">
         <div className="company-logo">
@@ -203,11 +323,27 @@ export default function Web3ListbyCategoryId({
           />
         </div>
         <div className="company-details">
-          <h3 className="company-name">
+        <Link
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    openArticleLink(
+                      entry[1].isStatic
+                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+                        : `${
+                            entry.length != 0
+                              ? DIRECTORY_DINAMIC_PATH + entry[0]
+                              : DIRECTORY_DINAMIC_PATH + '#'
+                          }`
+                    );
+                  }}
+                  className='Product-post direc'
+                ><h3 className="company-name">
             {entry[1]?.company.length > 15
               ? `${entry[1]?.company.slice(0, 15)}...`
               : entry[1]?.company ?? ""}
-          </h3>
+          </h3></Link>
           <p className="company-description">
             {entry[1]?.shortDescription.length > 50
               ? `${entry[1]?.shortDescription.slice(0, 250)}`

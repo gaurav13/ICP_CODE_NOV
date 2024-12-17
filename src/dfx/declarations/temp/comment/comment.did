@@ -1,4 +1,4 @@
-type anon_class_19_1 = 
+type _anon_class_19_1 = 
  service {
    addActivity: (UserId, text, ActivityType, text) -> (bool);
    addAdminActivity: (UserId, text, AdminActivityType, text) -> (bool);
@@ -120,4 +120,4 @@ type Activity =
    title: text;
  };
 type Activities = vec Activity;
-service : () -> anon_class_19_1
+service : () -> _anon_class_19_1

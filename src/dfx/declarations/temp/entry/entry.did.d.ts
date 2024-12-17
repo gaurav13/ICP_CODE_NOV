@@ -1,5 +1,6 @@
 import type { Principal } from '@dfinity/principal';
 import type { ActorMethod } from '@dfinity/agent';
+import type { IDL } from '@dfinity/candid';
 
 export interface AnalysedData { 'title' : string, 'count' : bigint }
 export interface Category {
@@ -804,7 +805,7 @@ export type Web3Status = { 'all' : null } |
 export type Web3Status__1 = { 'all' : null } |
   { 'un_verfied' : null } |
   { 'verfied' : null };
-export interface anon_class_25_1 {
+export interface _anon_class_25_1 {
   'addCategory' : ActorMethod<[string, string, string], Array<string>>,
   'addEvent' : ActorMethod<[InputEvent, string, string], Result_4>,
   'addMultipleQuestions' : ActorMethod<
@@ -1148,4 +1149,6 @@ export interface anon_class_25_1 {
   'verifyWeb3' : ActorMethod<[Key, string, string, boolean], Result>,
   'web_list' : ActorMethod<[], Web3Count>,
 }
-export interface _SERVICE extends anon_class_25_1 {}
+export interface _SERVICE extends _anon_class_25_1 {}
+export declare const idlFactory: IDL.InterfaceFactory;
+export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];

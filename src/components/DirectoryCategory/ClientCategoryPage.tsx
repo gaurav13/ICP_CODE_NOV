@@ -6,7 +6,7 @@ import { Row, Col, Breadcrumb, Dropdown, Spinner } from 'react-bootstrap';
 import Link from 'next/link';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
-import arb from '@/assets/Img/Icons/arb.png';
+import arb from '@/assets/Img/Icons/diamond.gif';
 import blockchain1 from '@/assets/Img/sidebar-icons/icon-blockchain-1.png';
 import Defi1 from '@/assets/Img/sidebar-icons/icon-defi-1.png';
 import Doa1 from '@/assets/Img/sidebar-icons/icon-dao-1.png';
@@ -51,36 +51,42 @@ const ClientCategoryPage: React.FC<ClientCategoryPageProps> = ({categoryId,categ
   useEffect(() => {
     // Fetch additional data or update state if required
     const fetchCategoryDetails = async () => {
-      const defaultEntryActor = makeEntryActor({
-        agentOptions: {},
-      });
-      interface OldCategoryType {
-        name: string;
-        logo: string;
-        banner: string;
-        description: string;
-      }
-      const [OldCategory, setOldCategory] = useState<OldCategoryType>({
-        name: '',
-        logo: '',
-        banner: '',
-        description: '',
-      });
-            
+      const defaultEntryActor = makeEntryActor({ agentOptions: {} });
       try {
-        const resp = await defaultEntryActor.get_category(categoryId);
-        const categoryResponse = resp || {};
+        const resp = await fetchWithRetry(() => defaultEntryActor.get_category(categoryId), 3);
+    
+        if (!resp || typeof resp !== "object") {
+          console.warn("Invalid response for category ID:", categoryId);
+          setOldCategory((prev) => ({
+            ...prev,
+            name: "",
+            logo: "",
+            banner: "",
+            description: "",
+          }));
+          return;
+        }
+    
         setOldCategory((prev) => ({
           ...prev,
-          name: categoryResponse.name || prev.name,
-          logo: categoryResponse.logo || prev.logo,
-          banner: categoryResponse.banner || prev.banner,
-          description: categoryResponse.description || prev.description,
+          name: resp.name || "No Name",
+          logo: resp.logo || "",
+          banner: resp.banner || "",
+          description: resp.description || "No description available.",
         }));
       } catch (error) {
-        console.error("Error fetching additional category data:", error);
+        console.error("Error fetching category data:", error);
+       // toast.error("Failed to fetch category data.");
+        setOldCategory((prev) => ({
+          ...prev,
+          name: "",
+          logo: "",
+          banner: "",
+          description: "",
+        }));
       }
     };
+    
 
     fetchCategoryDetails();
   }, [categoryId]);
@@ -148,7 +154,7 @@ const ClientCategoryPage: React.FC<ClientCategoryPageProps> = ({categoryId,categ
     setAuth: state.setAuth,
     identity: state.identity,
   }));
-  const itemsPerPage = 6;
+  const itemsPerPage = 24;
   let pageCount = Math.ceil(companyListOfIdSize / itemsPerPage);
   // Fetch initial content or metadata
   const fetchCategoryData = async (categoryId: string) => {
@@ -160,38 +166,40 @@ const ClientCategoryPage: React.FC<ClientCategoryPageProps> = ({categoryId,categ
   const fetchCompaniesByCategory = async (page: number = 0) => {
     setLoading(true);
     try {
-      const entryActor = makeEntryActor({
-        agentOptions: {}, // Adjust options if needed
-      });
-
+      const entryActor = makeEntryActor({ agentOptions: {} });
       const tempWeb3 = await entryActor.getWeb3ListOfAllUsers(
         categoryId,
-        '', // Add any search terms here if needed
+        "", // Add search terms if required
         page,
         itemsPerPage
       );
-
-      const companies = tempWeb3?.web3List || [];
-      const totalCompanies = parseInt(tempWeb3?.amount || '0', 10);
-      setCompanyListSize(totalCompanies);
-
+  
+      if (!tempWeb3 || !Array.isArray(tempWeb3.web3List)) {
+        console.warn("Invalid or empty response for companies:", tempWeb3);
+        toast.warn("Failed to fetch companies.");
+        setCompanyList([]);
+        return;
+      }
+  
+      const companies = tempWeb3.web3List;
       const processedCompanies = await Promise.all(
-        companies.map(async (company: any) => {
-          company[1].companyBanner = await getImage(company[1].companyBanner);
-          company[1].founderImage = await getImage(company[1].founderImage);
-          company[1].companyLogo = await getImage(company[1].companyLogo);
-          return company;
-        })
+        companies.map(async (company: any) => ({
+          ...company,
+          companyBanner: await getImage(company[1]?.companyBanner || ""),
+          founderImage: await getImage(company[1]?.founderImage || ""),
+          companyLogo: await getImage(company[1]?.companyLogo || ""),
+        }))
       );
-
+  
       setCompanyList(processedCompanies);
     } catch (error) {
-      console.error('Error fetching companies:', error);
-      toast.error('Error fetching companies.');
+      console.error("Error fetching companies by category:", error);
+    //  toast.error("Error fetching companies.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   // Handle page changes
 
@@ -242,50 +250,81 @@ let addcompanyfn = (e: any) => {
         identity,
       },
     });
-
-    let TempDirectory = null;
-    let tempWeb3 = await entryActor.getWeb3ListOfAllUsers(
-      categoryId,
-      searchString,
-      pageCount,
-      itemsPerPage
-    );
-    let amountOfcompany = parseInt(tempWeb3?.amount);
-    setCompanyListOfIdSize(amountOfcompany);
-    if (tempWeb3?.web3List?.length != 0) {
-      let web3array = tempWeb3.web3List;
-
-      for (let dirc = 0; dirc < web3array.length; dirc++) {
-        let resp = await entryActor.get_category(web3array[dirc][1].catagory);
-        let category: any = fromNullable(resp);
-        let categoryName = 'No Category';
-        if (category) {
-          console.log("Fetched Category Data:", category);
-          categoryName = category.name;
-         
-        }
-        web3array[dirc][1].catagory = categoryName;
-        web3array[dirc][1].companyBanner = await getImage(
-          web3array[dirc][1].companyBanner
+  
+    try {
+      let TempDirectory: any[] = [];
+      // Fetch parent category details
+      const categoryResp = await entryActor.get_category(categoryId);
+      const parentCategory = fromNullable(categoryResp);
+  
+      if (!parentCategory) {
+        console.warn(`Parent category with ID ${categoryId} not found.`);
+        setCompanyListOfId([]);
+        return;
+      }
+  
+      // Fetch companies for the parent category
+      let parentCompaniesResp = await entryActor.getWeb3ListOfAllUsers(
+        categoryId,
+        searchString,
+        pageCount,
+        itemsPerPage
+      );
+      const parentCompanies = parentCompaniesResp?.web3List || [];
+  
+      // Fetch subcategory IDs
+      const subcategoryIds = parentCategory.children?.[0] || [];
+      console.log(`Subcategories for parent category (${categoryId}):`, subcategoryIds);
+  
+      // Fetch companies for subcategories
+      const subcategoryCompanies = await Promise.all(
+        subcategoryIds.map(async (subcategoryId: string) => {
+          const subResp = await entryActor.getWeb3ListOfAllUsers(
+            subcategoryId,
+            searchString,
+            0,
+            itemsPerPage
+          );
+          console.log(`Companies for subcategory (${subcategoryId}):`, subResp?.web3List);
+          return subResp?.web3List || [];
+        })
+      );
+  
+      // Combine parent and subcategory companies
+      const allSubcategoryCompanies = subcategoryCompanies.flat();
+      const allCompanies = [...parentCompanies, ...allSubcategoryCompanies];
+  
+      console.log(`Combined companies (parent + subcategories):`, allCompanies);
+  
+      // Process images for all companies
+      for (let dirc = 0; dirc < allCompanies.length; dirc++) {
+        allCompanies[dirc][1].companyBanner = await getImage(
+          allCompanies[dirc][1].companyBanner
         );
-        web3array[dirc][1].founderImage = await getImage(
-          web3array[dirc][1].founderImage
+        allCompanies[dirc][1].founderImage = await getImage(
+          allCompanies[dirc][1].founderImage
         );
-        web3array[dirc][1].companyLogo = await getImage(
-          web3array[dirc][1].companyLogo
+        allCompanies[dirc][1].companyLogo = await getImage(
+          allCompanies[dirc][1].companyLogo
         );
       }
-      TempDirectory = web3array.sort(
+  
+      // Sort companies by likes
+      TempDirectory = allCompanies.sort(
         (f: any, l: any) => Number(l[1].likes) - Number(f[1].likes)
       );
-    }
-    if (TempDirectory) {
+  
+      // Update the state with the combined results
       setCompanyListOfId(TempDirectory);
-    } else {
+      setCompanyListOfIdSize(TempDirectory.length);
+    } catch (error) {
+      console.error("Error fetching companies for category and subcategories:", error);
       setCompanyListOfId([]);
+    } finally {
+      setIsGetting(false);
     }
-    setIsGetting(false);
   };
+  
   const getCategory = async () => {
     if (!categoryId) {
       return;
@@ -313,7 +352,7 @@ let addcompanyfn = (e: any) => {
       }
     } catch (error) {
       console.error("Error fetching category data:", error); // Handle errors
-      toast.error("Failed to fetch category details.");
+     // toast.error("Failed to fetch category details.");
     }
   };
   
@@ -507,56 +546,26 @@ let directoryData: DirectoryData = {
 
 
 // Add multiple conditions based on `categoryId`
-if (categoryId === "1718641230817970431") {
+if (categoryId === "1719578778026731208") {
+  directoryData = {
+    title: "",
+    description: "This Blockchain Directory connects you with companies at the forefront of blockchain technology. Access corporate details, meet innovative teams, and find opportunities to build partnerships that shape the future of decentralized solutions.",
+  };
+} else if (categoryId === "1732675845005321882") {
   directoryData = {
     title: "Web3 Directory",
     description: "The Web3 Directory is your ultimate resource for discovering companies leading the decentralized internet revolution. Access corporate information, team profiles, and partnership opportunities to collaborate on transformative Web3 projects.",
   };
-} else if (categoryId === "1718641457527889243") {
+} else if (categoryId === "1732000863567530000") {
   directoryData = {
-    title: "Blockchain Directory",
-    description: "This Blockchain Directory connects you with companies at the forefront of blockchain technology. Access corporate details, meet innovative teams, and find opportunities to build partnerships that shape the future of decentralized solutions.",
-  };
-} else if (categoryId === "1719210557164450999") {
-  directoryData = {
-    title: "Crypto Directory",
-    description: "This Crypto Directory brings you closer to companies revolutionizing the world of cryptocurrencies. Explore their corporate profiles, connect with visionary teams, and discover partnerships to fuel your crypto goals.",
-  };
-}else if (categoryId === "1719210427243611048") {
-  directoryData = {
-    title: "DeFi Directory",
-    description: "The DeFi Directory features companies reshaping finance through decentralized solutions. Access their corporate information, meet their teams, and collaborate on projects transforming the financial ecosystem.",
-  };
-}else if (categoryId === "1719211072131510431") {
-  directoryData = {
-    title: "DAO Directory",
-    description: "Discover leading Decentralized Autonomous Organizations (DAOs) in this DAO Directory. Find corporate details and team insights to connect with DAOs and collaborate on innovative governance models.",
-  };
-}else if (categoryId === "1718968029182069160") {
-  directoryData = {
-    title: "NFT Directory",
-    description: "The NFT Directory helps you connect with companies leading the NFT revolution. Access corporate insights and team details to explore partnerships in art, gaming, and digital ownership.",
-  };
-}else if (categoryId === "1718641722539268658") {
-  directoryData = {
-    title: "Metaverse Directory",
-    description: "This Metaverse Directory connects you with companies creating immersive digital environments. Access corporate information and team profiles to collaborate on groundbreaking virtual world innovations.",
-  };
-}else if (categoryId === "1719210909413102943") {
-  directoryData = {
-    title: "Blockchain Game Directory",
-    description: "The Blockchain Game Directory connects you with companies merging gaming and blockchain technology. Discover corporate details, meet expert teams, and collaborate on the future of gaming.",
-  };
-}else if (categoryId === "1718645044417924753") {
-  directoryData = {
-    title: "AI Directory: Intelligence Meets Decentralization",
-    description: "This AI Directory introduces you to companies integrating AI with blockchain. Access corporate profiles, connect with teams, and partner on innovative projects driving smarter, decentralized solutions.",
+    title: "Custom Title for Category ID 1732000863567530000 | BlockZa",
+    description: "Learn about NFTs (Non-Fungible Tokens), which represent ownership of unique digital items such as art, music, and collectibles on the blockchain.",
   };
 } else {
   // Fallback metadata if no specific `categoryId` matches
   directoryData = {
-    title: "Web3 Directory | BlockZa",
-    description: "Explore various categories in the Web3 ecosystem, including blockchain, DeFi, NFTs, and more.",
+    title: OldCategory.name, // Removed unnecessary curly braces
+    description: OldCategory.description, // Removed unnecessary curly braces
   };
 }
 
@@ -575,15 +584,14 @@ if (categoryId === "1718641230817970431") {
                   </Breadcrumb.Item>
                   <Breadcrumb.Item active={categoryId ? false : true}>
                     <Link href={`/web3-directory`}>
-                    {`${t('Web3')} ${t('webDirectory')}`}
+                      {t('Web3 ')}
+                      {t('webDirectory')}
                     </Link>
                   </Breadcrumb.Item>
                   {categoryId && (
                     <Breadcrumb.Item active={categoryId ? true : false}>
                       <Link href={`/web3-directory/${category}/`}>
-                      {category .split('_')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                 .join(' ')}
+                      {category}
                       </Link>
                     </Breadcrumb.Item>
                   )}
@@ -650,7 +658,7 @@ if (categoryId === "1718641230817970431") {
               </Col>
               <Col xl='12' lg='12'>
                 <h3>
-                  
+                <Image  style={{ marginRight: "0px", maxWidth: "35px" }}  src={arb} alt='Arb' />
                   {t('Trending Companies')}
                 </h3>
                 <div className='spacer-30' />
@@ -813,11 +821,12 @@ if (categoryId === "1718641230817970431") {
                                   />
                                 </div>
                                 {OldCategory.name.charAt(0).toUpperCase() + OldCategory.name.slice(1).toLowerCase()}<span className="category-results">
-                                <i className="fa fa-angle-right"></i> {companyListSize} results</span>
+                                <i className="fa fa-angle-right"></i> {companyListOfIdSize} results</span>
                               </h3>
                               <div className='d-flex info-comp-wrap flex-wrap '>
                                 <Web3ListbyCategoryId
                                   relatedDirectory={companyListOfId}
+                                  categoryId={categoryId}
                                 />
                               </div>
                             </div>

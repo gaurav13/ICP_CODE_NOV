@@ -82,7 +82,7 @@ export const idlFactory = ({ IDL }) => {
     'user' : IDL.Principal,
     'entryId' : IDL.Text,
   });
-  const anon_class_19_1 = IDL.Service({
+  const _anon_class_19_1 = IDL.Service({
     'addActivity' : IDL.Func(
         [UserId, IDL.Text, ActivityType, IDL.Text],
         [IDL.Bool],
@@ -114,6 +114,6 @@ export const idlFactory = ({ IDL }) => {
     'get_comment_reward' : IDL.Func([], [IDL.Nat], ['query']),
     'update_comment_reward' : IDL.Func([IDL.Text, IDL.Nat], [IDL.Nat], []),
   });
-  return anon_class_19_1;
+  return _anon_class_19_1;
 };
 export const init = ({ IDL }) => { return []; };

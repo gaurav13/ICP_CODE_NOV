@@ -53,7 +53,7 @@ if(searchString){
 
   return (
     <>
-    <div className="searchContainer me-2">
+    <div className="searchContainer">
          <button onClick={handleShow}>
              <i className='fa fa-search' />
            </button> 
@@ -67,7 +67,7 @@ onHide={handleClose}
 // backdrop="static"
 keyboard={false}
 >
-<Modal.Header >
+<Modal.Header className='border-0'>
   <Modal.Title className='w-100'><div className='search-pnl small globalsearch w-100'>
 
 <input

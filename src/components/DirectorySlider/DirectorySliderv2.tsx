@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { formatLikesCount } from '@/components/utils/utcToLocal';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
+import '../../styles/custom_directory.css';
 import {
   DIRECTORY_DINAMIC_PATH,
   DIRECTORY_STATIC_PATH,
@@ -117,114 +118,217 @@ export default React.memo(function DirectorySlider({
   const { t, changeLocale } = useLocalization(LANG);
   return (
     <>
+    <style jsx>{`
+.trending-button {
+  display: inline-flex; 
+  align-items: center; 
+  background-color: #1e5fb3; 
+  color:#fff;
+  font-weight: bold; 
+  font-size: 14px;
+  padding: 2px 16px; 
+  border-radius: 30px; 
+  text-decoration: none; 
+  transition: all 0.3s ease-in-out; 
+}
+
+.trending-button .icon {
+  margin-right: 8px; 
+  font-size: 20px; 
+}
+
+.trending-button:hover {
+  background-color: #488adf; 
+  color: #c9302c; 
+  transform: scale(1.05);
+}
+   .card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+}
+
+.banner-img {
+  object-fit: cover;
+  width: 100%;
+  height: 150px;
+}
+
+.trending-label {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ff5c5c;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.company-header {
+  display: flex;
+  align-items: center;
+}
+
+.company-logo {
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.company-details {
+  flex: 1;
+}
+
+.company-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.company-description {
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0 0;
+}
+
+.card-footer {
+  padding: 16px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.founder-info {
+  display: flex;
+  align-items: center;
+}
+
+.founder-img {
+  margin-right: 12px;
+}
+
+.founder-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.founder-role {
+  font-size: 12px;
+  color: #777;
+  margin: 4px 0 0;
+}
+.web-page .slide-cntnr h3{margin-bottom:12px!important;}
+
+      `}</style>
       {relatedDirectory.length != 0 ? (
         <Slider {...Directory}>
           {relatedDirectory.map((entry: any) => {
             return (
               <div
-                className='Post-padding d-flex justify-content-center'
-                key={entry[0]}
-              >
-                <Link
-                  href='#'
-                  onClick={(e) => {
-                    e.preventDefault();
+  className="Post-padding d-flex justify-content-center mx-2"
+  key={entry[0]}
+>
+  <Link
+    href="#"
+    onClick={(e) => {
+      e.preventDefault();
 
-                    openArticleLink(
-                      entry[1].isStatic
-                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-                        : `${
-                            entry.length != 0
-                              ? DIRECTORY_DINAMIC_PATH + entry[0]
-                              : DIRECTORY_DINAMIC_PATH + '#'
-                          }`
-                    );
-                  }}
-                  className='Product-post direc'
-                >
-                  <div className='Product-post-inner'>
-                    <div className='img-pnl'>
-                      {/* <Image
-                  src={'/images/b-b.png'}
-                  width={213}
-                  height={133}
-                  alt='Blockza'
-                /> */}
-                      <Image
-                        src={entry[1]?.companyBanner ?? tempimg}
-                        alt='founder image'
-                        height={100}
-                        width={100}
-                        className='h-100-w-auto customeImg'
-                      />
-                    </div>
-                    <div className='text-pnl'>
-                      <div className='d-flex'>
-                        <div className='logo-img'>
-                          <Image
-                            src={entry[1]?.companyLogo ?? '/images/l-b.png'}
-                            width={15}
-                            height={16}
-                            alt='Blockza'
-                          />
-                        </div>
-                        <div className='heading-txt-pnl'>
-                          <h3 className='mw-180'>
-                            {entry[1]?.company.length > 15
-                              ? `${entry[1]?.company.slice(0, 15)}...`
-                              : entry[1]?.company ?? ''}
-                          </h3>
-                          <p style={{ minHeight: 84 }} className='mw-180'>
-                            {entry[1]?.shortDescription.length > 50
-                              ? `${entry[1]?.shortDescription.slice(0, 50)}...`
-                              : entry[1]?.shortDescription ?? ''}
-                          </p>
-                        </div>
-                      </div>
-                      {/*<ul>
-                        <li>
-                          {formatLikesCount(Number(entry[1]?.totalCount)) ?? 0}
-                          <span>{t('Posts')}</span>
-                        </li>
-                        <li>
-                          {formatLikesCount(Number(entry[1]?.views)) ?? 0}
-                          <span>{t('Views')}</span>
-                        </li>
-                        <li>
-                          {formatLikesCount(Number(entry[1]?.likes)) ?? 0}
-                          <span>{t('Likes')}</span>
-                        </li>
-                      </ul>*/}
-                    </div>
-                  </div>
-                  <div
-                    className='txt-pnl mx-width-405'
-                    style={{ height: '135px' }}
-                  >
-                    <p style={{ overflow: 'hidden', height: '40px' }}>
-                      <i>
-                        {/* {entry[1]?.founderDetail.length > 50
-                        ? `${entry[1]?.founderDetail.slice(0, 50)}...`
-                        : entry[1]?.founderDetail ?? ''} */}
-                        {entry[1]?.founderDetail}
-                      </i>
-                    </p>
-                    <div className='img-pl'>
-                      <Image
-                        src={entry[1]?.founderImage ?? '/images/l-n.png'}
-                        width={20}
-                        height={20}
-                        alt='Girl'
-                      />
+      openArticleLink(
+        entry[1].isStatic
+          ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+          : `${
+              entry.length !== 0
+                ? DIRECTORY_DINAMIC_PATH + entry[0]
+                : DIRECTORY_DINAMIC_PATH + '#'
+            }`
+      );
+    }}
+    className="Product-post direc"
+  >
+    <div className="card" style={{ maxWidth: '350px', border: '1px solid #ddd', borderRadius: '8px' }}>
+      {/* Company Banner */}
+      <div className="card-image">
+        <Image
+          src={entry[1]?.companyBanner ?? tempimg}
+          alt="Company Banner"
+          height={150}
+          width={250}
+          className="banner-img"
+          style={{
+            objectFit: 'cover',
+            borderTopLeftRadius: '8px',
+            borderTopRightRadius: '8px',
+          }}
+        />
+      </div>
 
-                      <div>
-                        <h5>{entry[1]?.founderName?.slice(0, 19) ?? ''}</h5>
-                        <p>{t('Founder')}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
+      {/* Company Info */}
+      <div className="card-body" style={{ padding: '16px' }}>
+        <div className="d-flex align-items-center mb-3">
+          {/* Company Logo */}
+          <div className="company-logo">
+            <Image
+              src={entry[1]?.companyLogo ?? '/images/l-b.png'}
+              width={30}
+              height={30}
+              alt="Company Logo"
+              className="rounded-circle"
+            />
+          </div>
+          <div className="company-details ms-3">
+            <h3 className="company-name mb-1" style={{ fontSize: '16px', fontWeight: '600' }}>
+              {entry[1]?.company.length > 15
+                ? `${entry[1]?.company.slice(0, 15)}...`
+                : entry[1]?.company ?? ''}
+            </h3>
+            <p className="company-description" style={{ fontSize: '14px', color: '#666' }}>
+              {entry[1]?.shortDescription.length > 50
+                ? `${entry[1]?.shortDescription.slice(0, 50)}...`
+                : entry[1]?.shortDescription ?? ''}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Founder Info */}
+      <div className="card-footer" style={{ padding: '16px', backgroundColor: '#f9f9f9' }}>
+        <div className="founder-info d-flex align-items-center">
+          {/* Founder Image */}
+          <Image
+            src={entry[1]?.founderImage ?? '/images/l-n.png'}
+            width={40}
+            height={40}
+            alt="Founder Image"
+            className="rounded-circle"
+          />
+          <div style={{ marginLeft: '8px' }}>
+            <h5 className="founder-name mb-0" style={{ fontSize: '14px', fontWeight: '500' }}>
+              {entry[1]?.founderName ?? ''}
+            </h5>
+            <p className="founder-role mb-0" style={{ fontSize: '12px', color: '#888' }}>
+              {t('Co-founder')}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Link>
+</div>
+
+            
             );
           })}
         </Slider>

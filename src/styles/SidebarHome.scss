@@ -14,17 +14,17 @@
   }
 
   &.new {
-    top: 0;
+    
     z-index: 1000;
 
     ul {
-      padding-top: 50px;
+      padding-top: 0;
       margin-bottom: 0;
     }
 
     ul li a.connect-btn,
     ul li button.connect-btn {
-      margin-bottom: 50px;
+      margin-bottom: 0;
     }
 
     ul.social-list {
@@ -35,7 +35,7 @@
   @media (max-width: 991px) {
     width: 60px;
     background-color: $white;
-    padding-top: 20px;
+    padding-top: 0px;
     min-height: 100vh;
     top: 0;
 
@@ -67,6 +67,7 @@
     overflow: hidden;
     min-height: unset;
     width: 50px;
+    top:37px;
   }
   @media (max-width: 991px) {
     &.active {
@@ -90,7 +91,7 @@
     padding-bottom: 130px;
 
     @media (max-width: 991px) {
-      padding-top: 30px;
+      padding-top: 75px;
     }
   }
 
@@ -198,7 +199,7 @@
       position: absolute;
       display: inline-block;
       width: 90%;
-      height: 5px;
+      height: 2px;
       border-radius: 50px;
       background-color: $blue;
       left: 5px;
@@ -206,7 +207,6 @@
 
       &:before {
         position: absolute;
-        content: '';
         left: -7px;
         top: 0px;
         width: 5px;
@@ -231,7 +231,7 @@
 
   ul {
     display: inline-block;
-    width: 220px;
+    width: 175px;
     padding-top: 30px;
 
     &.new {
@@ -269,11 +269,11 @@
       button {
         display: flex;
         width: 100%;
-        font-size: 16px;
+        font-size: 14px;
         position: relative;
         font-weight: 600;
         padding: 10px 15px;
-        color: $darkgrey;
+        color: #000000;
         padding-left: 30px;
         font-family: $inter;
         z-index: 4;
@@ -318,7 +318,7 @@
             display: inline-flex;
             align-items: center;
 
-            padding: 8px 12px 8px 12px;
+            padding:5px 12px;
             @include bd-radius(25px 0 0 25px);
 
             img {

@@ -1,8 +1,16 @@
-type anon_class_25_1 = 
+type _anon_class_25_1 = 
  service {
    addCategory: (text, text, text) -> (vec text);
    addEvent: (InputEvent, text, text) -> (Result_4);
+   /// function addMultipleQuestions to add multiple questions in at time in quiz
+   /// @param key, inputQuestions, userCanisterId
+   /// @returns OK(text,text),ERR(text,text)
+   /// *
    addMultipleQuestions: (text, vec InputQuestion, text) -> (Result_3);
+   /// function addMultipleQuestions to add multiple questions in at time in quiz
+   /// @param key, inputQuestions, userCanisterId
+   /// @returns OK(text,text),ERR(text,text)
+   /// *
    addMultipleQuestionsToSurvey: (text, vec InputServayQuestion, text) ->
     (Result_3);
    addQuestion: (text, InputQuestion, text) -> (Result_3);
@@ -17,6 +25,10 @@ type anon_class_25_1 =
    adminDeleteEntry: (Key, text, text) -> (Result_16);
    approveArticle: (text, text, Key, bool) -> (Result_18);
    approvePodcast: (text, text, Key, bool) -> (Result_18);
+   /// function buyNFTStudio24Tokens use for handle transection
+   /// @permeters userCanisterId, token amount
+   /// retun error if error during transection and else OK
+   ///   *
    buyNFTStudio24Tokens: (text, nat, nat) -> (Result_17);
    changeStatusOfServay: (bool, text, text) -> (Result_3);
    changeTheStatusOfQuiz: (bool, text, text) -> (Result_3);
@@ -35,13 +47,41 @@ type anon_class_25_1 =
    editViews: (Key, nat, text, text) -> (bool);
    editWeb3Views: (Key, nat, text, text) -> (bool);
    event_types: () -> (EventCount) query;
+   /// function for get creation_time, modification_date,key
+   /// @param null
+   /// @returns {
+   ///        creation_time : Int;
+   ///      modification_date : Int;
+   ///      key : Text;
+   ///   }; object.
    getAllCategoriesIds: () -> (vec SlugWithData) query;
    getAllEntries: (text) -> (vec record {
                                    Key;
                                    Entry;
                                  }) query;
+   /// function for get creation_time, modification_date,key
+   /// @param null
+   /// @returns {
+   ///        creation_time : Int;
+   ///      modification_date : Int;
+   ///      key : Text;
+   ///   }; object.
    getAllEntryIds: (bool) -> (vec SlugWithData) query;
+   /// function for get creation_time, modification_date,key
+   /// @param null
+   /// @returns {
+   ///        creation_time : Int;
+   ///      modification_date : Int;
+   ///      key : Text;
+   ///   }; object.
    getAllEventsIds: () -> (vec SlugWithData) query;
+   /// function for get creation_time, modification_date,key
+   /// @param null
+   /// @returns {
+   ///        creation_time : Int;
+   ///      modification_date : Int;
+   ///      key : Text;
+   ///   }; object.
    getAllWeb3Ids: () -> (vec SlugWithData) query;
    getAnalysis: (text, text) -> (Result_14);
    getApprovedWeb3List: (nat) -> (vec record {
@@ -246,6 +286,10 @@ type anon_class_25_1 =
                     };
      });
    getSurveyIdsList_Of_article: (Key) -> (vec text);
+   /// getTakenQuizOfUser user to get list of survey of user which taken by him
+   /// @retrun {entries : [(Text, TakenByWithTitle)]; amount : Nat;}
+   /// @perms user:Principal, search : Text, startIndex : Nat, length : Nat
+   ///   *
    getTakenQuizOfUser: (UserId, text, nat, nat) ->
     (record {
        amount: nat;
@@ -254,6 +298,10 @@ type anon_class_25_1 =
                       TakenByWithTitle;
                     };
      });
+   /// getTakenQugetTakenSurveyOfUserzOfUser user to get list of survey of user which taken by him
+   /// @retrun {entries : [(Text, ServayTakenByList)]; amount : Nat;}
+   /// @perms user:Principal, search : Text, startIndex : Nat, length : Nat
+   ///   *
    getTakenSurveyOfUser: (UserId, text, nat, nat) ->
     (record {
        amount: nat;
@@ -1449,4 +1497,4 @@ type AnalysedData =
    count: int;
    title: text;
  };
-service : () -> anon_class_25_1
+service : () -> _anon_class_25_1

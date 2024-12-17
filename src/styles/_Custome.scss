@@ -193,7 +193,7 @@ body {
 }
 
 .section {
-  padding: 0px 0px 0 45px;
+  padding: 0px 0px 0 0;
 
   @media (max-width: 991px) {
     padding: 30px 15px;
@@ -2171,93 +2171,4 @@ margin-left: 10px;
  
       } 
     }
-    // custome connect modal
-    .connect-modal {
-      .blockzaLogo{
-        max-width: 250px;
-      }
-      .titletxt{
-        font-weight: bold;
-
-        &.second {
-          margin-top: 30px;
-
-
-        }
-      }
-      .connect-btn{
-        background-color: #1e5fb3 !important;
-        // &.NFID{
-        //   img{
-        //     height: 30px;
-        //     width: 30px;
-        //   }
-        // }
-    
-      }
-      .btn{
-
-        border: none;
-        &:disabled{
-          cursor: not-allowed;
-        }
-      }
-      .modal-body {
-        padding: 10px 20px 26px;
-      }
-      .connect-btn {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-        padding: 12px 18px;
-        border-radius: 14px;
-
-        .rgb {
-          font-size: 22px;
-        
-          font-style: normal;
-    
-          line-height: normal;
-          text-transform: uppercase;
-      
-          &.II {
-         color: white;
-          }
-          &.NFID {
-            color: white;
-          
-          
-          }
-        }
-      
-        &:hover {
-          background-color: $white;
-        }
-   
-      }
-     
-      .custome-close-btn {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        color: #161414;
-        z-index: 5;
-        font-size: 22px;
-        background-color: transparent;
-        &:disabled{
-          background-color: transparent;
-        }
-      
-    }
-    }
-
-    .custome-close-btn.newDesignCloseBTn{
-      position: absolute;
-      right: 25px;
-      top: 20px;
-    }
-    .hideUi{
-    display: none;
-
-    }
+ 

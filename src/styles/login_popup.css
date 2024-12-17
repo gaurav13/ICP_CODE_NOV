@@ -1,0 +1,35 @@
+.login-modaol .modal-content .modal-body .reg-btn-full
+{ background: #fff !important;
+    color: #000 !important;
+    width: 300px;
+    /* max-width: 400px; */
+    min-width: -moz-min-content;
+    min-width: min-content;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 0px 6.72px 0.96px rgba(0, 0, 0, 0.1490);
+}
+.custome-close-btn{background: #fff !important;
+    color: #000 !important;
+    /* max-width: 400px; */
+    min-width: -moz-min-content;
+    min-width: min-content;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 0px 6.72px 0.96px rgba(0, 0, 0, 0.1490);}

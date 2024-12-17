@@ -1,4 +1,4 @@
-type anon_class_25_1 = 
+type _anon_class_25_1 = 
  service {
    addReaderOfEntry: (EntryId, text) -> (bool);
    add_reward: (principal, nat, text) -> (bool);
@@ -397,4 +397,4 @@ type Burners =
        text;
        TokenBurn;
      };
-service : () -> anon_class_25_1
+service : () -> _anon_class_25_1

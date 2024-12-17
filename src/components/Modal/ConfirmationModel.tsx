@@ -12,6 +12,8 @@ import authMethods from '@/lib/auth';
 import googleicon from '@/assets/Img/login/google.png';
 import logo2 from '@/assets/Img/Logo/headerlogo.png';
 import Link from 'next/link';
+import '../../styles/login_popup.css';
+import infinityicon from '@/assets/Img/infinity.png';
 
 function ConfirmationModel({
   show,
@@ -44,6 +46,8 @@ function ConfirmationModel({
     if (auth.state == 'initialized') handleClose();
   }, [auth.isLoading]);
   return (
+    <>
+  
     <Modal
       show={show}
       onHide={handleClose}
@@ -63,7 +67,7 @@ function ConfirmationModel({
         <h2>Login with</h2>
         <h4>
           Use your email or wallet services to continue with Blockza (it’s
-          free)! Use your email or wallet services
+          free)!
         </h4>
         <Button
           className='reg-btn-full'
@@ -89,6 +93,7 @@ function ConfirmationModel({
           onClick={() => handleLogin(LoginEnum.InternetIdentity)}
           id='handleLogin_identity'
         >
+           <Image src={infinityicon} alt="infinity icon" />
           {auth.isLoading && selected == LoginEnum.InternetIdentity ? (
             <span>
               <Spinner size='sm' />
@@ -164,6 +169,7 @@ function ConfirmationModel({
       </div>
     </Modal.Body> */}
     </Modal>
+    </>
   );
 }
 

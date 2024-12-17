@@ -631,27 +631,27 @@
 }
 
 .language-btn {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  line-height: 28px;
-  width: 140px;
+  height:35px;
+  width: 122px;
   display: flex;
   border: none;
   align-items: center;
   background-color: #eaca08;
   color: #000000;
-  font-size: 15px;
+  font-size: 14px;
   border-radius: 25px;
   z-index: 11111111;
   display: flex;
   select {
+    font-family: "Arial", sans-serif;
+    font-weight: 600;
     border-radius: 10px;
-    width: 86px;
+    width: 72px;
     background: transparent;
     border: none;
     height: 20px;
     margin-left: 5px;
+    font-size:14px;
     &:active,
     &:hover,
     &:focus {
@@ -662,7 +662,7 @@
   }
   .img1 {
     height: 25px;
-    display: block !important;
+    display: block !important;width:auto;
   }
   .img2 {
     height: 25px;
@@ -737,12 +737,12 @@ ul.slick-dots {
 }
 
 .sidebarLng {
-  display: flex;
-  width: 100%;
+  display: inline-flex;
+  width: auto;
   font-size: 16px;
   position: relative;
   font-weight: 600;
-  padding: 10px 15px;
+  padding: 5px 10px;
   color: #666666;
   padding-left: 30px;
   font-family: 'Arial', sans-serif;

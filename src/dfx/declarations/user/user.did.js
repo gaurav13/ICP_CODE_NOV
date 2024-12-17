@@ -206,7 +206,7 @@ export const idlFactory = ({ IDL }) => {
     'unverified' : IDL.Int,
     'Unblocked' : IDL.Int,
   });
-  const anon_class_25_1 = IDL.Service({
+  const _anon_class_25_1 = IDL.Service({
     'addReaderOfEntry' : IDL.Func([EntryId, IDL.Text], [IDL.Bool], []),
     'add_reward' : IDL.Func([IDL.Principal, IDL.Nat, IDL.Text], [IDL.Bool], []),
     'add_user' : IDL.Func([], [Result_1], []),
@@ -407,6 +407,6 @@ export const idlFactory = ({ IDL }) => {
     'verified_user_count' : IDL.Func([], [UserCount], ['query']),
     'verify_user' : IDL.Func([IDL.Text, IDL.Text], [Result], []),
   });
-  return anon_class_25_1;
+  return _anon_class_25_1;
 };
 export const init = ({ IDL }) => { return []; };

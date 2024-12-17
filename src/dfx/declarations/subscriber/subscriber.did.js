@@ -14,7 +14,7 @@ export const idlFactory = ({ IDL }) => {
     ),
     'err' : IDL.Text,
   });
-  const anon_class_20_1 = IDL.Service({
+  const _anon_class_20_1 = IDL.Service({
     'addSubscriber' : IDL.Func(
         [IDL.Principal, IDL.Text, IDL.Text, IDL.Text],
         [Result_1],
@@ -33,6 +33,6 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
   });
-  return anon_class_20_1;
+  return _anon_class_20_1;
 };
 export const init = ({ IDL }) => { return []; };

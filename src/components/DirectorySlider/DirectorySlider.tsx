@@ -64,16 +64,16 @@ export default React.memo(function DirectorySlider({
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: false,
         },
       },
       {
         breakpoint: 1400,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: false,
         },
       },
@@ -120,6 +120,7 @@ export default React.memo(function DirectorySlider({
   return (
     <>
     <style jsx>{`
+
 .trending-button {
   display: inline-flex; 
   align-items: center; 
@@ -156,11 +157,11 @@ export default React.memo(function DirectorySlider({
               istrending = true;
             }
             return (
-              
               <div
                 className='Post-padding  d-flex justify-content-center mx-2'
                 key={entry[0]}
               >
+                
                 <Link
                   href='#'
                   onClick={(e) => {

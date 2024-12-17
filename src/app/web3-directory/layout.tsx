@@ -8,9 +8,9 @@ interface LayoutProps {
 }
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
-  const category = params?.category || 'default-category'; // Fallback to 'default-category' if undefined
-  const categoryTitle = `${category.charAt(0).toUpperCase()}${category.slice(1)} Companies | BlockZa`;
-  const categoryDescription = `Explore top Web3 companies in the ${category} category. Learn about their mission, technology, and contributions to the Web3 ecosystem.`;
+  const category = 'Web3 Directory'; // Fallback to 'default-category' if undefined
+  const categoryTitle = `Web3 Directory | Explore the Best Web3 Projects, Companies, and Resources`;
+  const categoryDescription = `Explore top Web3 companies in the Web3 Directory category. Learn about their mission, technology, and contributions to the Web3 ecosystem.`;
 
   return {
     title: categoryTitle,
@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 }
 
 export default function RootLayout({ children, params }: LayoutProps) {
-  const category = params?.category || 'default-category'; // Fallback to 'default-category'
-  const categoryName = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
+  const category =  'Web3 Directory'; // Fallback to 'default-category'
+  const categoryName = `Web3 Directory`;
  {/* const schemaData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

@@ -36,7 +36,7 @@ main {
   width: 100%;
   height: auto;
   min-height: 1200px;
-  padding-top: 120px;
+  padding-top: 15px;
   background-color: $white;
   text-align: center;
 
@@ -105,12 +105,13 @@ main {
   }
 
   .main-inner {
-    width: calc(100% - 250px);
-    margin-left: 210px;
-    padding-top: 75px;
+    width: calc(100% - 175px);
+    margin-left: 175px;
+    padding-top: 0;
     display: inline-block;
     max-width: 1800px;
     text-align: initial;
+    padding:0 15px;
 
     @media (max-width: 991px) {
       padding-top: 30px;

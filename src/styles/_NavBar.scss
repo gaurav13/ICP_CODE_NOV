@@ -22,14 +22,13 @@
     width: 100%;
     flex-wrap: inherit;
     align-items: inherit;
-    justify-content: inherit;
   }
 }
 @media (min-width: 992px) {
   .navbar.new {
     display: inline-block;
-    left: 220px;
-    text-align: center;
+    left: 0;
+    text-align: center;margin-top:0;position:sticky;top:0;width:100%
   }
   .navbar-expand-lg.new .navbar-collapse {
     justify-content: center;
@@ -42,24 +41,23 @@
   }
   .navbar.new .navbar-brand {
     margin-right: 0;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     display: inline-block;
     width: 230px;
+    padding-left:20px;
     img {
-      width: 230px;
+      width: 100%;
     }
   }
-  .navbar.new.navbar-expand-lg .navbar-nav {
-    justify-content: center;
-  }
+  
 }
 .navbar.new {
   @media (max-width: 991px) {
     left: 0px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0;
+    padding-right: 0;
     z-index: 999;
-    padding-top: 10px;
+    padding-top: 0;
 
     &:before {
       position: absolute;
@@ -86,7 +84,7 @@
     }
   }
   @media (max-width: 991px) {
-    padding-top: 20px;
+    padding-top:0;
   }
   @media (max-width: 575px) {
     padding-right: 0;
@@ -131,26 +129,13 @@
     }
   }
   .side-btnlist {
-    position: absolute;
-    right: 5%;
-    top: 50px;
-    z-index: 2;
+    margin-bottom:0;
+    gap:10px;
     display: flex;
     align-items: center;
-    @media (max-width: 991px) {
-      right: 15px;
-      top: 30px;
-    }
-    @media (max-width: 767px) {
-      top: 40px;
-    }
-    @media (max-width: 575px) {
-      top: 35px;
-      right: 5px;
-    }
     li {
       display: inline-block;
-      margin-left: 15px;
+  
       @media (max-width: 1600px) {
         &.remove {
           display: none;
@@ -184,15 +169,12 @@
   left: 0;
   right: 0;
   top: 0;
-  padding: 5px 0 5px;
+  padding: 0;
   background: $white !important;
   z-index: 99;
   @include animation-anime(Navanime, 1s, linear);
 
-  @media (max-width: 1400px) {
-    padding-top: 5px;
-    padding-bottom: 10px;
-  }
+
 
   @media (max-width: 1200px) {
     padding-top: 5px;
@@ -207,10 +189,7 @@
   @media (max-width: 575px) {
     padding: 0px 0px;
 
-    .d-flex {
-      display: inline-block !important;
-      width: 100%;
-    }
+  
   }
 
   .loader-container {
@@ -236,15 +215,16 @@
   }
 
   .link-btn {
+    height:35px;
     color: $black;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    margin-right: 10px;
+    white-space:nowrap;
     position: relative;
     font-family: $inter;
     z-index: 2;
-    padding: 10px 30px 12px;
-    @include bd-radius(5px);
+    padding:8px 20px;
+    @include bd-radius(25rem);
     background-color: $color;
     color: $black;
     border: none;
@@ -1364,7 +1344,7 @@ main.dark {
 .navbar.new .side-btnlist {
   .link-btn {
     @media (max-width: 991px) {
-      margin-left: 10px;
+    
     }
   }
 }
@@ -1458,4 +1438,27 @@ main.dark {
       font-size: 20px;
     }
   }
+}
+.navbar-inner{display:flex;align-items:center}
+.bg-top{background:#38383d;padding:.5rem 1rem}
+.top-bar-wrap{color:#fff;font-size:13px;text-align:center;display:grid;grid-template-columns: auto auto;
+justify-content: center;}
+.top-bar-wrap span{color:#ffde59}
+.top-bar-wrap span.orange{color:#ff914d}
+.top-bar-content{text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+body .sidebar-home ul li button img{margin-right:0}
+
+@media (min-width: 992px){
+  .sidebar-home.new{top:100px;padding-top:15px;border-right: 1px solid #eeeeee;}
+  .navbar-nav {padding-left:10px}
+  .navbar.new .side-btnlist li:nth-child(3){display:none}
+}
+@media (max-width: 991.98px){
+  .navbar.new .navbar-brand{margin-left:60px}
+  .navbar .navbar-collapse .navbar-nav{padding-left:1rem}
+  .navbar.new .side-btnlist li:nth-child(2){display:none}
+  .navbar-inner .navbar-brand{order:1}
+  .navbar-inner .top-btns-wrap{order:2;margin-left:auto}
+  .navbar-inner .navbar-collapse{order:3}
+  .navbar.new .side-btnlist li:last-child{display:none}
 }

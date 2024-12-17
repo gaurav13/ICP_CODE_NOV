@@ -10,8 +10,7 @@ export { idlFactory } from "./comment.did.js";
  * beginning in dfx 0.15.0
  */
 export const canisterId =
-  process.env.CANISTER_ID_COMMENT ||
-  process.env.COMMENT_CANISTER_ID;
+  process.env.CANISTER_ID_COMMENT;
 
 export const createActor = (canisterId, options = {}) => {
   const agent = options.agent || new HttpAgent({ ...options.agentOptions });
@@ -40,4 +39,4 @@ export const createActor = (canisterId, options = {}) => {
   });
 };
 
-export const comment = createActor(canisterId);
+export const comment = canisterId ? createActor(canisterId) : undefined;

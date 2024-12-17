@@ -1,5 +1,6 @@
 import type { Principal } from '@dfinity/principal';
 import type { ActorMethod } from '@dfinity/agent';
+import type { IDL } from '@dfinity/candid';
 
 export type Activities = Array<Activity>;
 export interface Activity {
@@ -72,7 +73,7 @@ export type Result_2 = { 'ok' : [Activities, string] } |
 export type Result_3 = { 'ok' : [Comment, string] } |
   { 'err' : string };
 export type UserId = Principal;
-export interface anon_class_19_1 {
+export interface _anon_class_19_1 {
   'addActivity' : ActorMethod<[UserId, string, ActivityType, string], boolean>,
   'addAdminActivity' : ActorMethod<
     [UserId, string, AdminActivityType, string],
@@ -93,4 +94,6 @@ export interface anon_class_19_1 {
   'get_comment_reward' : ActorMethod<[], bigint>,
   'update_comment_reward' : ActorMethod<[string, bigint], bigint>,
 }
-export interface _SERVICE extends anon_class_19_1 {}
+export interface _SERVICE extends _anon_class_19_1 {}
+export declare const idlFactory: IDL.InterfaceFactory;
+export declare const init: (args: { IDL: typeof IDL }) => IDL.Type[];

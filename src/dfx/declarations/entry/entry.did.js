@@ -850,7 +850,7 @@ export const idlFactory = ({ IDL }) => {
     'total_web' : IDL.Int,
     'un_verified' : IDL.Int,
   });
-  const anon_class_25_1 = IDL.Service({
+  const _anon_class_25_1 = IDL.Service({
     'addCategory' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text],
         [IDL.Vec(IDL.Text)],
@@ -1505,6 +1505,6 @@ export const idlFactory = ({ IDL }) => {
     'verifyWeb3' : IDL.Func([Key, IDL.Text, IDL.Text, IDL.Bool], [Result], []),
     'web_list' : IDL.Func([], [Web3Count], ['query']),
   });
-  return anon_class_25_1;
+  return _anon_class_25_1;
 };
 export const init = ({ IDL }) => { return []; };

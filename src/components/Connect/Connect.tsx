@@ -68,6 +68,7 @@ import { BUYTOKENS } from '@/constant/routes';
 import ConfirmationModel from '@/components/Modal/ConfirmationModel';
 import { MINIMUM_TOKEN_TRANSFER } from '@/constant/validations';
 import GlobalSearch from '@/components/GlobalContent/SearchModal';
+import LanguageBtn from '@/components/LanguageBtn/LanguageBtn';
 export default function Connect({
   hideRewards,
   hideUser,
@@ -516,6 +517,9 @@ export default function Connect({
     <>
       <ul className={`side-btnlist ${hideUi && "hideUi"}`}>
         <li>{route !== 'super-admin' && <GlobalSearch />}</li>
+        <li> <span className='lngcontainer'>
+                  <LanguageBtn id='navbarLngBtn' />
+                </span></li>
         {isLoading ? (
           <li className='remove'>
             <div className='loader-container'>
@@ -548,7 +552,7 @@ export default function Connect({
             </li>
           ) : (
             <>
-              <Button
+              <li><Button
                 onClick={confirmationModelOpen}
                 className='connect-btn'
                 disabled={isConnectLoading || connected}
@@ -563,9 +567,9 @@ export default function Connect({
                 ) : (
                   'Connect'
                 )}
-              </Button>
+              </Button></li>
 
-              <SignInButton />
+              <li><SignInButton /></li>
             </>
           )
         ) : (
