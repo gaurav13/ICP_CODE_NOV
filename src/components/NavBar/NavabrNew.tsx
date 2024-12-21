@@ -176,7 +176,7 @@ export default function NavBarNew() {
             ref={navbarRef}
             // style={{ zIndex: 1 }}
           >
-            <div className="bg-top top-bar-wrap"><div className='top-bar-content'>Your <span>Web3</span> Journey Starts Here – <span>Participate in Surveys</span>, <span className="orange">Connect with experts</span>, <span>Get Earn Daily Rewards</span> 🚀. <a href="/login/">Sign Up Today!🎉</a></div> <FaArrowRight /></div>
+            <div className="bg-top top-bar-wrap"><div className='top-bar-content'>Your <span>Web3</span> Journey Starts Here – <span>Participate in Surveys</span>, <span className="orange">Connect with experts</span>, <span>Get Earn Daily Rewards</span> 🚀. <a href="/login/"><span className="text-white text-decoration">Sign Up Today!🎉</span></a></div> <FaArrowRight /></div>
          
             <div className='navbar-inner'>
               {/* <Container fluid> */}
@@ -254,7 +254,23 @@ export default function NavBarNew() {
                     <Image src={cup2} alt='Diamond' />
                   </div> */}
                     {t('webDirectory')}
-                    <span className='batch'>{t('Web3 ')}</span>
+                    <span
+  style={{
+    position: "absolute",
+    right: "5px",
+    top: "-15px",
+    textTransform: "uppercase",
+    fontWeight: 700,
+    padding: "3px 7px 2px",
+    backgroundColor: "#eaca08",
+    color: "#000000",
+    fontSize: "10px",
+    borderRadius: "5px",
+  }}
+>
+  {t("Web3")}
+</span>
+
                   </Nav.Link>
                    {/* <Nav.Link as={Link} href={routes.expert}>
                     {t('Experts')} <span className='blue'>{t('Alliance')}</span>

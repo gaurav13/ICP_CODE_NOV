@@ -88,7 +88,8 @@ export default function Article() {
     name: '',
     logo: blockchain1,
   });
-
+  const [isLoading, setIsLoading] = useState(true); 
+  const [companyList, setCompanyList] = useState([]);
   const { auth, setAuth, identity } = useConnectPlugWalletStore((state) => ({
     auth: state.auth,
     setAuth: state.setAuth,
@@ -381,6 +382,9 @@ export default function Article() {
       console.error("Error fetching companies for category and subcategories:", error);
       return [];
     }
+    finally {
+      setIsLoading(false); // End loading
+    }
   };
   
   
@@ -450,7 +454,7 @@ export default function Article() {
   useEffect(() => {
     pageCount = Math.ceil(companyListOfIdSize / itemsPerPage);
   }, [companyListOfIdSize]);
-  if (categoryId === "1732000863567522348") {
+  if (categoryId === "1718641457527889243") {
     redirect("/web3-directory/blockchain/");
   } else if (categoryId === "1718641230817970431") {
     redirect("/web3-directory/web3/");
@@ -484,7 +488,49 @@ export default function Article() {
     redirect("/web3-directory/stablecoins/");
   } else if (categoryId === "1733893281096454324") {
     redirect("/web3-directory/web3_quest_platforms/");
-  } 
+  } else if (categoryId === "1734755238584631722") {
+    redirect("/web3-directory/art_and_collectibles/");
+  } else if (categoryId === "1734694106651227147") {
+    redirect("/web3-directory/trading_tools/");
+  } else if (categoryId === "1734693999550706547") {
+    redirect("/web3-directory/crypto_staking/");
+  } else if (categoryId === "1734693916560140791") {
+    redirect("/web3-directory/crypto_launchpad/");
+  } else if (categoryId === "1734693792312640861") {
+    redirect("/web3-directory/rwa_token/");
+  } else if (categoryId === "1734693690370917845") {
+    redirect("/web3-directory/ai_token/");
+  } else if (categoryId === "1734693633491771452") {
+    redirect("/web3-directory/memes_token/");
+  } else if (categoryId === "1734693506407308537") {
+    redirect("/web3-directory/crypto_influencer/");
+  } else if (categoryId === "1734693434218287154") {
+    redirect("/web3-directory/crypto_researcher/");
+  } else if (categoryId === "1734693367505013990") {
+    redirect("/web3-directory/crypto_wallets/");
+  } else if (categoryId === "1734693286462153755") {
+    redirect("/web3-directory/crypto_payment/");
+  } else if (categoryId === "1734693187972887198") {
+    redirect("/web3-directory/crypto_exchanges/");
+  } else if (categoryId === "1734691423559751365") {
+    redirect("/web3-directory/game_yield/");
+  } else if (categoryId === "1734691336642323972") {
+    redirect("/web3-directory/game_developers/");
+  } else if (categoryId === "1734691245391613588") {
+    redirect("/web3-directory/game_nfts/");
+  } else if (categoryId === "1734691156243443891") {
+    redirect("/web3-directory/esports/");
+  } else if (categoryId === "1734691021602384200") {
+    redirect("/web3-directory/play_to_earn_platforms/");
+  } else if (categoryId === "1734690830682032730") {
+    redirect("/web3-directory/ai_tools/");
+  } else if (categoryId === "1734687473022341658") {
+    redirect("/web3-directory/tokenized_global_bonds/");
+  } else if (categoryId === "1734687085396474546") {
+    redirect("/web3-directory/us_treasuries/");
+  } else if (categoryId === "1734686933366281010") {
+    redirect("/web3-directory/tokenization_protocols/");
+  }
   
   const totalCompanies = results.reduce(
     (sum: number, company: any) => sum + company.companyList.length,
@@ -499,7 +545,7 @@ export default function Article() {
 
   const getCategoryLinkById = (categoryId) => {
     const web3categories = [
-      { name: "blockchain", id: "1732000863567522348" },
+      { name: "blockchain", id: "1718641457527889243" },
       { name: "web3", id: "1718641230817970431" },
       { name: "metaverse", id: "1718641722539268658" },
       { name: "defi", id: "1719210427243611048" },
@@ -515,7 +561,29 @@ export default function Article() {
       { name: "play_to_earn_platform", id: "1733812196425088158" },
       { name: "yield_aggregators", id: "1733812098678890519" },
       { name: "stabelcoins", id: "1733812032008771908" },
-    ];    
+      { name: "web3_quest_platforms", id: "1733893281096454324" },
+      { name: "art_and_collectibles", id: "1734755238584631722" },
+      { name: "trading_tools", id: "1734694106651227147" },
+      { name: "crypto_staking", id: "1734693999550706547" },
+      { name: "crypto_launchpad", id: "1734693916560140791" },
+      { name: "rwa_token", id: "1734693792312640861" },
+      { name: "ai_token", id: "1734693690370917845" },
+      { name: "memes_token", id: "1734693633491771452" },
+      { name: "crypto_influencer", id: "1734693506407308537" },
+      { name: "crypto_researcher", id: "1734693434218287154" },
+      { name: "crypto_wallets", id: "1734693367505013990" },
+      { name: "crypto_payment", id: "1734693286462153755" },
+      { name: "crypto_exchanges", id: "1734693187972887198" },
+      { name: "game_yield", id: "1734691423559751365" },
+      { name: "game_developers", id: "1734691336642323972" },
+      { name: "game_nfts", id: "1734691245391613588" },
+      { name: "esports", id: "1734691156243443891" },
+      { name: "play_to_earn_platforms", id: "1734691021602384200" },
+      { name: "ai_tools", id: "1734690830682032730" },
+      { name: "tokenized_global_bonds", id: "1734687473022341658" },
+      { name: "us_treasuries", id: "1734687085396474546" },
+      { name: "tokenization_protocols", id: "1734686933366281010" },
+    ];
     
     const category = web3categories.find((cat) => cat.id === categoryId);
     if (category) {
@@ -524,7 +592,7 @@ export default function Article() {
     return "unknown/"; // Fallback link if no match is found
   };
   
-  
+ 
   // router.push('/route')
   return (
     <>
@@ -629,7 +697,7 @@ export default function Article() {
               <h2 className="text-center pt-4">How to use Web3 Directory</h2>
               <div className="row">
   <div className="col-md-4 d-flex">
-    <div className="info-box flex-grow-1 d-flex flex-column">
+    <div className="info-box text-sm-start flex-grow-1 d-flex flex-column">
       <h5>1. Find the Right Partner</h5>
       <p>
         Discover the ideal partner that aligns with your needs and project
@@ -639,11 +707,10 @@ export default function Article() {
     </div>
   </div>
   <div className="col-md-4 d-flex">
-    <div className="info-box flex-grow-1 d-flex flex-column">
+    <div className="info-box flex-grow-1 text-sm-start d-flex flex-column">
       <h5>2. Connect with the Team</h5>
       <p>
-        Join us as a corporate member and reach out directly to the partner
-        using the contact form available in their profile.
+      Sign up and schedule a meeting with a potential client or book a 1:1 video call with an expert to get personalized advice.
       </p>
       <button className="btn btn-primary text-button-background mt-auto">
         Apply for corporate account
@@ -651,11 +718,10 @@ export default function Article() {
     </div>
   </div>
   <div className="col-md-4 d-flex">
-    <div className="info-box flex-grow-1 d-flex flex-column">
+    <div className="info-box text-sm-start flex-grow-1 d-flex flex-column">
       <h5>3. Build Your Partnership</h5>
       <p>
-        Set up a meeting to discuss your project and explore opportunities
-        for collaboration and growth.
+      Discuss your proposal in detail and collaborate with the expert to explore opportunities for growth and success.
       </p>
     </div>
   </div>
@@ -749,119 +815,65 @@ export default function Article() {
               <Col xl='12' lg='12'>
                 <div className='flex-details-pnl'>
 
-                  <div className='category-directory'>
-                    {!categoryId &&
-                      results.lenght != 0 &&
-                      results.map((company: any, index: string) => {
-                        return (
-                          company.companyList.length != 0 && (
-                            <div className="slide-cntnr" key={index}>
-  <h3 className="d-flex align-items-center">
-    <div
-      style={{
-        aspectRatio: profileAspect,
-        height: '30px',
-        width: '30px',
-        position: 'relative',
-      }}
-      className="me-2"
-    >
-      
-      <Image
-        src={
-          company.category[1].logo
-            ? company.category[1].logo
-            : blockchain1
-        }
-        fill
-        alt="Infinity"
-        className="rounded-circle"
-      />
-    </div>
-    {company.category[1].name}
-
-  <span className='text-secondary'> <span className='text-secondary'> &nbsp;| </span> Total: {company.companyList.length} results</span>
-  </h3> 
-  <a  href={`/web3-directory/${getCategoryLinkById(company.category[0])}`}  className="ps-2  mb-n3 view-more d-flex align-items-cente">
-       View More 
-    </a>
- 
-  <div className="slid-bg position-relative">
-    {/* Left Icon */}
-
-
-    <DirectorySlider
-      relatedDirectory={company.companyList}
-      trendingDirectriesIds={trendingDirectriesIds}
-      categoryId={company.category[0]}
-    />
-
-   
-  </div>
+<div className="category-directory">
+  {/* Check if loading or the div is empty */}
+  {isLoading || results.every((company) => company.companyList.length === 0) ? (
+    <div  className="spinner-container">
+  <div className="loading-title">Loading Data</div>
+  <div className="loading-subtitle">We are fetching data from ICP blockchain.</div>
+  <div className="spinner"></div>
 </div>
 
-                          )
-                        );
-                      })}
-                    {categoryId && (
-                      <Row>
-                        <Col xxl='12'>
-                          {isGetting ? (
-                            <div className='d-flex justify-content-center w-full'>
-                              <Spinner />
-                            </div>
-                          ) : companyListOfId.length > 0 ? (
-                            <div className='slide-cntnr'>
-                              <h3 className='d-flex'>
-                                <div
-                                  style={{
-                                    aspectRatio: profileAspect,
-                                    height: '30px',
-                                    width: '30px',
-                                    position: 'relative',
-                                  }}
-                                  className='me-2'
-                                >
-                                 
-                                  <Image
-                                    src={OldCategory.logo}
-                                    fill
-                                    alt='Infinity'
-                                    className='rounded-circle'
-                                  />
-                                </div>
-                                {OldCategory.name}
-                              </h3>
-                              <div className='slid-bg d-flex justify-content-center flex-wrap '>
-                                <Web3ListbyCategoryId
-                                  relatedDirectory={companyListOfId}
-                                  trendingDirectriesIds={trendingDirectriesIds}
-                                />
-                              </div>
-                            </div>
-                          ) : (
-                            <p className='text-center'>
-                              {t('No Company Found')}
-                            </p>
-                          )}
-                        </Col>
-                        <div className='pagination-container mystyle d-flex justify-content-center mt-3'>
-                          {!isGetting && companyListOfId.length > 0 && (
-                            <ReactPaginate
-                              breakLabel='...'
-                              nextLabel=''
-                              onPageChange={handlePageClick}
-                              pageRangeDisplayed={5}
-                              pageCount={pageCount}
-                              previousLabel=''
-                              renderOnZeroPageCount={null}
-                              forcePage={forcePaginate}
-                            />
-                          )}
-                        </div>
-                      </Row>
-                    )}
-                  </div>
+  ) : (
+    results.map((company: any, index: string) => {
+      return (
+        company.companyList.length > 0 && (
+          <div className="slide-cntnr" key={index}>
+            <h3 className="d-flex align-items-center">
+              <div
+                style={{
+                  aspectRatio: profileAspect,
+                  height: "30px",
+                  width: "30px",
+                  position: "relative",
+                }}
+                className="me-2"
+              >
+                <Image
+                  src={
+                    company.category[1].logo
+                      ? company.category[1].logo
+                      : blockchain1
+                  }
+                  fill
+                  alt="Infinity"
+                  className="rounded-circle"
+                />
+              </div>
+              {company.category[1].name}
+              <span className="text-secondary">
+                {" "}
+                &nbsp;| Total: {company.companyList.length} results
+              </span>
+            </h3>
+            <a  href={`/web3-directory/${getCategoryLinkById(company.category[0])}`}  className="ps-2  mb-n3 view-more d-flex align-items-cente">
+       View More 
+    </a>
+            <div className="slid-bg position-relative">
+              <DirectorySlider
+                relatedDirectory={company.companyList}
+                trendingDirectriesIds={trendingDirectriesIds}
+                categoryId={company.category[0]}
+              />
+            </div>
+          </div>
+        )
+      );
+    })
+  )}
+</div>
+
+
                 </div>
               </Col>
             </Row>

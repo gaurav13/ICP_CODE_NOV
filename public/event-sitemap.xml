@@ -2,6 +2,11 @@
  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  
            <url>
+		       <loc>https://pro.blockza.io/event-details/1721286921977784674/</loc>
+		       <lastmod>2024-12-21T05:39:07+00:00</lastmod>
+	         </url>
+           
+           <url>
 		       <loc>https://pro.blockza.io/event-details/1726750855314198135/</loc>
 		       <lastmod>2024-09-19T13:41:43+00:00</lastmod>
 	         </url>
@@ -54,11 +59,6 @@
            <url>
 		       <loc>https://pro.blockza.io/event-details/1723739778194062475/</loc>
 		       <lastmod>2024-08-15T16:36:18+00:00</lastmod>
-	         </url>
-           
-           <url>
-		       <loc>https://pro.blockza.io/event-details/1721286921977784674/</loc>
-		       <lastmod>2024-08-08T01:15:53+00:00</lastmod>
 	         </url>
            
            <url>

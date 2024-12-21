@@ -88,25 +88,27 @@
         object-fit: cover;
       }
       .flex-details-pnl {
-       
+        display: flex;
+        flex-direction: row; /* Keep the layout in a row for larger screens */
+        gap: 16px; /* Optional: Add some spacing between panels */
       }
       
       /* Left panel (desktop/tablet) */
       .left-side-pnl {
-       
+        flex: 1; /* Make the left panel occupy its space */
       }
       
       /* Right panel (desktop/tablet) */
       .right-detail-pnl {
-        
+        flex: 2; /* Make the right panel occupy more space */
       }
       .flex-details-pnl .right-detail-pnl{
-        
+        padding-left: 10px!important;
       }
       @media (max-width: 768px) {
      
   .flex-details-pnl {
-     /* Stack panels vertically */
+    flex-direction: column; /* Stack panels vertically */
   }
  
   .left-side-pnl {
@@ -119,7 +121,7 @@
 }
 .box-spacing {
   margin-bottom: 20px; /* Adjust spacing between boxesf */
-  max-width: 347px;
+  max-width: 280px;
 }
 .button-color{background: #1e5fb3;}
 .inline-list {
@@ -147,4 +149,9 @@
   font-size: 14px;
 }
 
-
+@media (min-width: 1200px) {
+  .directory-details .flex-details-pnl .right-detail-pnl.pr {
+      width: calc(90% - 200px)!important;
+      /* width: 0px; */
+  }
+}

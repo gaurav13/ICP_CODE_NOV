@@ -80,7 +80,7 @@ const LinkndindataComponent = () => {
 
   // Handle case where no data is available or there was an error
   if (isError || articles.length === 0) {
-    return <div>No data available or failed to load data.</div>;
+    return <div></div>;
   }
 
   return (
@@ -128,7 +128,7 @@ const LinkndindataComponent = () => {
                   className="icon-link"
                 >
                    <div className="circular-socialicon">
-      <FaEnvelope size={18} color="#1e5fb3" />
+      <FaEnvelope size={14} color="#1e5fb3" />
     </div>
                 </a>
                 {article.profile_link && (
@@ -139,7 +139,7 @@ const LinkndindataComponent = () => {
                     className="icon-link"
                   >
                     <div className="circular-socialicon">
-                    <FaLinkedin size={18} color="#1e5fb3" /></div>
+                    <FaLinkedin size={14} color="#1e5fb3" /></div>
                   </a>
                 )}
                 {article.twitter && (
@@ -149,7 +149,7 @@ const LinkndindataComponent = () => {
                     rel="noopener noreferrer"
                     className="icon-link"
                   >
-                    <div className="circular-socialicon"><FaTwitter   size={18} color="#1e5fb3" /></div>
+                    <div className="circular-socialicon"><FaTwitter   size={14} color="#1e5fb3" /></div>
                   </a>
                 )}
               </div>

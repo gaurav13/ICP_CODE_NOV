@@ -133,8 +133,8 @@
     margin-top: 10px;
   }
   .circular-socialicon {
-    width: 30px; /* Adjust as needed */
-    height: 30px;
+    width: 25px; /* Adjust as needed */
+    height: 25px;
     border-radius: 50%; /* Makes it circular */
     background-color: #fff; /* Light background color */
     display: flex;

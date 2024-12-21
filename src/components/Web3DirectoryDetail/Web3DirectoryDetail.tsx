@@ -722,30 +722,32 @@ export default function Web3DirectoryDetail({
                         minHeight: '256px',
                       }}
                     >
-                      <div className="text-center p-4 shadow-sm rounded border bg-white box-spacing">
-  <h5 className="fw-bold mb-3">{t("Arrange your meeting with WEB3 experts.")}</h5>
-  <Link
-    href="#"
+                      
+
+<div className="text-center p-4 shadow-sm rounded border bg-white box-spacing">
+  <h5 className="fw-bold mb-3">{t("Is this your project?")}</h5>
+  <a
+    href="mailto:support@blockza.io?subject=Request%20Edits&body=Hello%20Blockza%20Support%2C%0A%0AI%20would%20like%20to%20request%20edits%20to%20my%20project.%0A%0APlease%20provide%20further%20instructions.%0A%0AThank%20you."
     className="btn btn-primary px-4 py-2 fw-bold"
-    onClick={(e) => {
-      e.preventDefault();
-      handleShowContactModal();
-    }}
     style={{
       background: "linear-gradient(90deg, #007BFF 0%, #00C6FF 100%)",
       color: "#fff",
       border: "none",
     }}
   >
-    {t("Book Your Meeting")}
-  </Link>
+    {t("Request edits")}
+  </a>
 </div>
 
 <div className="text-center p-4 shadow-sm rounded border bg-white box-spacing">
-  <h5 className="fw-bold mb-3">{t("Is this your project?")}</h5>
-  <a
-    href="mailto:support@blockza.io?subject=Request%20Edits&body=Hello%20Blockza%20Support%2C%0A%0AI%20would%20like%20to%20request%20edits%20to%20my%20project.%0A%0APlease%20provide%20further%20instructions.%0A%0AThank%20you."
-    className="btn btn-outline-primary px-4 py-2 fw-bold"
+  <h5 className="fw-bold mb-3">{t("Arrange your meeting with WEB3 experts.")}</h5>
+  <Link
+    href="#"
+    className="btn btn-outline-primary px-4 py-2 fw-bold "
+    onClick={(e) => {
+      e.preventDefault();
+      handleShowContactModal();
+    }}
     style={{
       border: "2px solid #007BFF",
       borderRadius: "8px",
@@ -753,9 +755,10 @@ export default function Web3DirectoryDetail({
       backgroundColor: "transparent",
       textDecoration: "none",
     }}
+   
   >
-    {t("Request edits")}
-  </a>
+    {t("Book Your Meeting")}
+  </Link>
 </div>
 
 
