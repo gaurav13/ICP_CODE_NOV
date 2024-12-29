@@ -54,6 +54,7 @@ import DirectoryModelPopup from '@/components/DirectoryModelPopup/DirectoryModel
 import '../../styles/directory_detail.css'; 
 import { FaEnvelope, FaLinkedin,FaTwitter,FaUsers,FaNewspaper,FaBuilding,FaCheckCircle,FaCheck} from 'react-icons/fa';
 import { MdLocationCity } from "react-icons/md";
+import { MessageSquare, Share, ThumbsUp, Info } from 'lucide-react'
 export default function Web3DirectoryDetail({
   directoryId,
 }: {
@@ -467,11 +468,11 @@ export default function Web3DirectoryDetail({
                             />
                           </div>
                           <div className='txt-pnl'>
-                            <h1 style={{ fontSize: '18px', fontWeight: 600 }}>
+                            <h1 title="Submit Your Project to the Web3 Directory and Gain Unmatched Exposure!" style={{ fontSize: '18px', fontWeight: 600 }}>
                               {directory.length != 0
                                 ? directory[0].company
                                 : ''}
-                            </h1>
+                              <span className='ps-1'><Info size={20} /></span></h1>
                             <ul
   className="inline-list d-flex align-items-center justify-content-between p-1 rounded shadow-sm"
   style={{
@@ -656,14 +657,7 @@ export default function Web3DirectoryDetail({
                             directory[0].companyUrl[0].length != 0 ? (
                               <>
                               
-                              <li>
                               
-
-            <DirectoryModelPopup show={showContactModal} handleClose={handleCloseContactModal}  companyName={directory[0]?.company} />
-
-
-                          
-                              </li>
                               </>
                             ) : (
                               ''
@@ -673,7 +667,7 @@ export default function Web3DirectoryDetail({
                           )}
                           
                         </ul>
-                        
+                        <DirectoryModelPopup show={showContactModal} handleClose={handleCloseContactModal}  companyName={directory[0]?.company} />
                       </div>
                       {/* <div>
             
@@ -832,8 +826,8 @@ export default function Web3DirectoryDetail({
             <div className='premium_company mt-2'>
               <div className='' />
               <div className=''>
-                    <h3 className='text-primary'>
-                      <Image  style={{ marginRight: "0px", maxWidth: "35px" }}  src={tag} alt='Bard' /> {t('Trending')}{' '}
+                    <h3 title="Trending section shows the most popular content and users" className='text-primary'>
+                      <Image  style={{ marginRight: "0px", maxWidth: "35px" }}  src={tag} alt='Bard' /> {t('Trending')}{' '} <span className='ps-1'><Info size={20} /></span>
                     </h3>
                     <div className='spacer-10' />
 

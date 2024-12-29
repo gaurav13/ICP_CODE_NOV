@@ -35,7 +35,7 @@ import { CropperProps } from '@/types/cropper';
 import ImageCropper from '@/components/Cropper';
 import getCroppedImg from '@/components/Cropper/cropImage';
 import resizeImage from '@/components/utils/resizeImage';
-import getCategories from '@/components/utils/getCategories';
+import getCategories from '@/components/utils/getDirectorycategories';
 import uploadImage from '@/components/utils/uploadImage';
 import { getImage } from '@/components/utils/getImage';
 import {  getIdFromUrl } from '@/constant/DateFormates';
@@ -543,17 +543,44 @@ export default function AddCompanyForm() {
     }
   
   }, [auth, identity]);
-
+  useEffect(() => {
+    async function getData() {
+      try {
+        const _categories = await getCategories(identity);
+        console.log('Fetched categories:', _categories); // Debug log
+        const formattedCategories = _categories.map((entry: any) => {
+          if (Array.isArray(entry) && entry.length > 1) {
+            const [id, data] = entry;
+            return {
+              id,
+              name: data.name,
+              isChild: data.isChild,
+              parentCategoryId: data.parentCategoryId || [],
+            };
+          }
+          return null; // Skip invalid entries
+        }).filter(Boolean); // Remove null values
+        setCategories(formattedCategories);
+      } catch (error) {
+        console.error('Error fetching categories:', error); // Log any errors
+      }
+    }
+    getData();
+  }, [identity]);
+  
+  
+  
+  
   return (
     <>
       <main id='main' className='dark'>
-        <div className='main-inner admin-main'>
+        <div className='main-inner'>
           
-          <div className='section admin-inner-pnl' id='top'>
-          <div className="container-fluid  py-4">
+          <div className='section admin-inner-pnl directory-section' id='top'>
+          <div className="container-fluid">
           <Row>
         {/* Left Column */}
-        <Col md={8} className="text-start pt-4">
+        <Col md={8} className="text-start">
           <h1 style={{color:'#1e5fb3'}} className='blue-title'>
            Get Your Web3 Project in Front of the Right People—For Free!</h1>
           <p className='text-14'>
@@ -584,7 +611,7 @@ export default function AddCompanyForm() {
         </Col>
 
         {/* Right Column */}
-        <Col md={4} className='pt-5'>
+        <Col md={4}>
           <div className="contact-card p-3 shadow-sm rounded">
             <h6 className="fw-bold mb-2">📧 Contact the sales team</h6>
             <a
@@ -1024,29 +1051,52 @@ export default function AddCompanyForm() {
                   </Row>
                   <Row>
                     <Col xl='12' lg='12' md='12' className='mb-3'>
-                      <Field name='catagory'>
-                        {({ field, form }: any) => (
-                          <Form.Group className='mb-2'>
-                            <Form.Label>{t('Category')} <span className='required_icon'>*</span></Form.Label>
-                            <Form.Select
-                              value={field.value}
-                              onChange={handleChange}
-                              onInput={handleChange}
-                              name='catagory'
-                            >
-                              <option value={''}>
-                                {t('Please Select Category')}
-                              </option>
-                              {categories &&
-                                categories.map((category: any, index) => (
-                                  <option value={category[0]} key={index}>
-                                    {category[1].name}
-                                  </option>
-                                ))}
-                            </Form.Select>
-                          </Form.Group>
-                        )}
-                      </Field>
+                    <Field name="catagory">
+  {({ field, form }: any) => {
+    const isError = form.errors.category && form.touched.category; // Check validation error
+    return (
+      <Form.Group className="mb-2">
+        <Form.Label>
+          {t('Category')} <span className={`required_icon ${isError ? 'required' : ''}`}>*</span>
+        </Form.Label>
+        <Form.Select
+          value={field.value || ''}
+          onChange={(e) => {
+            form.setFieldValue(field.name, e.target.value);
+          }}
+          onBlur={() => form.setFieldTouched(field.name, true)}
+          name='catagory'
+          className={isError ? 'is-invalid' : 'form-control'}
+        >
+          <option value="">{t('Please Select Category')}</option>
+          {categories &&
+            categories.map((category: any, index: number) => (
+              <React.Fragment key={index}>
+                {category && category.name && !category.isChild && (
+                  <option value={category.id}>{category.name}</option>
+                )}
+                {categories
+                  .filter(
+                    (subcategory: any) =>
+                      subcategory.isChild &&
+                      subcategory.parentCategoryId?.includes(category.id)
+                  )
+                  .map((subcategory: any, subIndex: number) => (
+                    <option key={subIndex} value={subcategory.id}>
+                      &nbsp;&nbsp;— {subcategory.name}
+                    </option>
+                  ))}
+              </React.Fragment>
+            ))}
+        </Form.Select>
+        {isError && <div className="text-danger">{form.errors.category}</div>}
+      </Form.Group>
+    );
+  }}
+</Field>
+
+
+
 
                       <div className='text-danger mb-2'>
                         <ErrorMessage

@@ -251,3 +251,7 @@ main .main-inner.admin-main {
 .form-select {
   font-size: 14px !important;
 }
+@media (max-width: 768px) {
+  .directory-section{padding-top: 80px;}
+
+}

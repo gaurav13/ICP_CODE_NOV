@@ -624,10 +624,9 @@ export default function Article() {
                     </Link>
                   </Breadcrumb.Item>
                   <Breadcrumb.Item active={categoryId ? false : true}>
-                    <Link href={`/web3-directory`}>
-                      {t('Web3 ')}
-                      {t('webDirectory')}
-                    </Link>
+                  <Link href={`/web3-directory`}>
+                  {t('Web3')}&nbsp;{t('webDirectory')}
+</Link>
                   </Breadcrumb.Item>
                   {categoryId && (
                     <Breadcrumb.Item active={categoryId ? true : false}>
@@ -697,7 +696,7 @@ export default function Article() {
               <h2 className="text-center pt-4">How to use Web3 Directory</h2>
               <div className="row">
   <div className="col-md-4 d-flex">
-    <div className="info-box text-sm-start flex-grow-1 d-flex flex-column">
+    <div className="info-box text-start flex-grow-1 d-flex flex-column">
       <h5>1. Find the Right Partner</h5>
       <p>
         Discover the ideal partner that aligns with your needs and project
@@ -707,7 +706,7 @@ export default function Article() {
     </div>
   </div>
   <div className="col-md-4 d-flex">
-    <div className="info-box flex-grow-1 text-sm-start d-flex flex-column">
+    <div className="info-box flex-grow-1 text-start d-flex flex-column">
       <h5>2. Connect with the Team</h5>
       <p>
       Sign up and schedule a meeting with a potential client or book a 1:1 video call with an expert to get personalized advice.
@@ -718,7 +717,7 @@ export default function Article() {
     </div>
   </div>
   <div className="col-md-4 d-flex">
-    <div className="info-box text-sm-start flex-grow-1 d-flex flex-column">
+    <div className="info-box text-start flex-grow-1 d-flex flex-column">
       <h5>3. Build Your Partnership</h5>
       <p>
       Discuss your proposal in detail and collaborate with the expert to explore opportunities for growth and success.
