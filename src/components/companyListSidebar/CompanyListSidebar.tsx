@@ -94,10 +94,10 @@ export default function CompanyListSidebar({
           </Link>
           <p>{entry[1]?.shortDescription}</p>
           <Link
-            href={`${entry[1]?.companyPath || ''}`} // Adding company path dynamically
-            className='follow-btn'
+            href={entry[1].isStatic ? `${DIRECTORY_STATIC_PATH + entry[0]}` : `${DIRECTORY_DINAMIC_PATH + entry[0]}`} // Adding company path dynamically
+            className='follow-btn rounded-3'
           >
-            +{t('Follow')}
+            {t('Book Meeting')}
           </Link>
         </div>
                 </div>

@@ -1,0 +1,98 @@
+.slick-prev, .slick-next {
+    position: absolute;
+    top: -40px; /* Place the buttons above the slider */
+    z-index: 10; /* Ensure the buttons are above the slider content */
+    background: transparent; /* No background */
+    border: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: #eaca08;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    content: "";
+    display: block;
+    border: solid #000; /* Black arrow */
+    border-width: 3px 3px 0 0;
+    width: 10px;
+    height: 10px;
+    margin: 2px 8px;
+  }
+  
+  .slick-prev:before {
+    transform: rotate(-135deg); /* Left arrow */
+  }
+  
+  .slick-next:before {
+    transform: rotate(45deg); /* Right arrow */
+  }
+  
+  .slick-prev {
+    left: 10px; /* Adjust for the left button */
+  }
+  
+  .slick-next {
+    right: 10px; /* Adjust for the right button */
+  }
+  
+ 
+  .custom-prev-arrow,
+.custom-next-arrow {
+  position: absolute;
+  top: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.custom-prev-arrow {
+  left: 10px;
+}
+
+.custom-next-arrow {
+  right: 10px;
+}
+
+.arrow-icon {
+  font-size: 16px;
+  color: black;
+}
+@media (max-width: 767px) {
+  #main{
+  padding-top: 180px;
+  }
+  .text-2xl{
+    padding-top: 22px;
+    }
+    .news-section{ display:none; }
+    .slider-home-te .slick-prev,.slick-next{top:-20px}
+    .linkend-banner-image{margin-top: -50px;}
+   
+}
+.slider-home-te .slick-prev {
+  right: 50px;left:auto;
+}
+.follow-list.wbg {
+  padding-left: 12px;
+}
+.slider-home-te .slick-slider .slick-track{padding-bottom:1rem}
+.webstor .slick-prev {
+  right: 50px;left:auto;
+}
+
+
+.image-container {
+  position: relative;
+  width: auto; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+}
+.slick-prev {
+  right: 50px;left:auto;
+}
+.sidebar-home ul.social-list{bottom:110px ;}

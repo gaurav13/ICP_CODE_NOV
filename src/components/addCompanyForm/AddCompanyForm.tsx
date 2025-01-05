@@ -24,6 +24,7 @@ import {
   makeEntryActor,
   makeLedgerCanister,
 } from '@/dfx/service/actor-locator';
+import getCategories from '@/components/utils/getDirectorycategories';
 import { canisterId as userCanisterId } from '@/dfx/declarations/user';
 import { useConnectPlugWalletStore } from '@/store/useStore';
 import Image from 'next/image';
@@ -41,7 +42,6 @@ import { CropperProps } from '@/types/cropper';
 import ImageCropper from '@/components/Cropper';
 import getCroppedImg from '@/components/Cropper/cropImage';
 import resizeImage from '@/components/utils/resizeImage';
-import getCategories from '@/components/utils/getCategories';
 import uploadImage from '@/components/utils/uploadImage';
 import { getImage } from '@/components/utils/getImage';
 import { Principal } from '@dfinity/principal';
@@ -549,7 +549,30 @@ export default function AddCompanyForm({
       getData();
     // }
   }, []);
-
+   useEffect(() => {
+      async function getData() {
+        try {
+          const _categories = await getCategories(identity);
+          console.log('Fetched categories:', _categories); // Debug log
+          const formattedCategories = _categories.map((entry: any) => {
+            if (Array.isArray(entry) && entry.length > 1) {
+              const [id, data] = entry;
+              return {
+                id,
+                name: data.name,
+                isChild: data.isChild,
+                parentCategoryId: data.parentCategoryId || [],
+              };
+            }
+            return null; // Skip invalid entries
+          }).filter(Boolean); // Remove null values
+          setCategories(formattedCategories);
+        } catch (error) {
+          console.error('Error fetching categories:', error); // Log any errors
+        }
+      }
+      getData();
+    }, [identity]);
   return (
     <>
       {cropperImg && (
@@ -991,29 +1014,49 @@ export default function AddCompanyForm({
               </Row>
               <Row>
                 <Col xl='12' lg='12' md='12' className='mb-3'>
-                  <Field name='catagory'>
-                    {({ field, form }: any) => (
-                      <Form.Group className='mb-2'>
-                        <Form.Label>{t('Category')}</Form.Label>
-                        <Form.Select
-                          value={field.value}
-                          onChange={handleChange}
-                          onInput={handleChange}
-                          name='catagory'
-                        >
-                          <option value={''}>
-                            {t('Please Select Category')}
-                          </option>
-                          {categories &&
-                            categories.map((category: any, index) => (
-                              <option value={category[0]} key={index}>
-                                {category[1].name}
-                              </option>
-                            ))}
-                        </Form.Select>
-                      </Form.Group>
-                    )}
-                  </Field>
+                  <Field name="catagory">
+                   {({ field, form }: any) => {
+                     const isError = form.errors.category && form.touched.category; // Check validation error
+                     return (
+                       <Form.Group className="mb-2">
+                         <Form.Label>
+                           {t('Category')} <span className={`required_icon ${isError ? 'required' : ''}`}>*</span>
+                         </Form.Label>
+                         <Form.Select
+                           value={field.value || ''}
+                           onChange={(e) => {
+                             form.setFieldValue(field.name, e.target.value);
+                           }}
+                           onBlur={() => form.setFieldTouched(field.name, true)}
+                           name='catagory'
+                           className={isError ? 'is-invalid' : 'form-control'}
+                         >
+                           <option value="">{t('Please Select Category')}</option>
+                           {categories &&
+                             categories.map((category: any, index: number) => (
+                               <React.Fragment key={index}>
+                                 {category && category.name && !category.isChild && (
+                                   <option value={category.id}>{category.name}</option>
+                                 )}
+                                 {categories
+                                   .filter(
+                                     (subcategory: any) =>
+                                       subcategory.isChild &&
+                                       subcategory.parentCategoryId?.includes(category.id)
+                                   )
+                                   .map((subcategory: any, subIndex: number) => (
+                                     <option key={subIndex} value={subcategory.id}>
+                                       &nbsp;&nbsp;— {subcategory.name}
+                                     </option>
+                                   ))}
+                               </React.Fragment>
+                             ))}
+                         </Form.Select>
+                         {isError && <div className="text-danger">{form.errors.category}</div>}
+                       </Form.Group>
+                     );
+                   }}
+                 </Field>
 
                   <div className='text-danger mb-2'>
                     <ErrorMessage

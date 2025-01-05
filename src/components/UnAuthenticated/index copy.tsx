@@ -56,9 +56,6 @@ import { formatLikesCount } from '@/components/utils/utcToLocal';
 import useSearchParamsHook from '@/components/utils/searchParamsHook';
 import TrendingPressRelease from '@/components/TrendingArticleSide/TrendingPressRelease';
 import HomeMBSlider from '@/components/mobileStoriesSlider/HomeMBSlider';
-import CompanyListSidebar from '@/components/companyListSidebar/CompanyListSidebar';
-import tag from '@/assets/Img/Icons/diamond.gif';
-import { MessageSquare, Share, ThumbsUp, Info } from 'lucide-react'
 import {
   AI_CATEGORY_ID,
   ALL_ARTICLES,
@@ -78,7 +75,7 @@ import {
   WEB3_CATEGORY_ID,
 } from '@/constant/routes';
 import TopEventsSlider from '@/components/EntryListNewHome/EventSliderHome';
-import HomeLikendComponent from '@/components/HomeLinkendComponent/Homelinkendcomponent';
+
 export default function UnAuthenticated() {
   const { t, changeLocale } = useLocalization(LANG);
   const router = useRouter();
@@ -362,13 +359,151 @@ export default function UnAuthenticated() {
           <Head>
             <title>Hi</title>
           </Head>
-          <Row><HomeLikendComponent /></Row>
-          <div className='section pt-4 scroll-anime anime-down pmyb-0' id='news'>
+          <div className='section pmt-0' id='top'>
+            <Row>
+              <div className='col-xl-12 col-lg-12 col-md-12'>
+                <ins
+                  className='adsbygoogle'
+                  data-ad-layout='in-article'
+                  data-ad-format='fluid'
+                  data-ad-client='ca-pub-8110270797239445'
+                  data-ad-slot='3863906898'
+                  style={{ display: 'block', textAlign: 'center' }}
+                />
+                <Link
+                  href='https://www.bitget.com/'
+                  className='img-pnl new'
+                  style={{
+                    aspectRatio: ADDS_IMAGE_RATIO,
+                  }}
+                >
+                  <Image
+                    src={
+                      'https://blockza.io/wp-content/uploads/2024/07/promotess-img-.png'
+                    }
+                    width={100}
+                    height={100}
+                    style={{ width: '100%', maxHeight: 'unset' }}
+                    alt={'BlockZa'}
+                  />
+                </Link>
+              </div>
+              <Col xl='6' lg='12' md='12'>
+                <div className='anime-left bdrd-pnl featured-slid-cntnr'>
+                  <Row>
+                    <Col
+                      id='campaign'
+                      xl='12'
+                      lg='12'
+                      md='12'
+                      className='heding'
+                    >
+                      <h4>
+                        <Image src={stars} alt='Hot' />
+                        {t('Featured Campaigns')}{' '}
+                      </h4>
+                      <div className='spacer-20' />
+                    </Col>
+                    <FeaturedSlider isHome={true} />
+                    <div className='full-div mobile-view-display bordery text-right'>
+                      <Link className='red-anchor' href='#'>
+                        {t('View All Feature Campaigns')}{' '}
+                        <i className='fa fa-angle-right' />
+                      </Link>
+                    </div>
+                  </Row>
+                </div>
+              </Col>
+              <Col sm='12' className='mobile-view-display'>
+                <Row>
+                  <Col xl='12' lg='12' className='heding'>
+                    <div className='spacer-20' />
+                    <Dropdown
+                      onClick={() => setHideTrendinpost((pre: any) => !pre)}
+                    >
+                      <Dropdown.Toggle
+                        variant='success'
+                        className='fill'
+                        id='dropdown-basic'
+                      >
+                        {t('Trending')}{' '}
+                        {HideTrendinpost ? (
+                          <i className='fa fa-angle-down' />
+                        ) : (
+                          <i className='fa fa-angle-right' />
+                        )}
+                      </Dropdown.Toggle>
+                      {/* 
+                      <Dropdown.Menu>
+                        <Dropdown.Item href='#/action-1'>
+                          Trending
+                        </Dropdown.Item>
+                        <Dropdown.Item href='#/action-2'>
+                          Trending
+                        </Dropdown.Item>
+                      </Dropdown.Menu> */}
+                    </Dropdown>
+                    <div className='spacer-20' />
+                  </Col>
+                  <Col
+                    className={
+                      HideTrendinpost ? 'content show' : 'content hide'
+                    }
+                  >
+                    <HomeMBSlider isArticle={true} />
+                  </Col>
+                  {/* {HideTrendinpost && <TrendingArticleSide isArticle={true} />} */}
+                  <div className='full-div mobile-view-display bordery  text-right'>
+                    <Link className='red-anchor' href='#'>
+                      {t('View All News')} <i className='fa fa-angle-right' />
+                    </Link>
+                  </div>
+                </Row>
+              </Col>
+              <Col xl='6' lg='12' md='12'>
+                <div className='anime-right press-slid-cntnr'>
+                  <Row>
+                    <Col
+                      xl='12'
+                      lg='12'
+                      md='12'
+                      className='heding'
+                      id='pressRelease'
+                    >
+                      <h2>
+                        <Image src={press} alt='Hot' /> {t('Press Release')}
+                      </h2>
+                      <div className='spacer-20' />
+                    </Col>
+                    <ReleaseSlider isHome={true} />
+                    <div className='full-div mobile-view-display bordery  text-right'>
+                      <Link className='red-anchor' href='#'>
+                        {t('View All Press Releases')}{' '}
+                        <i className='fa fa-angle-right' />
+                      </Link>
+                    </div>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </div>
+          <div className='section scroll-anime anime-down pmyb-0' id='news'>
             <Row>
               <Col xl='12' lg='12' md='12' sm='12' className='web-view-display'>
                 <div className='spacer-20' />
               </Col>
-              
+              <Col
+                xl='12'
+                lg='12'
+                md='12'
+                sm='12'
+                className='heding web-view-display'
+              >
+                <h2>
+                  <Image src={iconrss} alt='Hot' /> {t('Blockza Feed')}
+                </h2>
+              </Col>
+
               <Col
                 xxl='3'
                 xl='12'
@@ -378,12 +513,43 @@ export default function UnAuthenticated() {
                 className='web-view-display'
               >
                 <Row>
-                <h4 title="Trending section shows the most popular content and users" className='fw-bold'>
-                      <Image  style={{ marginRight: "0px", maxWidth: "25px" }}  src={tag} alt='Bard' /> {t('Trending')}{' '} <span className='ps-1'><Info size={20} /></span>
-                    </h4>
-                    <div className='spacer-10' />
+                  <Col xl='12' lg='12' className='heding'>
+                    <div className='spacer-20' />
+                    <Dropdown
+                      onClick={() => setHideTrendinpost((pre: any) => !pre)}
+                    >
+                      <Dropdown.Toggle
+                        variant='success'
+                        className='fill'
+                        id='dropdown-basic'
+                      >
+                        {t('Trending')}{' '}
+                        {HideTrendinpost ? (
+                          <i className='fa fa-angle-down' />
+                        ) : (
+                          <i className='fa fa-angle-right' />
+                        )}
+                      </Dropdown.Toggle>
 
-                  <CompanyListSidebar />
+                      {/* <Dropdown.Menu>
+                        <Dropdown.Item href='#/action-1'>
+                          Top Stories
+                        </Dropdown.Item>
+                        <Dropdown.Item href='#/action-2'>
+                          Top Stories
+                        </Dropdown.Item>
+                      </Dropdown.Menu> */}
+                    </Dropdown>
+                    <div className='spacer-20' />
+                  </Col>
+
+                  <span
+                    className={
+                      HideTrendinpost ? 'content show' : 'content hide'
+                    }
+                  >
+                    <TrendingPressRelease isArticle={true} />
+                  </span>
                 </Row>
               </Col>
               <Col
@@ -884,108 +1050,7 @@ latestEntry[1]?.directory[0]?.isStatic
               </div>
             </Row>
           </div>
-          <div className='section pmt-0 pt-4' id='top'>
-            <Row>
-              
-              <Col xl='6' lg='12' md='12'>
-                <div className='anime-left bdrd-pnl featured-slid-cntnr'>
-                  <Row>
-                    <Col
-                      id='campaign'
-                      xl='12'
-                      lg='12'
-                      md='12'
-                      className='heding'
-                    >
-                      <h4>
-                        <Image src={stars} alt='Hot' />
-                        {t('Featured Campaigns')}{' '}
-                      </h4>
-                      <div className='spacer-20' />
-                    </Col>
-                    <FeaturedSlider isHome={true} />
-                    <div className='full-div mobile-view-display bordery text-right'>
-                      <Link className='red-anchor' href='#'>
-                        {t('View All Feature Campaigns')}{' '}
-                        <i className='fa fa-angle-right' />
-                      </Link>
-                    </div>
-                  </Row>
-                </div>
-              </Col>
-              <Col sm='12' className='mobile-view-display'>
-                <Row>
-                  <Col xl='12' lg='12' className='heding'>
-                    <div className='spacer-20' />
-                    <Dropdown
-                      onClick={() => setHideTrendinpost((pre: any) => !pre)}
-                    >
-                      <Dropdown.Toggle
-                        variant='success'
-                        className='fill'
-                        id='dropdown-basic'
-                      >
-                        {t('Trending')}{' '}
-                        {HideTrendinpost ? (
-                          <i className='fa fa-angle-down' />
-                        ) : (
-                          <i className='fa fa-angle-right' />
-                        )}
-                      </Dropdown.Toggle>
-                      {/* 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>
-                          Trending
-                        </Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>
-                          Trending
-                        </Dropdown.Item>
-                      </Dropdown.Menu> */}
-                    </Dropdown>
-                    <div className='spacer-20' />
-                  </Col>
-                  <Col
-                    className={
-                      HideTrendinpost ? 'content show' : 'content hide'
-                    }
-                  >
-                    <HomeMBSlider isArticle={true} />
-                  </Col>
-                  {/* {HideTrendinpost && <TrendingArticleSide isArticle={true} />} */}
-                  <div className='full-div mobile-view-display bordery  text-right'>
-                    <Link className='red-anchor' href='#'>
-                      {t('View All News')} <i className='fa fa-angle-right' />
-                    </Link>
-                  </div>
-                </Row>
-              </Col>
-              <Col xl='6' lg='12' md='12'>
-                <div className='anime-right press-slid-cntnr'>
-                  <Row>
-                    <Col
-                      xl='12'
-                      lg='12'
-                      md='12'
-                      className='heding'
-                      id='pressRelease'
-                    >
-                      <h2>
-                        <Image src={press} alt='Hot' /> {t('Press Release')}
-                      </h2>
-                      <div className='spacer-20' />
-                    </Col>
-                    <ReleaseSlider isHome={true} />
-                    <div className='full-div mobile-view-display bordery  text-right'>
-                      <Link className='red-anchor' href='#'>
-                        {t('View All Press Releases')}{' '}
-                        <i className='fa fa-angle-right' />
-                      </Link>
-                    </div>
-                  </Row>
-                </div>
-              </Col>
-            </Row>
-          </div>
+
           <div className='section scroll-anime anime-down pmyb-0' id='news'>
             <Row>
               <EntryListNewHome
@@ -1021,7 +1086,7 @@ latestEntry[1]?.directory[0]?.isStatic
                 xl='12'
                 lg='12'
                 md='12'
-                className='heding pt-4'
+                className='heding'
                 id='event'
               >
                 <div className='custome-flex-div'>
@@ -1313,14 +1378,13 @@ latestEntry[1]?.directory[0]?.isStatic
           <div className='section scroll-anime stories-container pb-4'>
             <Row>
               <Col xl='12' lg='12' md='12' sm='12' className='heding'>
-                <h4 className='Webstories fw-bold'>
+                <h2 className='Webstories'>
                   <Image src={hot} alt='Hot' />
                   {t('Top Webstories')}
-                </h4>
+                </h2>
                 <div className='spacer-10' />
               </Col>
-              <div className='webstor'>
-              <WebstoriesSlider /></div>
+              <WebstoriesSlider />
             </Row>
           </div>
         </div>

@@ -1015,7 +1015,9 @@
 }
 
 main .main-inner.admin-main {
-  padding-top: 50px;
+    padding-top:50px;
+ width:calc(100% - 240px);
+ margin-left:240px;
 
   h1 {
     color: rgba(36, 41, 47, 1);
