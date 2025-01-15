@@ -6,6 +6,7 @@ import logger from '@/lib/logger';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
 import { makeEntryActor } from '@/dfx/service/actor-locator';
+import Web3CategoryLink from "@/components/Web3catLinks/web3catlink";
 import {
   DIRECTORY_DINAMIC_PATH,
   DIRECTORY_STATIC_PATH,
@@ -247,22 +248,29 @@ export default function Web3ListbyCategoryId({
 <div className="card">
     {/* Company Banner */}
     <Link
-                  href='#'
-                  onClick={(e) => {
-                    e.preventDefault();
-
-                    openArticleLink(
-                      entry[1].isStatic
-                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-                        : `${
-                            entry.length != 0
-                              ? DIRECTORY_DINAMIC_PATH + entry[0]
-                              : DIRECTORY_DINAMIC_PATH + '#'
-                          }`
-                    );
-                  }}
-                  className='Product-post direc'
-                >
+  href={
+    entry[1].isStatic
+      ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+      : `${
+          entry.length !== 0
+            ? DIRECTORY_DINAMIC_PATH + entry[0]
+            : DIRECTORY_DINAMIC_PATH + '#'
+        }`
+  }
+  onClick={(e) => {
+    e.preventDefault();
+    openArticleLink(
+      entry[1].isStatic
+        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+        : `${
+            entry.length !== 0
+              ? DIRECTORY_DINAMIC_PATH + entry[0]
+              : DIRECTORY_DINAMIC_PATH + '#'
+          }`
+    );
+  }}
+  className="Product-post direc"
+>
     <div className="card-image">
       <Image
         src={entry[1]?.companyBanner ?? tempimg}
@@ -291,20 +299,9 @@ export default function Web3ListbyCategoryId({
         .map(([name, id]) => (
           <li key={id}>
             {/* Add a Link for each subcategory */}
-            <Link
-              href={`/web3-directory/?category=${id}`}
-              className="inline-flex items-center shadow border border-solid rounded px-2 py-1 leading-3 text-decoration-none"
-              style={{
-                borderColor: "#1e5fb3", // Border color
-                color: "#1e5fb3", // Text color
-                borderRadius: "4px", // Slight rounding
-                textAlign: "center",
-                background: "#ffc1073b", // Semi-transparent yellow background
-                fontSize: "12px", // Font size
-              }}
-            >
+            <Web3CategoryLink categoryId={id}>
               {name}
-            </Link>
+              </Web3CategoryLink>
           </li>
         ))}
     </ul>
@@ -324,22 +321,29 @@ export default function Web3ListbyCategoryId({
         </div>
         <div className="company-details">
         <Link
-                  href='#'
-                  onClick={(e) => {
-                    e.preventDefault();
-
-                    openArticleLink(
-                      entry[1].isStatic
-                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-                        : `${
-                            entry.length != 0
-                              ? DIRECTORY_DINAMIC_PATH + entry[0]
-                              : DIRECTORY_DINAMIC_PATH + '#'
-                          }`
-                    );
-                  }}
-                  className='Product-post direc'
-                ><h3 className="company-name">
+  href={
+    entry[1].isStatic
+      ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+      : `${
+          entry.length !== 0
+            ? DIRECTORY_DINAMIC_PATH + entry[0]
+            : DIRECTORY_DINAMIC_PATH + '#'
+        }`
+  }
+  onClick={(e) => {
+    e.preventDefault();
+    openArticleLink(
+      entry[1].isStatic
+        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+        : `${
+            entry.length !== 0
+              ? DIRECTORY_DINAMIC_PATH + entry[0]
+              : DIRECTORY_DINAMIC_PATH + '#'
+          }`
+    );
+  }}
+  className="Product-post direc"
+><h3 className="company-name">
             {entry[1]?.company.length > 15
               ? `${entry[1]?.company.slice(0, 15)}...`
               : entry[1]?.company ?? ""}

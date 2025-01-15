@@ -827,7 +827,7 @@ export default function Web3DirectoryDetail({
               <div className='' />
               <div className=''>
                     <h3 title="Trending section shows the most popular content and users" className='text-primary'>
-                      <Image  style={{ marginRight: "0px", maxWidth: "35px" }}  src={tag} alt='Bard' /> {t('Trending')}{' '} <span className='ps-1'><Info size={20} /></span>
+                      <Image  style={{ marginRight: "0px", maxWidth: "35px" }}  src={tag} alt='Bard' /> {t('Trending Companies')}{' '} <span className='ps-1'><Info size={20} /></span>
                     </h3>
                     <div className='spacer-10' />
 

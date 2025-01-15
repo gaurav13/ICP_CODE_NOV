@@ -57,13 +57,13 @@ function ConfirmationModel({
       centered
     >
       <Modal.Body>
-        <Button
+        <div style={{ position: 'absolute', right: '13px', top: '8px' }}><Button
           disabled={auth.isLoading}
           className='custome-close-btn newDesignCloseBTn '
           onClick={handleClose}
         >
           <i className='fa fa-close ' />
-        </Button>
+        </Button></div>
         <h2>Login with</h2>
         <h4>
           Use your email or wallet services to continue with Blockza (it’s

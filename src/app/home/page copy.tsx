@@ -4,61 +4,39 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
-import { FaEnvelope, FaLinkedin, FaTwitter, FaChevronLeft, FaChevronRight,FaBullhorn,FaUserTie,FaCalendarAlt    } from "react-icons/fa";
-import { GrUserExpert } from "react-icons/gr";
+import { FaEnvelope, FaLinkedin, FaTwitter, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../../styles/linkenddata.css";
 import "../../styles/homeslidedata.css";
-import { makeEntryActor } from '@/dfx/service/actor-locator';
 import DirectoryDetailComponent from "@/components/DirectoryHomedetail/directoryhomedetail";
 import DirectoryModelPopup from "@/components/DirectoryModelPopup/DirectoryModelPopup";
-import HomeNews from "@/components/HomeNewsComponent/homenews";
-import CompanyListSidebar from '@/components/companyListSidebar/CompanyListSidebar';
-import tag from '@/assets/Img/Icons/diamond.gif';
-import { MessageSquare, Share, ThumbsUp, Info } from 'lucide-react'
-import { LANG } from '@/constant/language';
-import Image from 'next/image';
-import Link from 'next/link';
-import press from '@/assets/Img/Icons/icon-press-release.png';
-import TrendingPressRelease from '@/components/TrendingArticleSide/TrendingPressRelease';
-import useLocalization from '@/lib/UseLocalization';
-import iconrss from '@/assets/Img/Icons/icon-rss.png';
 
+
+type Article = {
+  name: string;
+  designation: string;
+  profile_link: string;
+  email: string;
+  profile_image: string;
+  twitter: string;
+  icp_id: string;
+};
 
 const LinkndindataComponent = () => {
-  type Article = {
-    name: string;
-    designation: string;
-    profile_link: string;
-    email: string;
-    profile_image: string;
-    twitter: string;
-    icp_id: string;
-    expert_price: string;
-    platform_price: string;
-  };
-  
-  
   const [articles, setArticles] = useState<Article[]>([]);
   const [isError, setIsError] = useState<boolean>(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [selectedCompanyName, setSelectedCompanyName] = useState<string | null>(null);
-  const { t, changeLocale } = useLocalization(LANG);
-  const [HideTrendinpost, setHideTrendinpost] = useState<any>(true);
-  const [selectedExpertPrice, setSelectedExpertPrice] = useState<string | null>(null);
-  const [selectedPlatformPrice, setSelectedPlatformPrice] = useState<string | null>(null);
-  const handleShowContactModal = (companyName: string, expertPrice: string, platformPrice: string) => {
+
+  const handleShowContactModal = (companyName: string) => {
     setSelectedCompanyName(companyName);
-    setSelectedExpertPrice(expertPrice || "$100"); // Default value if not provided
-    setSelectedPlatformPrice(platformPrice || "$50"); // Default value if not provided
     setShowContactModal(true);
   };
-  
 
   const handleCloseContactModal = () => {
     setShowContactModal(false);
     setSelectedCompanyName(null);
   };
-  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -84,8 +62,8 @@ const LinkndindataComponent = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll:3,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     arrows: true, // Ensure arrows are enabled
     prevArrow: (
       <button className="slick-prev">
@@ -114,34 +92,25 @@ const LinkndindataComponent = () => {
       },
     ],
   };
-
+ 
   if (isError || articles.length === 0) {
     return <div>No data available.</div>;
   }
 
   return (
-    
-        
-          <div className="row">
-          <div className="col-md-4 news-section">
-          <h4 className="fw-bold"><FaBullhorn  size={20} color="#1e5fb3" />&nbsp;Latest News</h4>
-          <HomeNews />
-            </div>  
-          <div className="col-md-8 profile-section">
+    <main id="main">
+      <div className="main-inner">
+        <div className="container">
           {/* Carousel Header */}
-          <div className="d-flex justify-content-between align-items-center mb-3">
-            <h4 className="text-2xl font-bold fw-bold "> <FaUserTie  size={20} color="#1e5fb3" />&nbsp;Top Experts. Access to the best has never been easier
-            </h4>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <h2 className="text-2xl font-bold">Top Experts. Access to the best has never been easier</h2>
           </div>
           {/* Slider */}
-          <div className="slider-home-te">
           <Slider {...sliderSettings}>
             {articles.map((article, index) => (
-             
               <div key={index} className="px-2">
-                 <div className="card-container">
                 <div className="card custom-card mx-auto">
-                  <div className="card-body text-start">
+                  <div className="card-body text-center">
                     {/* Profile Image */}
                     <div className="hover-card">
                       <div className="image-container">
@@ -151,17 +120,15 @@ const LinkndindataComponent = () => {
                           className="profile-image"
                         />
                         <div className="overlay">
-                        <button
-  className="book-button"
-  onClick={(e) => {
-    e.preventDefault();
-    console.log(article); 
-    handleShowContactModal(article.name, article.expert_price,article.platform_price);
-  }}
->
-  Book Meeting
-</button>
-
+                          <button
+                            className="book-button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleShowContactModal(article.name);
+                            }}
+                          >
+                            Book Meeting
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -172,8 +139,7 @@ const LinkndindataComponent = () => {
                         href={`https://pro.blockza.io/directory/${article.icp_id}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-decoration-none" style={{
-                          color: "#000"}}
+                        className="text-decoration-none"
                       >
                         {article.name}
                       </a>
@@ -181,16 +147,16 @@ const LinkndindataComponent = () => {
                     <span className="text-muted">{article.designation}</span>
 
                     {/* Social Media Links */}
-                    <div className="d-flex gap-2 mt-2">
+                    <div className="d-flex justify-content-center gap-3 mt-2">
                       {article.email && (
                         <a
-                          href={`mailto:support@blockza.io`}
+                          href={`mailto:${article.email}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="icon-link"
                         >
                           <div className="circular-socialicon">
-                            <FaEnvelope size={14} color="#0a0a0a" />
+                            <FaEnvelope size={14} color="#1e5fb3" />
                           </div>
                         </a>
                       )}
@@ -202,7 +168,7 @@ const LinkndindataComponent = () => {
                           className="icon-link"
                         >
                           <div className="circular-socialicon">
-                            <FaLinkedin size={14} color="#0a0a0a" />
+                            <FaLinkedin size={14} color="#1e5fb3" />
                           </div>
                         </a>
                       )}
@@ -214,7 +180,7 @@ const LinkndindataComponent = () => {
                           className="icon-link"
                         >
                           <div className="circular-socialicon">
-                            <FaTwitter size={14} color="#0a0a0a" />
+                            <FaTwitter size={14} color="#1e5fb3" />
                           </div>
                         </a>
                       )}
@@ -224,30 +190,21 @@ const LinkndindataComponent = () => {
                   </div>
                 </div>
               </div>
-              </div>
+
             ))}
           </Slider>
-          </div>
-          <div className="text-center linkend-banner-image"><img src="https://blockza.io/wp-content/uploads/2025/01/blockza-services-banner.png"/></div>
-          </div>
-          {selectedCompanyName && (
-  <DirectoryModelPopup
-    show={showContactModal}
-    handleClose={handleCloseContactModal}
-    companyName={selectedCompanyName}
-    expertPrice={selectedExpertPrice}
-    platformPrice={selectedPlatformPrice}
-  />
-)}
+        </div>
+      </div>
 
-          </div>
-      
-       
-      
-
-     
-     
-   
+      {/* Directory Modal Popup */}
+      {selectedCompanyName && (
+        <DirectoryModelPopup
+          show={showContactModal}
+          handleClose={handleCloseContactModal}
+          companyName={selectedCompanyName}
+        />
+      )}
+    </main>
   );
 };
 

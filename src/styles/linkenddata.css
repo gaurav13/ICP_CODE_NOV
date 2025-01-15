@@ -31,7 +31,7 @@
   
   .profile-image {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover; /* Ensures the image fills the box without distortion */
     display: block;
   }
@@ -133,14 +133,16 @@
     margin-top: 10px;
   }
   .circular-socialicon {
-    width: 25px; /* Adjust as needed */
+    width: 25px;
     height: 25px;
-    border-radius: 50%; /* Makes it circular */
-    background-color: #fff; /* Light background color */
+    background-color: #fff !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
-    border: 2px solid #1e5fb3; /* Border with same color as icon */
+    color: #0a0a0a;
+    font-size: 22px;
+    border-radius: 50%;
+    opacity: .6;
+    border: 1px solid #000;
   }
   

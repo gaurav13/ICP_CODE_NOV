@@ -1,14 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  FaEnvelope,
-  FaLinkedin,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import "../../styles/linkenddata.css";
 import DirectoryModelPopup from "@/components/DirectoryModelPopup/DirectoryModelPopup";
+import article from "@/app/web3-directory/oldPage";
 
 type Article = {
   name: string;
@@ -17,6 +14,8 @@ type Article = {
   email: string;
   profile_image: string;
   twitter: string;
+  expert_price: string;
+  platform_price: string;
 };
 
 const LinkndindataComponent = () => {
@@ -28,15 +27,25 @@ const LinkndindataComponent = () => {
   // Modal state
   const [showContactModal, setShowContactModal] = useState(false);
   const [selectedCompanyName, setSelectedCompanyName] = useState<string | null>(null);
+  const [selectedExpertPrice, setSelectedExpertPrice] = useState<string | null>(null);
+  const [selectedPlatformPrice, setSelectedPlatformPrice] = useState<string | null>(null);
 
-  const handleShowContactModal = (companyName: string) => {
+  const handleShowContactModal = (
+    companyName: string,
+    expertPrice: string,
+    platformPrice: string
+  ) => {
     setSelectedCompanyName(companyName); // Set the selected company name
+    setSelectedExpertPrice(expertPrice); // Set the expert price
+    setSelectedPlatformPrice(platformPrice); // Set the platform price
     setShowContactModal(true);
   };
 
   const handleCloseContactModal = () => {
     setShowContactModal(false);
     setSelectedCompanyName(null); // Clear the selected company name
+    setSelectedExpertPrice(null); // Clear the expert price
+    setSelectedPlatformPrice(null); // Clear the platform price
   };
 
   const pathname = usePathname();
@@ -88,75 +97,78 @@ const LinkndindataComponent = () => {
       <div className="row justify-content-center">
         {articles.map((article, index) => (
           <div key={index} className="col-md-4 mb-4 d-flex">
-          <div className="card custom-card flex-grow-1 d-flex flex-column">
-            <div className="card-body text-center d-flex flex-column">
-              {/* Profile Image */}
-              <div className="hover-card">
-                <div className="image-container">
-                  <img
-                    src={article.profile_image}
-                    alt={`${article.name}'s profile`}
-                    className="profile-image"
-                  />
-                  <div className="overlay">
+            <div className="card custom-card flex-grow-1 d-flex flex-column">
+              <div className="card-body text-center d-flex flex-column">
+                {/* Profile Image */}
+                <div className="hover-card">
+                  <div className="image-container">
+                    <img
+                      src={article.profile_image}
+                      alt={`${article.name}'s profile`}
+                      className="profile-image"
+                    />
+                    <div className="overlay">
                     <button
-                      className="book-button"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleShowContactModal(article.name); // Pass the clicked company's name
-                      }}
-                    >
-                      Book Meeting
-                    </button>
+  className="book-button"
+  onClick={(e) => {
+    e.preventDefault();
+    console.log(article); // Check article content here
+    handleShowContactModal(article.name, article.expert_price, article.platform_price);
+  }}
+>
+  Book Meeting
+</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-        
-              {/* Name and Designation */}
-              <h6 className="card-title fw-bold mb-1">{article.name}</h6>
-              <span className="text-muted">{article.designation}</span>
-        
-              {/* Spacer to push content to the top */}
-              <div className="flex-grow-1"></div>
-        
-              {/* Social Media Links */}
-              <div className="d-flex justify-content-center gap-3 mb-2">
-                <a
-                  href="mailto:example@example.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="icon-link"
-                >
-                   <div className="circular-socialicon">
-      <FaEnvelope size={14} color="#1e5fb3" />
-    </div>
-                </a>
-                {article.profile_link && (
+
+                {/* Name and Designation */}
+                <h6 className="card-title fw-bold mb-1">{article.name}</h6>
+                <span className="text-muted">{article.designation}</span>
+
+                {/* Spacer to push content to the top */}
+                <div className="flex-grow-1"></div>
+
+                {/* Social Media Links */}
+                <div className="d-flex justify-content-center gap-3 mb-2">
                   <a
-                    href={article.profile_link}
+                    href="mailto:support@blockza.io"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="icon-link"
                   >
                     <div className="circular-socialicon">
-                    <FaLinkedin size={14} color="#1e5fb3" /></div>
+                      <FaEnvelope size={14} color="#0a0a0a" />
+                    </div>
                   </a>
-                )}
-                {article.twitter && (
-                  <a
-                    href={article.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="icon-link"
-                  >
-                    <div className="circular-socialicon"><FaTwitter   size={14} color="#1e5fb3" /></div>
-                  </a>
-                )}
+                  {article.profile_link && (
+                    <a
+                      href={article.profile_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="icon-link"
+                    >
+                      <div className="circular-socialicon">
+                        <FaLinkedin size={14} color="#0a0a0a" />
+                      </div>
+                    </a>
+                  )}
+                  {article.twitter && (
+                    <a
+                      href={article.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="icon-link"
+                    >
+                      <div className="circular-socialicon">
+                        <FaTwitter size={14} color="#0a0a0a" />
+                      </div>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
         ))}
       </div>
 
@@ -165,7 +177,9 @@ const LinkndindataComponent = () => {
         <DirectoryModelPopup
           show={showContactModal}
           handleClose={handleCloseContactModal}
-          companyName={selectedCompanyName} // Pass the selected company name dynamically
+          companyName={selectedCompanyName}
+          expertPrice={selectedExpertPrice}
+          platformPrice={selectedPlatformPrice}
         />
       )}
     </div>

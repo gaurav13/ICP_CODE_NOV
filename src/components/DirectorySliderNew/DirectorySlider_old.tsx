@@ -10,9 +10,6 @@ import { makeEntryActor } from "@/dfx/service/actor-locator";
 import { formatLikesCount } from '@/components/utils/utcToLocal';
 import useLocalization from '@/lib/UseLocalization';
 import { fetchSubcategories } from '@/components/SubcategoryFetcher/subcategoryfetcher';
-import Web3CategoryLink from "@/components/Web3catLinks/web3catlink";
-
-
 import { LANG } from '@/constant/language';
 import {
   DIRECTORY_DINAMIC_PATH,
@@ -116,8 +113,8 @@ export default React.memo(function DirectorySlider({
       {
         breakpoint: 575,
         settings: {
-          slidesToShow:1,
-          slidesToScroll:1,
+          slidesToShow: 1,
+          slidesToScroll: 1,
           infinite: false,
         },
       },
@@ -129,7 +126,7 @@ export default React.memo(function DirectorySlider({
   };
 
   const { t, changeLocale } = useLocalization(LANG);
-  
+
   useEffect(() => {
     console.log("Category ID Manu:", categoryId); // Debug to verify the value of categoryId
     // Use categoryId for any logic or API calls as needed
@@ -138,69 +135,82 @@ export default React.memo(function DirectorySlider({
   useEffect(() => {
     const fetchSubcategories = async (categoryId: string) => {
       try {
-        // Check localStorage for cached data
-        const cacheKey = `subcategories_${categoryId}`;
-        const cachedData = localStorage.getItem(cacheKey);
-  
-        if (cachedData) {
-          console.log("Using cached subcategories:", JSON.parse(cachedData));
-          return JSON.parse(cachedData); // Use cached data
-        }
-  
-        // If no cache, fetch fresh data
         console.log("Fetching subcategories for categoryId:", categoryId);
-  
+
+        // Initialize the entry actor
         const defaultEntryActor = makeEntryActor({ agentOptions: {} });
-        const resp = await defaultEntryActor.get_list_categories("", 0, 100, false);
-  
+
+        // Fetch the category data
+        const resp = await defaultEntryActor.get_list_categories(
+          "", // Search query (leave empty if not needed)
+          0,  // Start index (pagination)
+          100, // Length (number of items to fetch)
+          false // Include all categories, not just parent categories
+        );
+
+        console.log("Raw categories response:", resp);
+
+        // Find the parent category
         const allCategories = resp.entries || [];
-        const parentCategory = allCategories.find(([id]: [string, any]) => id === categoryId);
-  
+        const parentCategory = allCategories.find(
+          ([id]: [string, any]) => id === categoryId
+        );
+
         if (!parentCategory) {
           console.warn(`Parent category with ID ${categoryId} not found.`);
           return {};
         }
-  
+
+        console.log(`Parent category found:`, parentCategory);
+
         const children = parentCategory[1].children || [];
+
+        // Check if `children` is empty
         if (children.length === 0) {
           console.warn(`No subcategories available for categoryId: ${categoryId}`);
           return {};
         }
-  
-        const flattenedChildren = children.flat();
+
+        console.log("Subcategory IDs:", children);
+
+        // Map subcategory IDs to their corresponding data
+        const flattenedChildren = children.flat(); // Flatten the array to handle nested IDs
+
         const subcategories = flattenedChildren.reduce(
           (acc: { [key: string]: string }, subcategoryId: string) => {
             const subcategory = allCategories.find(
               ([id]: [string, any]) => String(id) === String(subcategoryId)
             );
+        
             if (subcategory) {
               acc[subcategory[1].name || "Unnamed Subcategory"] = subcategoryId;
+            } else {
+              console.warn(
+                `Subcategory with ID ${subcategoryId} not found in allCategories.`
+              );
             }
+        
             return acc;
           },
           {}
         );
-  
-        console.log("Fetched subcategories:", subcategories);
-  
-        // Save to cache
-        localStorage.setItem(cacheKey, JSON.stringify(subcategories));
-        console.log("Subcategories cached with key:", cacheKey);
-  
+        
+
+        console.log("Formatted Subcategories JSON:", subcategories);
+
         return subcategories;
       } catch (error) {
         console.error("Error fetching subcategories:", error);
         return {};
       }
     };
-  
+
     if (categoryId) {
       fetchSubcategories(categoryId).then((fetchedSubcategories) => {
         setSubcategories(fetchedSubcategories);
       });
     }
   }, [categoryId]);
-   
   const slugify = (name: string) => {
     return name.toLowerCase().replace(/\s+/g, '_').replace(/[^\w_]/g, '');
   };
@@ -341,29 +351,22 @@ export default React.memo(function DirectorySlider({
                   <div className="card">
     {/* Company Banner */}
     <Link
-  href={
-    entry[1].isStatic
-      ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-      : `${
-          entry.length !== 0
-            ? DIRECTORY_DINAMIC_PATH + entry[0]
-            : DIRECTORY_DINAMIC_PATH + '#'
-        }`
-  }
-  onClick={(e) => {
-    e.preventDefault();
-    openArticleLink(
-      entry[1].isStatic
-        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-        : `${
-            entry.length !== 0
-              ? DIRECTORY_DINAMIC_PATH + entry[0]
-              : DIRECTORY_DINAMIC_PATH + '#'
-          }`
-    );
-  }}
-  className="Product-post direc"
->
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    openArticleLink(
+                      entry[1].isStatic
+                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+                        : `${
+                            entry.length != 0
+                              ? DIRECTORY_DINAMIC_PATH + entry[0]
+                              : DIRECTORY_DINAMIC_PATH + '#'
+                          }`
+                    );
+                  }}
+                  className='Product-post direc'
+                >
     <div className="card-image">
       <Image
         src={entry[1]?.companyBanner ?? tempimg}
@@ -391,12 +394,21 @@ export default React.memo(function DirectorySlider({
         .filter(([_, id]) => entry[1]?.catagory === id) // Filter condition
         .map(([name, id]) => (
           <li key={id}>
-            
             {/* Add a Link for each subcategory ${slugify(name)} */}
-            <Web3CategoryLink categoryId={id}>
-
+            <Link
+              href={`/web3-directory/?category=${id}`}
+              className="inline-flex items-center shadow border border-solid rounded px-2 py-1 leading-3 text-decoration-none"
+              style={{
+                borderColor: "#1e5fb3", // Border color
+                color: "#1e5fb3", // Text color
+                borderRadius: "4px", // Slight rounding
+                textAlign: "center",
+                background: "#ffc1073b", // Semi-transparent yellow background
+                fontSize: "12px", // Font size
+              }}
+            >
               {name}
-            </Web3CategoryLink>
+            </Link>
           </li>
         ))}
     </ul>
@@ -416,29 +428,22 @@ export default React.memo(function DirectorySlider({
         </div>
         <div className="company-details">
         <Link
-  href={
-    entry[1].isStatic
-      ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-      : `${
-          entry.length !== 0
-            ? DIRECTORY_DINAMIC_PATH + entry[0]
-            : DIRECTORY_DINAMIC_PATH + '#'
-        }`
-  }
-  onClick={(e) => {
-    e.preventDefault();
-    openArticleLink(
-      entry[1].isStatic
-        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
-        : `${
-            entry.length !== 0
-              ? DIRECTORY_DINAMIC_PATH + entry[0]
-              : DIRECTORY_DINAMIC_PATH + '#'
-          }`
-    );
-  }}
-  className="Product-post direc"
-><h3 className="company-name">
+                  href='#'
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    openArticleLink(
+                      entry[1].isStatic
+                        ? `${DIRECTORY_STATIC_PATH + entry[0]}`
+                        : `${
+                            entry.length != 0
+                              ? DIRECTORY_DINAMIC_PATH + entry[0]
+                              : DIRECTORY_DINAMIC_PATH + '#'
+                          }`
+                    );
+                  }}
+                  className='Product-post direc'
+                ><h3 className="company-name">
             {entry[1]?.company.length > 15
               ? `${entry[1]?.company.slice(0, 15)}...`
               : entry[1]?.company ?? ""}

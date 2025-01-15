@@ -43,19 +43,7 @@ export default function HinzaAsif() {
           : 'BlockZa AI Assistant makes blockchain and Web3 easy to understand. Get 24/7 support, simple explanations, and quick answers to navigate the decentralized world effortlessly. Start exploring today!'}
       </p>
             </div>
-            <div className="pri-term-inner mt-4">
-              <iframe
-                src={
-                  LANG === 'en'
-                    ? 'https://www.chatbase.co/chatbot-iframe/vXOyMigraOFfiJ7f5O1Il'
-                    : 'https://www.chatbase.co/chatbot-iframe/384SXpy6Uf9FJnTpRTgef'
-                }
-                style={{ border: '0' }}
-                className="bootIframe w-100 rounded"
-                height="400"
-                title="Blockza AI Assistant"
-              ></iframe>
-            </div>
+           
 
           </div>
         </div>

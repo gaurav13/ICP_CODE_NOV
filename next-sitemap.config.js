@@ -81,7 +81,63 @@ async function getCategoriesSitemap() {
   xml += `</urlset>`;
   return xml;
 }
+async function getWeb3CategorySitemap() {
+  const web3Categories = [
+    'blockchain/',
+    'web3/',
+    'metaverse/',
+    'defi/',
+    'nft/',
+    'blockchain_games/',
+    'dao/',
+    'artificial_intelligence/',
+    'cryptocurrency/',
+    'crypto_casinos/',
+    'crypto_exchange/',
+    'metaverse_event/',
+    'decentralized_identity/',
+    'play_to_earn_platform/',
+    'yield_aggregators/',
+    'stabelcoins/',
+    'web3_quest_platforms/',
+    'art_and_collectibles/',
+    'trading_tools/',
+    'crypto_staking/',
+    'crypto_launchpad/',
+    'rwa_token/',
+    'ai_token/',
+    'memes_token/',
+    'crypto_influencer/',
+    'crypto_researcher/',
+    'crypto_wallets/',
+    'crypto_payment/',
+    'crypto_exchanges/',
+    'game_yield/',
+    'game_developers/',
+    'game_nfts/',
+    'esports/',
+    'play_to_earn_platforms/',
+    'ai_tools/',
+    'tokenized_global_bonds/',
+    'us_treasuries/',
+    'tokenization_protocols/',
+  ];
 
+  let xml = firstPartOfPages;
+  const formattedDate = '2024-04-24T12:24:24.000+00:00';
+
+  web3Categories.forEach((category) => {
+    xml += `
+           <url>
+		       <loc>${siteUrl}web3-directory/${category}</loc>
+		       <lastmod>${formattedDate}</lastmod>
+	         </url>
+           `;
+  });
+
+  xml += `</urlset>`;
+  return xml;
+}
 
 
 /**
@@ -127,6 +183,7 @@ async function getServerSideSitemap() {
   const eventsSitemap = await getEventsSitemap();
   const directorySitemap = await getDirectorySitemap();
   const categories = await getCategoriesSitemap();
+  const web3categories = await getWeb3CategorySitemap();
 
   const sitemaps = [
     { fileUrl: 'article-sitemap.xml', data: articleSitemap },
@@ -134,6 +191,7 @@ async function getServerSideSitemap() {
     { fileUrl: 'event-sitemap.xml', data: eventsSitemap },
     { fileUrl: 'web3directory-sitemap.xml', data: directorySitemap },
     { fileUrl: 'categories-sitemap.xml', data: categories },
+	{ fileUrl: 'web3-categories-sitemap.xml', data: web3categories },
   ];
 
   return sitemaps;

@@ -80,22 +80,7 @@ export default function RootLayout({
         <Footer />
         <ToastContainer theme='light' autoClose={3000} />
 
-        {/* Embedded Chatbot Script */}
-        {LANG === 'en' ? (
-          <script
-            src="https://www.chatbase.co/embed.min.js"
-            defer
-            chatbotId="vXOyMigraOFfiJ7f5O1Il"
-            domain="www.chatbase.co"
-          ></script>
-        ) : (
-          <script
-            src="https://www.chatbase.co/embed.min.js"
-            defer
-            chatbotId="384SXpy6Uf9FJnTpRTgef"
-            domain="www.chatbase.co"
-          ></script>
-        )}
+        
         
     
       </body>

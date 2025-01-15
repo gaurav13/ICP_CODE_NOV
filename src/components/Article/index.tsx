@@ -48,6 +48,7 @@ import Tippy from '@tippyjs/react';
 import { Date_m_d_y_h_m } from '@/constant/DateFormates';
 import useLocalization from '@/lib/UseLocalization';
 import { LANG } from '@/constant/language';
+import tag from '@/assets/Img/Icons/diamond.gif';
 import { ConnectPlugWalletSlice } from '@/types/store';
 import {
   ARTICLE_DYNAMIC_PATH_2,
@@ -59,6 +60,7 @@ import ArticleDetailShimmer from '@/components/Shimmers/ArticleDetailShimmer';
 import ArticleHeaderShimmer from '@/components/Shimmers/ArticleHeaderShimmer';
 import JSONLD from '@/components/JSONLD/JSONLD';
 import logger from '@/lib/logger';
+import { MessageSquare, Share, ThumbsUp, Info } from 'lucide-react'
 
 export default function Article({
   articleId,
@@ -676,14 +678,9 @@ export default function Article({
 
                   <Col xxl='12' xl='12' lg='12' className='ld-cntnr mmt-0 mt-5'>
                     <div className='flex-div align-items-center heding'>
-                      <h4>
-                        <Image src={iconfeed} alt='icon feed' />
-                        {t('Add Your Feed')}
-                      </h4>
-
-                      <h4>
-                        <Image src={iconinfo} alt='icon info' />
-                      </h4>
+                    <h4 title="Trending section shows the most popular content and users" className='hedingxt'>
+                      <Image  style={{ marginRight: "0px", maxWidth: "30px" }}  src={tag} alt='Bard' /> {t('Trending')}{' '} <span className='ps-1'><Info size={20} /></span>
+                    </h4>
                     </div>
                     <div className='spacer-20' />
 

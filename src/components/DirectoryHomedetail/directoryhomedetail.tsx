@@ -52,7 +52,7 @@ const DirectoryDetailComponent: React.FC<DirectoryDetailProps> = ({ directoryId 
   }
 
   if (!directory) {
-    return <div>No directory information available</div>;
+    return <div></div>;
   }
 
   // Construct link based on directory type
@@ -115,9 +115,8 @@ const DirectoryDetailComponent: React.FC<DirectoryDetailProps> = ({ directoryId 
             style={{
               fontSize: "14px",
               fontWeight: "600",
-              color: "#007bff",
+              color: "#1e5fb3",
               textDecoration: "none",
-              whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
               cursor: "pointer",
