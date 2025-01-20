@@ -719,7 +719,7 @@ export default function Web3DirectoryDetail({
                       
 
 <div className="text-center p-4 shadow-sm rounded border bg-white box-spacing">
-  <h5 className="fw-bold mb-3">{t("Is this your project?")}</h5>
+  <h5 className="fw-bold mb-3">{LANG === 'jp' ? 'これはあなたのプロジェクトですか？' : 'Is this your project?'}</h5>
   <a
     href="mailto:support@blockza.io?subject=Request%20Edits&body=Hello%20Blockza%20Support%2C%0A%0AI%20would%20like%20to%20request%20edits%20to%20my%20project.%0A%0APlease%20provide%20further%20instructions.%0A%0AThank%20you."
     className="btn btn-primary px-4 py-2 fw-bold"
@@ -729,7 +729,7 @@ export default function Web3DirectoryDetail({
       border: "none",
     }}
   >
-    {t("Request edits")}
+    {LANG === 'jp' ? '編集をリクエストする' : 'Request edits'}
   </a>
 </div>
 
@@ -751,7 +751,7 @@ export default function Web3DirectoryDetail({
     }}
    
   >
-    {t("Book Your Meeting")}
+   {LANG === 'jp' ? 'ミーティングを予約する' : 'Book Your Meeting'}
   </Link>
 </div>
 
@@ -802,7 +802,7 @@ export default function Web3DirectoryDetail({
                     <div
   className="text-center p-4 shadow-sm rounded border bg-white box-spacing"
 >
-  <h5 className="fw-bold mb-3">{t("Submit your Listing")}</h5>
+  {/*<h5 className="fw-bold mb-3">{t("Submit your Listing")}</h5>*/}
   <Link
     href="/add-directory/"
     className="btn px-4 py-2 fw-bold"

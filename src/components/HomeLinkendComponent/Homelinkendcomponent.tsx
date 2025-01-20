@@ -116,7 +116,7 @@ const LinkndindataComponent = () => {
   };
 
   if (isError || articles.length === 0) {
-    return <div>No data available.</div>;
+    return <div></div>;
   }
 
   return (
@@ -124,13 +124,14 @@ const LinkndindataComponent = () => {
         
           <div className="row">
           <div className="col-md-4 news-section">
-          <h4 className="fw-bold"><FaBullhorn  size={20} color="#1e5fb3" />&nbsp;Latest News</h4>
+          <h4 className="fw-bold"><FaBullhorn  size={20} color="#1e5fb3" />&nbsp;<span>{LANG === 'jp' ? '最新ニュース' : 'Latest News'}
+            </span></h4>
           <HomeNews />
             </div>  
           <div className="col-md-8 profile-section">
           {/* Carousel Header */}
           <div className="d-flex justify-content-between align-items-center mb-3">
-            <h4 className="text-2xl font-bold fw-bold "> <FaUserTie  size={20} color="#1e5fb3" />&nbsp;Top Experts. Access to the best has never been easier
+            <h4 className="text-2xl font-bold fw-bold "> <FaUserTie  size={20} color="#1e5fb3" />&nbsp;<span>{LANG === 'jp' ? 'トップエキスパート。最高へのアクセスがこれまでになく簡単に' : 'Top Experts. Access to the best has never been easier'}</span>
             </h4>
           </div>
           {/* Slider */}
@@ -159,7 +160,7 @@ const LinkndindataComponent = () => {
     handleShowContactModal(article.name, article.expert_price,article.platform_price);
   }}
 >
-  Book Meeting
+{LANG === 'jp' ? 'ミーティングを予約' : 'Book Meeting'}
 </button>
 
                         </div>

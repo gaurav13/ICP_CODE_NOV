@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { LANG } from '@/constant/language';
 type Article = {
   title: string;
   link: string;
@@ -19,7 +19,11 @@ const NewsComponent = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get("https://blockza.io/chart/homenews.php");
+        const response = await axios.get(
+          LANG === 'jp'
+            ? "https://blockza.io/chart/jpnews.php"
+            : "https://blockza.io/chart/homenews.php"
+        );
         console.log("News data:", response.data);
 
         if (response.data && response.data.news_results && response.data.news_results.length > 0) {

@@ -454,6 +454,29 @@ export default function Article() {
   useEffect(() => {
     pageCount = Math.ceil(companyListOfIdSize / itemsPerPage);
   }, [companyListOfIdSize]);
+  if (LANG === 'jp') {
+    if (categoryId === "1710822432496415429") {
+      redirect("/web3-directory/blockchain/");
+    } else if (categoryId === "1710137112381095238") {
+      redirect("/web3-directory/web3/");
+    } else if (categoryId === "1710822461756881598") {
+      redirect("/web3-directory/metaverse/");
+    } else if (categoryId === "1710822512655241150") {
+      redirect("/web3-directory/defi/");
+    } else if (categoryId === "1710822374423109041") {
+      redirect("/web3-directory/nft/");
+    } else if (categoryId === "1710822404046076093") {
+      redirect("/web3-directory/blockchain_games/");
+    } else if (categoryId === "1710822326165086912") {
+      redirect("/web3-directory/dao/");
+    } else if (categoryId === "1710821043195619936") {
+      redirect("/web3-directory/artificial_intelligence/");
+    } else if (categoryId === "1710822487300013125") {
+      redirect("/web3-directory/cryptocurrency/");
+    }
+}
+else {
+
   if (categoryId === "1718641457527889243") {
     redirect("/web3-directory/blockchain/");
   } else if (categoryId === "1718641230817970431") {
@@ -531,6 +554,10 @@ export default function Article() {
   } else if (categoryId === "1734686933366281010") {
     redirect("/web3-directory/tokenization_protocols/");
   }
+
+}
+    
+    
   
   const totalCompanies = companyListOfIdSize > 0
   ? companyListOfIdSize
@@ -548,7 +575,17 @@ export default function Article() {
   //const web3categoryId = "1719210909413102943"; // Example ID
 
   const getCategoryLinkById = (categoryId) => {
-    const web3categories = [
+    const web3categories = LANG === 'jp'
+  ? [{ name: "blockchain", id: "1710822432496415429" },
+    { name: "web3", id: "1710137112381095238" },
+    { name: "metaverse", id: "1710822461756881598" },
+    { name: "defi", id: "1710822512655241150" },
+    { name: "nft", id: "1710822374423109041" },
+    { name: "blockchain_games", id: "1710822404046076093" },
+    { name: "dao", id: "1710822326165086912" },
+    { name: "artificial_intelligence", id: "1710821043195619936" },
+    { name: "cryptocurrency", id: "1710822487300013125" }] 
+  :[
       { name: "blockchain", id: "1718641457527889243" },
       { name: "web3", id: "1718641230817970431" },
       { name: "metaverse", id: "1718641722539268658" },
@@ -697,43 +734,55 @@ export default function Article() {
                   <CompanySlider trendingDirectries={trendingDirectries} />
                 )}
               </Col>
-              <h2 className="text-center pt-4">How to use Web3 Directory</h2>
+              <h2 className="text-center pt-4">  {LANG === 'jp' ? 'Web3ディレクトリの使い方' : 'How to use Web3 Directory'}</h2>
               <div className="row">
   <div className="col-md-4 d-flex">
     <div className="info-box text-start flex-grow-1 d-flex flex-column">
-      <h5>1. Find the Right Partner</h5>
+      <h5>
+        {LANG === 'jp' ? '1. 適切なパートナーを見つける' : '1. Find the Right Partner'}
+      </h5>
       <p>
-        Discover the ideal partner that aligns with your needs and project
-        requirements. Select the category that best suits your interest to
-        connect with the right experts.
+        {LANG === 'jp'
+          ? 'あなたのニーズやプロジェクト要件に合った理想的なパートナーを見つけましょう。興味に最も適したカテゴリを選択して、適切な専門家とつながりましょう。'
+          : 'Discover the ideal partner that aligns with your needs and project requirements. Select the category that best suits your interest to connect with the right experts.'}
       </p>
     </div>
   </div>
   <div className="col-md-4 d-flex">
     <div className="info-box flex-grow-1 text-start d-flex flex-column">
-      <h5>2. Connect with the Team</h5>
+      <h5>
+        {LANG === 'jp' ? '2. チームとつながる' : '2. Connect with the Team'}
+      </h5>
       <p>
-      Sign up and schedule a meeting with a potential client or book a 1:1 video call with an expert to get personalized advice.
+        {LANG === 'jp'
+          ? '登録して潜在的なクライアントと会議をスケジュールするか、専門家との1対1のビデオ通話を予約して個別のアドバイスを受けましょう。'
+          : 'Sign up and schedule a meeting with a potential client or book a 1:1 video call with an expert to get personalized advice.'}
       </p>
       <button className="btn btn-primary text-button-background mt-auto">
-        Apply for corporate account
+        {LANG === 'jp' ? '法人アカウントを申し込む' : 'Apply for corporate account'}
       </button>
     </div>
   </div>
   <div className="col-md-4 d-flex">
     <div className="info-box text-start flex-grow-1 d-flex flex-column">
-      <h5>3. Build Your Partnership</h5>
+      <h5>
+        {LANG === 'jp' ? '3. パートナーシップを築く' : '3. Build Your Partnership'}
+      </h5>
       <p>
-      Discuss your proposal in detail and collaborate with the expert to explore opportunities for growth and success.
+        {LANG === 'jp'
+          ? '提案を詳しく話し合い、専門家と協力して成長と成功の機会を探りましょう。'
+          : 'Discuss your proposal in detail and collaborate with the expert to explore opportunities for growth and success.'}
       </p>
     </div>
   </div>
 </div>
 
-      <p className="text-center mt-4">
-        Need help? Can’t find the right partner? Create your account now and
-        connect with the perfect match for your business!
-      </p>
+<p className="text-center mt-4">
+  {LANG === 'jp'
+    ? 'お困りですか？適切なパートナーが見つかりませんか？今すぐアカウントを作成して、ビジネスに最適なマッチング相手とつながりましょう！'
+    : 'Need help? Can’t find the right partner? Create your account now and connect with the perfect match for your business!'}
+</p>
+
               <Col xl="12" lg="12">
               <div className="flex-details-pnl d-flex justify-content-between align-items-center py-3 flex-wrap border-0">
   {/* Left Panel */}

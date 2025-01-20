@@ -62,73 +62,85 @@ export default function login() {
 </Link>
         </div>
         <Row className="justify-content-center">
-  <Container className="col text-center">
-    <div className="text-pnl">
-      <h1>Log in or sign up in seconds</h1>
-      <h2>
-        Use your email or wallet services to continue with Blockza <br />
-        (It’s Free)!
-      </h2>
-      
-      {/* Google Login Button */}
-      <div className="d-flex justify-content-center">
-        <Button
-          onClick={() => handleLogin(LoginEnum.NFID)}
-          disabled={auth.isLoading || auth?.state == 'initialized'}
-          className="my-2"
-        >
-          <Image src={googleicon} alt="Google Icon" />
-          {auth.isLoading && selected == LoginEnum.NFID ? (
-            <span>
-              <Spinner size="sm" />
-            </span>
-          ) : (
-            t('Continue with Google')
-          )}
-        </Button>
-      </div>
+        <Container className="col text-center">
+  <div className="text-pnl">
+    <h1>
+      {LANG === 'jp' ? '数秒でログインまたはサインアップ' : 'Log in or sign up in seconds'}
+    </h1>
+    <h2>
+      {LANG === 'jp'
+        ? 'メールまたはウォレットサービスを使用して BlockZa を続行してください（無料です）！'
+        : 'Use your email or wallet services to continue with Blockza (It’s Free)!'}
+    </h2>
 
-      <p>
-        Enhanced with cryptography by{' '}
-        <Link target="_blank" href="https://learn.nfid.one">
-          NFID
-        </Link>
-      </p>
-
-      {/* Internet Identity Login Button */}
-      <div className="d-flex justify-content-center">
-        <Button
-          className="nifd-login my-2"
-          onClick={() => handleLogin(LoginEnum.InternetIdentity)}
-          disabled={auth.isLoading || auth?.state == 'initialized'}
-        >
-          <Image src={infinityicon} alt="infinity icon" />
-          {auth.isLoading && selected == LoginEnum.InternetIdentity ? (
-            <span>
-              <Spinner size="sm" />
-            </span>
-          ) : (
-            t('Login with Internet Identity')
-          )}
-        </Button>
-      </div>
-
-      <p>
-        What is Internet{' '}
-        <Link
-          target="_blank"
-          href="https://internetcomputer.org/internet-identity"
-        >
-          Identity?
-        </Link>
-      </p>
-      <p>
-        By continuing, you agree to BlockZa’s{' '}
-        <Link href="/terms-of-use/">Terms of Use</Link>.<br /> Read our{' '}
-        <Link href="/privacy-policy/">Privacy Policy.</Link>
-      </p>
+    {/* Google Login Button */}
+    <div className="d-flex justify-content-center">
+      <Button
+        onClick={() => handleLogin(LoginEnum.NFID)}
+        disabled={auth.isLoading || auth?.state == 'initialized'}
+        className="my-2"
+      >
+        <Image src={googleicon} alt="Google Icon" />
+        {auth.isLoading && selected === LoginEnum.NFID ? (
+          <span>
+            <Spinner size="sm" />
+          </span>
+        ) : (
+          t(LANG === 'jp' ? 'Googleで続行する' : 'Continue with Google')
+        )}
+      </Button>
     </div>
-  </Container>
+
+    <p>
+      {LANG === 'jp' ? '暗号化で強化されています ' : 'Enhanced with cryptography by '}
+      <Link target="_blank" href="https://learn.nfid.one">
+        NFID
+      </Link>
+    </p>
+
+    {/* Internet Identity Login Button */}
+    <div className="d-flex justify-content-center">
+      <Button
+        className="nifd-login my-2"
+        onClick={() => handleLogin(LoginEnum.InternetIdentity)}
+        disabled={auth.isLoading || auth?.state == 'initialized'}
+      >
+        <Image src={infinityicon} alt="infinity icon" />
+        {auth.isLoading && selected === LoginEnum.InternetIdentity ? (
+          <span>
+            <Spinner size="sm" />
+          </span>
+        ) : (
+          t(LANG === 'jp' ? 'インターネットアイデンティティでログイン' : 'Login with Internet Identity')
+        )}
+      </Button>
+    </div>
+
+    <p>
+      {LANG === 'jp' ? 'インターネットとは ' : 'What is Internet '}
+      <Link
+        target="_blank"
+        href="https://internetcomputer.org/internet-identity"
+      >
+        {LANG === 'jp' ? 'アイデンティティ？' : 'Identity?'}
+      </Link>
+    </p>
+
+    <p>
+      {LANG === 'jp' ? '続行することで、BlockZa の ' : 'By continuing, you agree to BlockZa’s '}
+      <Link href="/terms-of-use/">
+        {LANG === 'jp' ? '利用規約' : 'Terms of Use'}
+      </Link>
+      .<br />
+      {LANG === 'jp' ? 'プライバシーポリシーをお読みください。' : 'Read our '}
+      <Link href="/privacy-policy/">
+        {LANG === 'jp' ? 'プライバシーポリシー' : 'Privacy Policy'}
+      </Link>
+      .
+    </p>
+  </div>
+</Container>
+
 </Row>
 
 

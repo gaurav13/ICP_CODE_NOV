@@ -200,7 +200,7 @@ export default function NavBarNew() {
                 />
               </div>
               <Navbar.Collapse id='navbarScroll'>
-                <Nav className='me-auto my-lg-0 my-2' navbarScroll>
+                <Nav className='me-auto my-lg-0 my-2 justify-content-lg-center' navbarScroll>
                   <Nav.Link
                     as={Link}
                     href='/'
@@ -260,21 +260,8 @@ export default function NavBarNew() {
                     <Image src={cup2} alt='Diamond' />
                   </div> */}
                     {t('webDirectory')}
-                    <span
-  style={{
-    position: "absolute",
-    right: "5px",
-    top: "-15px",
-    textTransform: "uppercase",
-    fontWeight: 700,
-    padding: "3px 7px 2px",
-    backgroundColor: "#eaca08",
-    color: "#000000",
-    fontSize: "10px",
-    borderRadius: "5px",
-  }}
->
-  {t("Web3")}
+                    <span className='badge-web3'>
+ Web3
 </span>
 
                   </Nav.Link>

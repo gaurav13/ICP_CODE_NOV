@@ -97,7 +97,8 @@ export default function CompanyListSidebar({
             href={entry[1].isStatic ? `${DIRECTORY_STATIC_PATH + entry[0]}` : `${DIRECTORY_DINAMIC_PATH + entry[0]}`} // Adding company path dynamically
             className='follow-btn rounded-3'
           >
-            {t('Book Meeting')}
+            {LANG === 'jp' ? 'ミーティングを予約する' : 'Book Meeting'}
+      
           </Link>
         </div>
                 </div>

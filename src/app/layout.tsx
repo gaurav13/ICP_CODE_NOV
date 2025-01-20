@@ -73,7 +73,7 @@ export default function RootLayout({
 
         {/* Other head elements */}
       </head>
-      <body className={`${LANG === 'jp' ? 'ENStyle' : ''}`}>
+      <body className={`${LANG === 'jp' ? 'ENStyle lang-jp' : ''}`}>
         <NewSidebarHome />
         <NavBarNew />
         {children}

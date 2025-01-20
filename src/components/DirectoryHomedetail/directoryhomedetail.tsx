@@ -48,7 +48,7 @@ const DirectoryDetailComponent: React.FC<DirectoryDetailProps> = ({ directoryId 
   }, [directoryId]);
 
   if (isLoading) {
-    return <Spinner animation="border" />;
+    return '';
   }
 
   if (!directory) {

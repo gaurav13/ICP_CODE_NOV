@@ -64,10 +64,11 @@ function ConfirmationModel({
         >
           <i className='fa fa-close ' />
         </Button></div>
-        <h2>Login with</h2>
+        <h2> {LANG === 'jp' ? '数秒でログインまたはサインアップ' : 'Log in or sign up in seconds'}</h2>
         <h4>
-          Use your email or wallet services to continue with Blockza (it’s
-          free)!
+        {LANG === 'jp'
+        ? 'メールまたはウォレットサービスを使用して Blockza を続行してください（無料です）！'
+        : 'Use your email or wallet services to continue with Blockza (it’s free)!'}
         </h4>
         <Button
           className='reg-btn-full'
@@ -85,7 +86,9 @@ function ConfirmationModel({
           )}
         </Button>
         <Link href='https://learn.nfid.one'>
-          Enhanced with cryptography by NFID
+        {LANG === 'jp'
+      ? '暗号化で強化されています NFID'
+      : 'Enhanced with cryptography by NFID'}
         </Link>
         <Button
           className='reg-btn-full'
@@ -106,12 +109,16 @@ function ConfirmationModel({
           className='mb-1'
           href='https://internetcomputer.org/internet-identity'
         >
-          Learn more about Internet Identity
+          {LANG === 'jp'
+      ? 'インターネットアイデンティティについてもっと知る'
+      : 'Learn more about Internet Identity'}
         </Link>
         <p style={{ fontSize: '12px' }}>
-          By continuing, you agree to BlockZa’s{' '}
-          <Link href='/privacy-policy'>Terms of Use</Link>.<br /> Read our{' '}
-          <Link href='/terms-of-use'>Privacy Policy.</Link>
+        {LANG === 'jp'
+    ? '続行することで、BlockZa の '
+    : 'By continuing, you agree to BlockZa’s '}{' '}
+          <Link href='/terms-of-use/'>{LANG === 'jp' ? '利用規約' : 'Terms of Use'}</Link>.<br /> Read our{' '}
+          <Link href='/privacy-policy/'>{LANG === 'jp' ? 'プライバシーポリシー' : 'Privacy Policy'}</Link>
         </p>
         {/* <Link href="#"><h6>Other options?</h6></Link> */}
         {/* <Button variant="secondary" onClick={handleClose}>
