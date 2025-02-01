@@ -2,52 +2,52 @@
  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  
            <url>
-		       <loc>https://jp.blockza.io/latest-news/</loc>
+		       <loc>https://pro.blockza.io/latest-news/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/web3/</loc>
+		       <loc>https://pro.blockza.io/web3/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/blockchain/</loc>
+		       <loc>https://pro.blockza.io/blockchain/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/crypto/</loc>
+		       <loc>https://pro.blockza.io/crypto/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/defi/</loc>
+		       <loc>https://pro.blockza.io/defi/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/dao/</loc>
+		       <loc>https://pro.blockza.io/dao/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/nft/</loc>
+		       <loc>https://pro.blockza.io/nft/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/metaverse/</loc>
+		       <loc>https://pro.blockza.io/metaverse/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/blockchain_game/</loc>
+		       <loc>https://pro.blockza.io/blockchain_game/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            
            <url>
-		       <loc>https://jp.blockza.io/ai/</loc>
+		       <loc>https://pro.blockza.io/ai/</loc>
 		       <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	         </url>
            </urlset>

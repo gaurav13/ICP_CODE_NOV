@@ -415,9 +415,7 @@ export default function AddEvent() {
       if (tags.length > 5) {
         return toast.error("Tags can't be more five.");
       }
-      if (selectedCompany.length == 0 || !selectedCompany) {
-        return toast.error("Please select a company.");
-      }
+   
       setFormSubmiting(true);
 
       const date = new Date(values.date);

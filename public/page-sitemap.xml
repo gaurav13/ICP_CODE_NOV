@@ -2,62 +2,27 @@
  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
  
        <url>
-		   <loc>https://jp.blockza.io/disclaimer/</loc>
+		   <loc>https://pro.blockza.io/campaigns/</loc>
 		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	     </url>
        
        <url>
-		   <loc>https://jp.blockza.io/editor-policy/</loc>
+		   <loc>https://pro.blockza.io/events/</loc>
 		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	     </url>
        
        <url>
-		   <loc>https://jp.blockza.io/terms-of-use/</loc>
+		   <loc>https://pro.blockza.io/web3-directory/</loc>
 		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	     </url>
        
        <url>
-		   <loc>https://jp.blockza.io/privacy-policy/</loc>
+		   <loc>https://pro.blockza.io/podcasts/</loc>
 		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	     </url>
        
        <url>
-		   <loc>https://jp.blockza.io/contact-us/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/careers/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/hinza-asif/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/events/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/web3-directory/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/podcasts/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/press-release/</loc>
-		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-	     </url>
-       
-       <url>
-		   <loc>https://jp.blockza.io/campaigns/</loc>
+		   <loc>https://pro.blockza.io/press-release/</loc>
 		   <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
 	     </url>
        </urlset>

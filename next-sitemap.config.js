@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const LANG = 'jp';
+const LANG = 'en';
 const siteUrl = LANG == "en" ? 'https://pro.blockza.io/' : 'https://jp.blockza.io/';
 
 let firstPartOfMain = `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/main-sitemap.xsl"?>
@@ -122,17 +122,27 @@ async function getWeb3CategorySitemap() {
     'us_treasuries/',
     'tokenization_protocols/',
   ];
+  const jpWeb3Categories = [
+    'blockchain/',
+    'web3/',
+    'metaverse/',
+    'defi/',
+    'nft/',
+    'blockchain_games/',
+    'dao/',
+    'artificial_intelligence/',
+    'cryptocurrency/',
+  ];
+  const categories = LANG === 'jp' ? jpWeb3Categories : web3Categories;
 
   let xml = firstPartOfPages;
   const formattedDate = '2024-04-24T12:24:24.000+00:00';
 
-  web3Categories.forEach((category) => {
-    xml += `
-           <url>
-		       <loc>${siteUrl}web3-directory/${category}</loc>
-		       <lastmod>${formattedDate}</lastmod>
-	         </url>
-           `;
+  categories.forEach((category) => {
+    xml += `            <url>
+               <loc>${siteUrl}web3-directory/${category}</loc>
+               <lastmod>${formattedDate}</lastmod>
+             </url>            `;
   });
 
   xml += `</urlset>`;

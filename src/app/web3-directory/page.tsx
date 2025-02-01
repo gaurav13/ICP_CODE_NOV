@@ -830,7 +830,7 @@ else {
     <Link href={CONTACT_US} className="reg-btn faq-btn">
       {t("FAQ")}
     </Link>
-    <div>&nbsp; Total {/*{totalCompanies}*/} 420 results &nbsp;</div> 
+    <div>  {LANG === 'jp' ? '合計' : 'Total'}: {/*{totalCompanies}*/} 420 results &nbsp;</div> 
   </div>
 </div>
 
@@ -961,7 +961,7 @@ else {
                     {company.category[1].name}
                     <span className="text-secondary">
                       {" "}
-                      &nbsp;| Total:{" "}
+                      &nbsp;|   {LANG === 'jp' ? '合計' : 'Total'}:{" "}
                       {company.companyListSize ||
                         company.companyList.length ||
                         0}{" "}

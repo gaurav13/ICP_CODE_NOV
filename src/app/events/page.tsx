@@ -46,7 +46,9 @@ import { REGIONS } from '@/constant/regions';
 import { countryTranslations } from '@/constant/coutriesTrans';
 import TopEventSlider from '@/components/TopEventSlider/TopEventsSlider';
 import { siteConfig } from '@/constant/config';
-
+import "../../styles/events.css";
+import { FaMapMarkerAlt,FaWhatsapp,FaShareAlt, FaRegStar,FaEnvelope, FaCopy, FaCalendarAlt, FaTags, FaExternalLinkAlt, FaApple, FaGoogle, FaFacebook, FaInstagram, FaLinkedin, FaTelegram, FaTwitter } from 'react-icons/fa';
+import moment from 'moment';
 const EVENTS_LEGNTH = 20;
 export default function Events() {
   const { t, changeLocale } = useLocalization(LANG);
@@ -154,7 +156,8 @@ export default function Events() {
       const refinedEvents = unEvents.map((raw: any) => {
         const unEvent = raw[1];
         const image = getImage(unEvent.image);
-        const date = utcToLocal(unEvent.date.toString(), 'MMM D, YYYY');
+        const date = utcToLocal(unEvent.date.toString(),  'MMM D, YYYY hh:mm A');
+        const eventenddate = utcToLocal(unEvent.endDate.toString(),  'MMM D, YYYY hh:mm A');
         const refinedEvent: ListEvent = {
           id: raw[0],
           title: unEvent.title,
@@ -166,6 +169,8 @@ export default function Events() {
           applyTicket: unEvent.applyTicket,
           isStatic: unEvent.isStatic,
           discountTicket: unEvent.discountTicket,
+          eventLocation: unEvent.location,
+          endDate:eventenddate,
         };
         return refinedEvent;
       });
@@ -246,6 +251,7 @@ export default function Events() {
       setArticlesList([]);
     }
   };
+  
   let getPressRelease = async () => {
     let category = ['Event', 'Events'];
     const resp = await entryActor.getOnlyPressRelease(3, category);
@@ -313,7 +319,7 @@ export default function Events() {
       <main id='main'>
         <div className='main-inner event-detail-page'>
           <div className='inner-content'>
-            <div className='event-innr'>
+            <div className='event-innr row gap-3'>
               <Col xl='12' lg='12' md='12'>
                 <Breadcrumb className='new-breadcrumb web'>
                   <Breadcrumb.Item>
@@ -348,126 +354,14 @@ export default function Events() {
 
                 <div className='spacer-20' />
               </Col>
+             
               <Col xl='12' lg='12' md='12'>
-                {previewEvents && (
-                  <div className='eventlist-header'>
-                    {previewEvents?.length > 0 && (
-                      <>
-                        {/* <div className='img-pnl'>
-                          <Link
-                            className='img-parent max'
-                            style={{
-                              aspectRatio: ARTICLE_FEATURED_IMAGE_ASPECT,
-                            }}
-                            href={
-                              previewEvents[0].isStatic
-                                ? `${Event_STATIC_PATH + previewEvents[0].id}`
-                                : `/event-details?eventId=${previewEvents[0].id}`
-                            }
-                          >
-                            <Image
-                              src={previewEvents[0].image}
-                              fill
-                              alt='Post'
-                            />
-                          </Link>
-                        </div>
-                        <div className='txt-pnl'>
-                          <h4>{previewEvents[0]?.title}</h4>
-                          <div>
-                            <Link
-                              href={
-                                previewEvents[0].isStatic
-                                  ? `${Event_STATIC_PATH + previewEvents[0].id}`
-                                  : `/event-details?eventId=${previewEvents[0].id}`
-                              }
-                              className='reg-btn white mx-2'
-                            >
-                              <i className='fa fa-info-circle'/>{' '}
-                              {t('Learn More')}
-                            </Link>
-                            <Link
-                              href={previewEvents[0].website}
-                              target='_blank'
-                              className='reg-btn yellow'
-                            >
-                              {t('Visit Website')}
-                            </Link>
-                          </div>
-                        </div> */}
-                        <TopEventSlider eventList={previewEvents} />
-                      </>
-                    )}
-                    {/* {previewEvents.length > 1 ? (
-                      <ul className='my-2 gap-2'>
-                        {previewEvents.length > 4
-                          ? previewEvents.slice(1, 4).map((event) => (
-                              <li key={event.id}>
-                                <Link
-                                  href={
-                                    previewEvents[0].isStatic
-                                      ? `${
-                                          Event_STATIC_PATH +
-                                          previewEvents[0].id 
-                                        }`
-                                      : `${Event_DINAMIC_PATH+event.id}`
-                                  }
-                                  className='img-parent'
-                                  style={{
-                                    aspectRatio: ARTICLE_FEATURED_IMAGE_ASPECT,
-                                  }}
-                                >
-                                  <Image fill src={event.image} alt='Bg' />
-                                </Link>
-                              </li>
-                            ))
-                          : previewEvents.map((event, index) => {
-                              if (index == 0) return null;
-                              return (
-                                <li key={event.id} className='w-100'>
-                                  <Link
-                                    href={
-                                      previewEvents[0].isStatic
-                                        ? `${
-                                            Event_STATIC_PATH +
-                                            previewEvents[0].id
-                                          }`
-                                        : `${Event_DINAMIC_PATH+event.id}`
-                                    }
-                                    style={{
-                                      aspectRatio:
-                                        ARTICLE_FEATURED_IMAGE_ASPECT,
-                                    }}
-                                    className='img-parent'
-                                  >
-                                    <Image fill src={event.image} alt='Bg' />
-                                  </Link>
-                                </li>
-                              );
-                            })}
-                      </ul>
-                    ) : null} */}
-                    {/* <ul>
-                     
-                      <li>
-                        <Image src={bg} alt='Bg' />
-                      </li>
-                      <li>
-                        <Image src={bg} alt='Bg' />
-                      </li>
-                      <li>
-                        <Image src={bg} alt='Bg' />
-                      </li>
-                    </ul> */}
-                  </div>
-                )}
-              </Col>
-              <Col xl='12' lg='12' md='12'>
-                <div className='flex-div-xs '>
-                  <div className='seelect'>
-                    <Form.Select
+                <div className='flex-div-xs pb-3'>
+                  <div  style={{border:'1px solid #a1a1a1', borderRadius: '8px', height: '35px', padding: '5px 0px 0px 5px', display: 'flex',alignItems: 'center' 
+  }}  className='seelect'>
+                    <Form.Select style={{ paddingTop: '10px'}}
                       aria-label='Default select example'
-                      className='trans'
+                      className='trans fw-normal'
                       value={status}
                       onChange={handleStatusChange}
                       defaultValue={'all'}
@@ -650,113 +544,105 @@ export default function Events() {
                     </Col>
                   </Row>
                 </div>
-                <div className='spacer-30' />
+              
               </Col>
               <Col xl='12' lg='12'>
-                <div className='event-list-main'>
-                  <h4>
-                    <span>
-                      <Image src={iconcalender} alt='Calender' />{' '}
-                      {tempStatus.charAt(0).toUpperCase() + tempStatus.slice(1)}
-                    </span>
-                  </h4>
-                  {!(topEvents && topEvents?.length > 0) && isLoading ? (
-                    <div className='d-flex justify-content-center my-4'>
-                      <Spinner />
-                    </div>
-                  ) : topEvents && topEvents?.length > 0 ? (
-                    topEvents.map((event: ListEvent, index: number) => {
-                      return (
-                        <div className='event-list-post' key={index}>
-                          <div className='txt-pnl'>
-                            <h5>{event.date}</h5>
-                            <Link
-                              href={
-                                event.isStatic
-                                  ? `${Event_STATIC_PATH + event.id}`
-                                  : `${Event_DINAMIC_PATH + event.id}`
-                              }
-                            >
-                              <h6>{event.title}</h6>
-                            </Link>
-                            <Link
-                              className='p-link'
-                              href={
-                                event.isStatic
-                                  ? `${Event_STATIC_PATH + event.id}`
-                                  : `${Event_DINAMIC_PATH + event.id}`
-                              }
-                            >
-                              <p className='event-description'>
-                                {event.shortDescription}
-                              </p>
-                            </Link>
-                            {/* <p>
-                              Are you ready to embark on a journey of discovery
-                              and learning? Don't miss the WikiExpo SYDNEY 2023,
-                              the premier event for knowledge enthusiasts!
-                            </p> */}
-                            <div className='flex-div-xs align-items-center'>
-                              {event && event?.discountTicket.length != 0 ? (
-                                <Link
-                                  className='red-link'
-                                  href={event ? `${event.discountTicket}` : '#'}
-                                  target='_blank'
-                                >
-                                  {t('Apply for discount ticket here!')}
-                                </Link>
-                              ) : (
-                                <span />
-                              )}
-                              <div>
-                                {event && event?.freeTicket.length != 0 ? (
-                                  <Link
-                                    className='reg-btn white-grey '
-                                    href={event ? `${event?.freeTicket}` : '#'}
-                                    target='_blank'
-                                  >
-                                    <Image src={icongift} alt='Calender' />{' '}
-                                    {t('Free Ticket')}
-                                  </Link>
-                                ) : (
-                                  <span />
-                                )}
-                                {event && event?.website.length != 0 && (
-                                  <Link
-                                    className='reg-btn bluebg'
-                                    href={event.website}
-                                    target='_blank'
-                                  >
-                                    {t('Visit Website')}
-                                  </Link>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <div className='img-pnl'>
-                            <Link
-                              style={{
-                                position: 'relative',
-                                width: '100%',
-                                margin: '0 auto',
-                                aspectRatio: ARTICLE_FEATURED_IMAGE_ASPECT,
-                              }}
-                              href={
-                                event.isStatic
-                                  ? `${Event_STATIC_PATH + event.id}`
-                                  : `${Event_DINAMIC_PATH + event.id}`
-                              }
-                            >
-                              <Image src={event.image} fill alt='Post' />
-                            </Link>
-                          </div>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <p className='text-center'>{t('No Events Found')}</p>
-                  )}
-                </div>
+              <div className="event-list-main row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+  <h4 className="mb-3 w-100">
+    <span>
+      <Image src={iconcalender} alt="Calender" />{' '}
+      {tempStatus.charAt(0).toUpperCase() + tempStatus.slice(1)}
+    </span>
+  </h4>
+
+  {!(topEvents && topEvents?.length > 0) && isLoading ? (
+    <div className="d-flex justify-content-center my-4">
+      <Spinner />
+    </div>
+  ) : topEvents && topEvents?.length > 0 ? (
+    topEvents.map((event: ListEvent, index: number) => (
+      <div className="col d-flex align-items-stretch" key={index}>
+        <div className="card event-card shadow-sm d-flex flex-column w-100">
+          
+          {/* Event Image */}
+          <div className="position-relative">
+            <Link href={event.isStatic ? `${Event_STATIC_PATH + event.id}` : `${Event_DINAMIC_PATH + event.id}`}>
+              <Image
+                src={event.image || "/default-event.jpg"}
+                className="card-img-top event-image"
+                alt={event.title}
+                width={350}
+                height={180}
+                style={{ objectFit: "cover" }}
+              />
+            </Link>
+          </div>
+
+          {/* Event Content */}
+          <div className="card-body d-flex flex-column">
+            <h5 className="card-title">{event.title}</h5>
+           
+            <span className="small-text fw-semibold">
+  <FaCalendarAlt style={{ color: '#1e5fb3' }} className="text-primary me-1" />
+
+  {event?.date && event?.endDate ? (
+    (() => {
+      // ✅ Parse Japanese dates correctly before using them
+      const parseJapaneseDate = (dateStr: string | null | undefined) => {
+        if (!dateStr) return moment(); // Fallback to current date
+        return moment(
+          dateStr.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, ''),
+          'YYYY-MM-DD'
+        );
+      };
+
+      const startDate = LANG === 'jp' ? parseJapaneseDate(event?.date) : moment(event?.date);
+      const endDate = LANG === 'jp' ? parseJapaneseDate(event?.endDate) : moment(event?.endDate);
+
+      console.log("Parsed Start Date:", startDate.format());
+      console.log("Parsed End Date:", endDate.format());
+
+      if (startDate.isValid() && endDate.isValid()) {
+        return startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY') === 
+               endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')
+          ? `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
+             (${startDate.format('hh:mm A')} - ${endDate.format('hh:mm A')})`
+          : `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} - 
+             ${endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
+             (${startDate.format('hh:mm A')} - ${endDate.format('hh:mm A')})`;
+      } else {
+        return '';
+      }
+    })()
+  ) : 'Date not available'}
+</span>
+
+
+            <p className="small pt-2">
+              <FaMapMarkerAlt  style={{ color: '#1e5fb3' }} className="text-primary me-1" /> {event.eventLocation}
+            </p>
+           
+          </div>
+          <hr></hr>
+          {/* Event Actions */}
+          <div className="card-footer bg-white border-top-0 mt-auto d-flex justify-content-between">
+            <Link className="btn btn-link text-decoration-none p-0" href={event.isStatic ? `${Event_STATIC_PATH + event.id}` : `${Event_DINAMIC_PATH + event.id}`}>
+              <i  style={{ color: '#1e5fb3' }} className="fa fa-info-circle me-1"></i>  {LANG === 'jp' ? 'イベントの詳細を見る' : 'View Event Details'}
+            </Link>
+            {/*<button className="btn btn-light btn-sm">
+              <i className="fa fa-share"></i> {t('Share')}
+            </button>*/}
+          </div>
+
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="text-center">{t('No Events Found')}</p>
+  )}
+</div>
+
+
               </Col>
 
               <Col xl='12' lg='12'>
@@ -771,6 +657,120 @@ export default function Events() {
                     </Button>
                   )}
                 </div>
+              </Col>
+              <Col xl='12' lg='12' md='12'>
+                {previewEvents && (
+                  <div className='eventlist-header'>
+                    {previewEvents?.length > 0 && (
+                      <>
+                        {/* <div className='img-pnl'>
+                          <Link
+                            className='img-parent max'
+                            style={{
+                              aspectRatio: ARTICLE_FEATURED_IMAGE_ASPECT,
+                            }}
+                            href={
+                              previewEvents[0].isStatic
+                                ? `${Event_STATIC_PATH + previewEvents[0].id}`
+                                : `/event-details?eventId=${previewEvents[0].id}`
+                            }
+                          >
+                            <Image
+                              src={previewEvents[0].image}
+                              fill
+                              alt='Post'
+                            />
+                          </Link>
+                        </div>
+                        <div className='txt-pnl'>
+                          <h4>{previewEvents[0]?.title}</h4>
+                          <div>
+                            <Link
+                              href={
+                                previewEvents[0].isStatic
+                                  ? `${Event_STATIC_PATH + previewEvents[0].id}`
+                                  : `/event-details?eventId=${previewEvents[0].id}`
+                              }
+                              className='reg-btn white mx-2'
+                            >
+                              <i className='fa fa-info-circle'/>{' '}
+                              {t('Learn More')}
+                            </Link>
+                            <Link
+                              href={previewEvents[0].website}
+                              target='_blank'
+                              className='reg-btn yellow'
+                            >
+                              {t('Visit Website')}
+                            </Link>
+                          </div>
+                        </div> */}
+                        <TopEventSlider eventList={previewEvents} />
+                      </>
+                    )}
+                    {/* {previewEvents.length > 1 ? (
+                      <ul className='my-2 gap-2'>
+                        {previewEvents.length > 4
+                          ? previewEvents.slice(1, 4).map((event) => (
+                              <li key={event.id}>
+                                <Link
+                                  href={
+                                    previewEvents[0].isStatic
+                                      ? `${
+                                          Event_STATIC_PATH +
+                                          previewEvents[0].id 
+                                        }`
+                                      : `${Event_DINAMIC_PATH+event.id}`
+                                  }
+                                  className='img-parent'
+                                  style={{
+                                    aspectRatio: ARTICLE_FEATURED_IMAGE_ASPECT,
+                                  }}
+                                >
+                                  <Image fill src={event.image} alt='Bg' />
+                                </Link>
+                              </li>
+                            ))
+                          : previewEvents.map((event, index) => {
+                              if (index == 0) return null;
+                              return (
+                                <li key={event.id} className='w-100'>
+                                  <Link
+                                    href={
+                                      previewEvents[0].isStatic
+                                        ? `${
+                                            Event_STATIC_PATH +
+                                            previewEvents[0].id
+                                          }`
+                                        : `${Event_DINAMIC_PATH+event.id}`
+                                    }
+                                    style={{
+                                      aspectRatio:
+                                        ARTICLE_FEATURED_IMAGE_ASPECT,
+                                    }}
+                                    className='img-parent'
+                                  >
+                                    <Image fill src={event.image} alt='Bg' />
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                      </ul>
+                    ) : null} */}
+                    {/* <ul>
+                     
+                      <li>
+                        <Image src={bg} alt='Bg' />
+                      </li>
+                      <li>
+                        <Image src={bg} alt='Bg' />
+                      </li>
+                      <li>
+                        <Image src={bg} alt='Bg' />
+                      </li>
+                    </ul> */}
+                  </div>
+                )}
               </Col>
               <Row>
                 <Col xl='12' lg='12'>

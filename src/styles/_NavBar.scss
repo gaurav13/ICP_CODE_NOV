@@ -1456,7 +1456,7 @@ body .sidebar-home ul li button img{margin-right:0}
   padding: 3px 7px 2px;
   background-color: #eaca08;
   color: #000000;
-  font-size: 10px;
+  font-size: 10px!important;
   border-radius: 5px;
 }
 .lang-jp .badge-web3 {font-size: 8px;}
@@ -1472,5 +1472,5 @@ body .sidebar-home ul li button img{margin-right:0}
   .navbar-inner .navbar-brand{order:1}
   .navbar-inner .top-btns-wrap{order:2;margin-left:auto}
   .navbar-inner .navbar-collapse{order:3}
-  .navbar.new .side-btnlist li:last-child{display:none}
+  .navbar.new .side-btnlist li:last-child .connect-btn{display:none}
 }

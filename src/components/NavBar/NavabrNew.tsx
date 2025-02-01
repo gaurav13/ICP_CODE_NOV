@@ -176,13 +176,35 @@ export default function NavBarNew() {
             ref={navbarRef}
             // style={{ zIndex: 1 }}
           >
-            <div className="bg-top top-bar-wrap"><div className='top-bar-content'>Your <span>Web3</span> Journey Starts Here – <span>Participate in Surveys</span>, <span className="orange">Connect with experts</span>, <span>Get Earn Daily Rewards</span> 🚀. <a href="/login/"><span className="text-white text-decoration">Sign Up Today!🎉</span></a></div>    <a 
-      href="/login/" 
-      className="d-inline-flex align-items-center justify-content-center rounded-circle border border-dark bg-white text-dark"
-      style={{ width: '20px', height: '20px' }}
-    >
-      <FaArrowRight />
-    </a></div>
+      <div className="bg-top top-bar-wrap">
+  <div className="top-bar-content">
+    {LANG === 'jp' ? (
+      <>
+        あなたの<span>Web3</span>の旅がここから始まります – 
+        <span>アンケートに参加</span>し、<span className="orange">専門家とつながり</span>、<span>毎日報酬を獲得</span> 🚀. 
+        <a href="/login/">
+          <span className="text-white text-decoration">今日サインアップしよう！🎉</span>
+        </a>
+      </>
+    ) : (
+      <>
+        Your <span>Web3</span> Journey Starts Here – 
+        <span>Participate in Surveys</span>, <span className="orange">Connect with experts</span>, <span>Get Earn Daily Rewards</span> 🚀. 
+        <a href="/login/">
+          <span className="text-white text-decoration">Sign Up Today!🎉</span>
+        </a>
+      </>
+    )}
+  </div>
+  <a
+    href="/login/"
+    className="d-inline-flex align-items-center justify-content-center rounded-circle border border-dark bg-white text-dark"
+    style={{ width: '20px', height: '20px' }}
+  >
+    <FaArrowRight />
+  </a>
+</div>
+
          
             <div className='navbar-inner'>
               {/* <Container fluid> */}

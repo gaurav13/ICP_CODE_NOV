@@ -156,6 +156,7 @@ export default function DirectoryModelPopup({
         'Schedule a meeting to discuss business opportunities.' && (
           <div className='ps-4'><span
           style={{
+            borderRadius:'4px',
             backgroundColor: '#1e5fb3',
             fontWeight: 'normal',
             fontSize: '12px',
@@ -186,6 +187,7 @@ export default function DirectoryModelPopup({
       {formData.meetingOption === 'Book a meeting for Expert advice.' && (
         <div className='ps-4'><span
           style={{
+            borderRadius:'4px',
             backgroundColor: '#1e5fb3',
             fontWeight: 'normal',
             fontSize: '12px',

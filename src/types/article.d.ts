@@ -29,12 +29,15 @@ export interface ListEvent {
   title: string;
   image: string;
   date: string;
+  date: string;
   shortDescription: string;
   website: string;
   freeTicket : string;
   applyTicket : string;
   isStatic:boolean;
   discountTicket : string;
+  eventLocation:string;
+  endDate:string;
 
 }
 export interface EventStatus {

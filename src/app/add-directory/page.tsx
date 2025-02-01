@@ -581,39 +581,61 @@ export default function AddCompanyForm() {
           <Row>
         {/* Left Column */}
         <Col md={8} className="text-start">
-          <h1 style={{color:'#1e5fb3'}} className='blue-title'>
-           Get Your Web3 Project in Front of the Right People—For Free!</h1>
-          <p className='text-14'>
-            Join Blockza's Web3 Directory, the go-to platform for blockchain innovators to shine. 
-            Gain global visibility, connect with industry leaders, and build trust in the Web3 space—all at no cost.
-          </p>
-          <ul className='text-14'>
-            <li>
-              <strong>Showcase Your Brand:</strong> Highlight your company, team, achievements, and media exposure.
-            </li>
-            <li>
-              <strong>Book a Meeting with Web3 Experts:</strong> Connect directly with investors, collaborators, and industry leaders.
-            </li>
-            <li>
-              <strong>Engage Smarter:</strong> Use AI-powered tools for 24/7 seamless interaction. 
-              <span className="text-muted"> (Paid Option)</span>
-            </li>
-          </ul>
-          <a style={{color:'#1e5fb3'}} 
-            href="https://blockza.io"
-            className="blue-text-color fw-bold"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn how Blockza Web3 Directory features can help you build a more engaging and impactful project page&nbsp;
-            <i className="fa fa-external-link" />
-          </a>
-        </Col>
+  <h1 style={{ color: '#1e5fb3' }} className="blue-title">
+    {LANG === 'jp'
+      ? 'あなたのWeb3プロジェクトを適切な人々の前に無料で表示しましょう！'
+      : 'Get Your Web3 Project in Front of the Right People—For Free!'}
+  </h1>
+  <p className="text-14">
+    {LANG === 'jp'
+      ? 'BlockzaのWeb3ディレクトリに参加しましょう。ブロックチェーンイノベーターが輝くためのプラットフォームです。グローバルな可視性を獲得し、業界のリーダーとつながり、Web3スペースで信頼を構築してください—すべて無料です。'
+      : "Join Blockza's Web3 Directory, the go-to platform for blockchain innovators to shine. Gain global visibility, connect with industry leaders, and build trust in the Web3 space—all at no cost."}
+  </p>
+  <ul className="text-14">
+    <li>
+      <strong>{LANG === 'jp' ? 'ブランドを紹介:' : 'Showcase Your Brand:'}</strong>{' '}
+      {LANG === 'jp'
+        ? 'あなたの会社、チーム、実績、メディアでの露出を強調します。'
+        : 'Highlight your company, team, achievements, and media exposure.'}
+    </li>
+    <li>
+      <strong>
+        {LANG === 'jp' ? 'Web3の専門家とミーティングを予約:' : 'Book a Meeting with Web3 Experts:'}
+      </strong>{' '}
+      {LANG === 'jp'
+        ? '投資家、協力者、業界リーダーと直接つながります。'
+        : 'Connect directly with investors, collaborators, and industry leaders.'}
+    </li>
+    <li>
+      <strong>{LANG === 'jp' ? '賢くエンゲージ:' : 'Engage Smarter:'}</strong>{' '}
+      {LANG === 'jp'
+        ? 'AIを活用したツールを使って24/7シームレスな対話を実現します。'
+        : 'Use AI-powered tools for 24/7 seamless interaction.'}{' '}
+      <span className="text-muted">
+        {LANG === 'jp' ? '（有料オプション）' : '(Paid Option)'}
+      </span>
+    </li>
+  </ul>
+  <a
+    style={{ color: '#1e5fb3' }}
+    href="https://blockza.io"
+    className="blue-text-color fw-bold"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {LANG === 'jp'
+      ? 'Blockza Web3ディレクトリ機能が、より魅力的で影響力のあるプロジェクトページを構築するのにどのように役立つかをご覧ください'
+      : 'Learn how Blockza Web3 Directory features can help you build a more engaging and impactful project page'}
+    &nbsp;
+    <i className="fa fa-external-link" />
+  </a>
+</Col>
+
 
         {/* Right Column */}
         <Col md={4}>
           <div className="contact-card p-3 shadow-sm rounded">
-            <h6 className="fw-bold mb-2">📧 Contact the sales team</h6>
+            <h6 className="fw-bold mb-2">📧 {LANG === 'jp' ? '営業チームに連絡する' : 'Contact the sales team'}</h6>
             <a
               href="mailto:support@blockza.io"
               className="blue-text-color fw-bold"
@@ -926,7 +948,9 @@ export default function AddCompanyForm() {
   {({ field }: any) => (
     <Form.Group className='mb-2'>
         <Form.Label>
-        {t('Promote your Directory Listing')}
+        {LANG === 'jp'
+    ? 'ディレクトリリスティングを宣伝する'
+    : 'Promote your Directory Listing'}
                                       <Tippy
                                         content={
                                           <div>
@@ -949,12 +973,12 @@ export default function AddCompanyForm() {
 
               <label className='text-14 d-flex align-items-center'>
                 <Field type="radio" name="discord" value="yes" className="me-2"/>
-                {t('Yes')}
+                Yes
               </label>
           
               <label className='text-14 d-flex align-items-center ms-3'>
                 <Field type="radio" name="discord" value="no" className="me-2"/>
-                {t('No')}
+                No
               </label>
 
 
@@ -962,8 +986,9 @@ export default function AddCompanyForm() {
 
 </div>
 <div style={{ fontSize: '12px',color: '#1e5fb3', lineHeight: '1.2', marginTop: '5px' }}>
-  Are you interested in promoting your project or arranging meetings with
-  experts for business partnerships or consultations?
+{LANG === 'jp'
+    ? 'プロジェクトの宣伝や、ビジネスパートナーシップやコンサルティングのために専門家とのミーティングを手配することに興味がありますか？'
+    : 'Are you interested in promoting your project or arranging meetings with experts for business partnerships or consultations?'}
 </div>
      
 
@@ -1110,7 +1135,7 @@ export default function AddCompanyForm() {
   {/* Screenshot 1 */}
   <Col xl="4" lg="4"  sm="12" className="mb-4">
   <div className="mb-2 text-center">
-    <h6 className="fw-bold">{t("Company Logo")} <span className='required_icon'>*</span></h6>
+    <h6 className="fw-bold"> {LANG === 'jp' ? '会社のロゴ' : 'Company Logo'} <span className='required_icon'>*</span></h6>
   </div>
   <div className="media-upload-container text-center border rounded p-3">
     {tempweb3ComapnyPreviewLogo ? (
@@ -1139,7 +1164,7 @@ export default function AddCompanyForm() {
         htmlFor="previewweb3companylogo"
         className="btn button-color btn-primary btn-sm"
       >
-        {t("Browse files")}
+        { t("Upload")}
       </label>
     </Form.Group>
     <small className="text-muted">
@@ -1148,7 +1173,7 @@ export default function AddCompanyForm() {
   </div>
   {logoError && (
     <div className="text-danger mt-2">
-      {t("Company logo is required")}
+     {LANG === 'jp' ? '会社のロゴが必要です' : 'Company logo is required'}
     </div>
   )}
 </Col>
@@ -1157,7 +1182,7 @@ export default function AddCompanyForm() {
   {/* Screenshot 2 */}
   <Col xl="4" lg="4" sm="12" className="mb-4">
   <div className="mb-2 text-center">
-    <h6 className="fw-bold">{t("Founder Image")} <span className='required_icon'>*</span></h6>
+    <h6 className="fw-bold"> {LANG === 'jp' ? '創設者の画像' : 'Founder Image'}<span className='required_icon'>*</span></h6>
   </div>
   <div className="media-upload-container text-center border rounded p-3">
     {tempweb3PreviewImg ? (
@@ -1183,7 +1208,7 @@ export default function AddCompanyForm() {
         onChange={(e) => handleImageChageCommon(e, "founder")}
       />
       <label htmlFor="previewweb3Img" className="btn button-color btn-primary btn-sm">
-        {t("Browse files")}
+      {t("Upload")}
       </label>
     </Form.Group>
     <small className="text-muted">
@@ -1199,7 +1224,7 @@ export default function AddCompanyForm() {
   {/* Screenshot 3 */}
   <Col xl="4" lg="4" sm="12" className="mb-4">
   <div className="mb-2 text-center">
-    <h6 className="fw-bold">{t("Company Banner")} <span className='required_icon'>*</span></h6>
+    <h6 className="fw-bold"> {LANG === 'jp' ? '会社のバナー' : 'Company Banner'}<span className='required_icon'>*</span></h6>
   </div>
   <div className="media-upload-container text-center border rounded p-3">
     {tempweb3BannerPreviewImg ? (
@@ -1228,7 +1253,7 @@ export default function AddCompanyForm() {
         htmlFor="previewweb3companyBannerImg"
         className="btn button-color btn-primary btn-sm"
       >
-        {t("Browse files")}
+        {t("Upload")}
       </label>
     </Form.Group>
     <small className="text-muted">
@@ -1245,7 +1270,9 @@ export default function AddCompanyForm() {
   {/* Custom Checkbox Section */}
   <div className="mb-3">
     <h5 className="fw-bold blue-text-color text-start">
-      {t("Promoting your Project & Referral Programs")}
+    {LANG === 'jp'
+      ? 'プロジェクトの宣伝と紹介プログラム'
+      : 'Promoting your Project & Referral Programs'}
     </h5>
 
     <div className="d-flex align-items-start mb-2">
@@ -1255,9 +1282,9 @@ export default function AddCompanyForm() {
         className="me-2 mt-1"
       />
       <span className="text-14 text-start">
-        {t(
-          "Are you interested in promoting your project or arranging meetings with experts for business partnerships or consultations?"
-        )}
+      {LANG === 'jp'
+      ? 'プロジェクトの宣伝や、ビジネスパートナーシップやコンサルティングのために専門家とのミーティングを手配することに興味がありますか？'
+      : 'Are you interested in promoting your project or arranging meetings with experts for business partnerships or consultations?'}
       </span>
     </div>
 
@@ -1268,7 +1295,9 @@ export default function AddCompanyForm() {
         className="me-2 mt-1"
       />
       <span className="text-14 text-start">
-        {t("Does your project have an affiliate program?")}
+      {LANG === 'jp'
+      ? 'あなたのプロジェクトにはアフィリエイトプログラムがありますか？'
+      : 'Does your project have an affiliate program?'}
       </span>
     </div>
 
@@ -1279,11 +1308,11 @@ export default function AddCompanyForm() {
         className="me-2 mt-1"
       />
       <span className="text-14 text-start">
-        {t("I've read the")}{" "}
+      {LANG === 'jp' ? '私は読んだ' : "I've read the"}{' '}
         <Link href="/terms-of-use/" className="blue-text-color fw-bold text-start">
-          {t("Terms of use")}
+          {t("Terms of Use")}
         </Link>{" "}
-        {t("and I agree to be bound by the provisions indicated therein.")}
+        {LANG === 'jp' ? 'そして、そこに記載されている規定に拘束されることに同意します。' : 'and I agree to be bound by the provisions indicated therein.'}
       </span>
     </div>
 
@@ -1294,11 +1323,11 @@ export default function AddCompanyForm() {
         className="me-2 mt-1"
       />
       <span className="text-14 text-start">
-        {t("I've read and accept the")}{" "}
+      {LANG === 'jp' ? '私は読んで受け入れました' : "I've read and accept the"}{' '}
         <Link href="/privacy-policy/" className="blue-text-color fw-bold">
           {t("Privacy Policy")}
         </Link>{" "}
-        {t("of BlockZa.")}
+        {LANG === 'jp' ? 'BlockZa の' : 'of BlockZa'}
       </span>
     </div>
   </div>
