@@ -213,8 +213,8 @@ export default function EventDetails({ eventId }: { eventId: string }) {
       return (
         <div className="countdown-timer bg-light rounded p-3 mb-4">
           <div className="d-flex align-items-center mb-3">
-            <FaCalendarAlt className="fs-5 me-2" />
-            <h5 className="m-0">
+            <FaCalendarAlt style={{ color: '#1e5fb3' }} className="fs-5 me-2" />
+            <h5 style={{ color: '#1e5fb3' }} className="m-0">
               {LANG === 'jp' ? 'イベント開始まで' : 'Event Starts in'}
             </h5>
           </div>
@@ -310,7 +310,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
         <div className='main-inner event-detail-page'>
           <div className='inner-content'>
             <Row>
-              <Col xl='12' lg='12' md='12'>
+              <Col xl='12' lg='12' md='12' className='pt-2'>
                 <Breadcrumb className='new-breadcrumb web'>
                   <Breadcrumb.Item>
                     <Link href='/'>
@@ -345,7 +345,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
 
 
             {event ? (
-                    <div className="container">
+                    <div className="">
                    
                    
       <Row>
@@ -354,13 +354,13 @@ export default function EventDetails({ eventId }: { eventId: string }) {
         <div className='share-event'>
             <div className="top-0 end-0 d-flex gap-2 float-end">
       <button onClick={toggleModal} className="btn btn-light d-flex align-items-center gap-2 border rounded shadow-sm">
-        <FaShareAlt className="text-primary" />
-        <span className="text-primary"> {LANG === 'jp' ? '共有する' : 'Share'}</span>
+        <FaShareAlt style={{ color: '#1e5fb3' }}/>
+        <span style={{ color: '#1e5fb3' }}> {LANG === 'jp' ? '共有する' : 'Share'}</span>
     
       </button>
       <a href="/login/"><button className="btn btn-light d-flex align-items-center gap-2 border rounded shadow-sm">
-        <FaRegStar className="text-muted" />
-     <span className="text-muted">{LANG === 'jp' ? 'ウォッチリスト' : 'Watchlists'}</span>
+        <FaRegStar style={{ color: '#1e5fb3' }} />
+     <span style={{ color: '#1e5fb3' }} >{LANG === 'jp' ? 'ウォッチリスト' : 'Watchlists'}</span>
       </button> </a></div>
       {showModal && (
         <div className="share-modal">
@@ -368,38 +368,38 @@ export default function EventDetails({ eventId }: { eventId: string }) {
             <button onClick={toggleModal} className="close-button">
               &times;
             </button>
-            <h4 className="mb-3">Share Event</h4>
-            <div className="d-flex justify-content-between mb-3">
+            <h4 className="mb-3"> {LANG === 'jp' ? 'イベントを共有' : 'Share Event'}</h4>
+            <div className="d-flex justify-content-between mb-3 social-list">
               <a
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaTwitter className="fs-4 text-primary" />
+                 <i className='fa fa-twitter' />
               </a>
               <a
                 href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaLinkedin className="fs-4 text-primary" />
+                  <i className='fa fa-linkedin' />
               </a>
               <a
                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaWhatsapp className="fs-4 text-success" />
+                   <i className='fa fa-whatsapp' />
               </a>
               <a
                 href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaFacebook className="fs-4 text-primary" />
+                <i className='fa fa-facebook' />
               </a>
               <a href={`mailto:?body=${encodeURIComponent(currentUrl)}`}>
-                <FaEnvelope className="fs-4 text-danger" />
+              <i className='fa fa-envelope' />
               </a>
             </div>
             <div className="copy-section">
@@ -418,18 +418,18 @@ export default function EventDetails({ eventId }: { eventId: string }) {
       )}
       </div><br /><br />
           <div className="event-header">
-            <h1>{event?.title || 'Event Title'}</h1>
+            <h1 className='blue-title'>{event?.title || 'Event Title'}</h1>
             <div className="mt-3">
               <p>
-                <FaMapMarkerAlt className="text-primary" /> {event?.location || 'Location Details'}{' '}
-                <Link href="#">
-                  <FaExternalLinkAlt className="text-secondary ms-1" />
+                <FaMapMarkerAlt style={{ color: '#1e5fb3' }} /> {event?.location || 'Location Details'}{' '}
+                <Link href={event?.applyTicket || '#'}>
+                  <FaExternalLinkAlt style={{ color: '#1e5fb3' }} className="ms-1" />
                 </Link>
               </p>
               <p>
               <span className="small-text fw-semibold">
-  <FaCalendarAlt style={{ color: '#1e5fb3' }} className="text-primary me-1" />
 
+  <i style={{ color: '#1e5fb3' }} className="fa fa-calendar me-1"></i>
   {event?.date && event?.endDate ? (
     (() => {
       
@@ -448,16 +448,15 @@ export default function EventDetails({ eventId }: { eventId: string }) {
       console.log("Parsed End Date:", endDate.format());
 
       if (startDate.isValid() && endDate.isValid()) {
-        return startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY') === 
-               endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')
-          ? `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
-             (${startDate.format('hh:mm A')} - ${endDate.format('hh:mm A')})`
-          : `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} - 
-             ${endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
-             (${startDate.format('hh:mm A')} - ${endDate.format('hh:mm A')})`;
-      } else {
-        return '';
-      }
+                           return startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY') === 
+                           endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')
+                        ? `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')}`
+                        : `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} - 
+                           ${endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')}`;
+                    
+                         } else {
+                             return 'Invalid Date';
+                         }
     })()
   ) : 'Date not available'}
 </span>        
@@ -465,9 +464,9 @@ export default function EventDetails({ eventId }: { eventId: string }) {
                   Add to your calendar
                 </Link>*/}
               </p>
-              <p>
-                <FaTags className="text-primary" /> {' '}
-                <Link href={event?.website || '#'}>Visit Website</Link>
+              <p style={{ color: '#1e5fb3' }}>
+                <FaTags style={{ color: '#1e5fb3' }} /> {' '}
+                <Link href={event?.website || '#'}>  {LANG === 'jp' ? 'ウェブサイトを訪問' : 'Visit Website'}</Link>
               </p>
             </div>
           </div>
@@ -481,7 +480,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
       ? '登録すると、確認メールが送信されます'
       : 'Register and confirmation will be sent on your mail'}</p>
             </div>
-            <a href={event?.applyTicket || '#'} className="btn btn-primary">
+            <a href={event?.applyTicket || '#'} style={{ background: '#1e5fb3',color:'#fff' }} className="btn">
             {LANG === 'jp' ? '登録' : 'Register'}
             </a>
           </div>
@@ -496,7 +495,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
             />
           </div>
 
-          <div className="mt-4 p-3 border rounded bg-white shadow-sm">
+          <div className="mt-4 mb-3 p-3 border rounded bg-white shadow-sm">
             <h3>{LANG === 'jp' ? 'イベントの説明' : 'Event Description'}</h3>
             <p>{parse(event.description) || 'No description available.'}</p>
           </div>
@@ -565,30 +564,30 @@ export default function EventDetails({ eventId }: { eventId: string }) {
 
 
           <h4 className="mt-3">{LANG === 'jp' ? 'ソーシャルリンク' : 'Social Links'}</h4>
-          <div className="d-flex align-items-center gap-3">
+          <div className="d-flex align-items-center gap-3 social-list">
             {event?.facebook && (
               <Link href={event.facebook} target="_blank">
-                <FaFacebook className="text-primary fs-4" />
+                <i className='fa fa-facebook' />
               </Link>
             )}
             {event?.instagram && (
               <Link href={event.instagram} target="_blank">
-                <FaInstagram className="text-danger fs-4" />
+                <FaInstagram />
               </Link>
             )}
             {event?.linkedin && (
               <Link href={event.linkedin} target="_blank">
-                <FaLinkedin className="text-info fs-4" />
+                <i className='fa fa-linkedin' />
               </Link>
             )}
             {event?.telegram && (
               <Link href={event.telegram} target="_blank">
-                <FaTelegram className="text-primary fs-4" />
+                <i className='fa fa-telegram' />
               </Link>
             )}
             {event?.twitter && (
               <Link href={event.twitter} target="_blank">
-                <FaTwitter className="text-primary fs-4" />
+                  <i className='fa fa-twitter' />
               </Link>
             )}
           </div>
@@ -600,6 +599,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
       </Row>
       <Row>
       <Col xl='12' lg='12' md='12' className='pt-5'>
+      <div className='spacer-40' />
                 <div className='event-innr'>
                   <EventSlider eventList={topEvents} />
                 </div>

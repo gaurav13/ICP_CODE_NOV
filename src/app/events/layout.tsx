@@ -3,7 +3,7 @@ import { LanguageForSchema } from '@/constant/language';
 import { EVENTS } from '@/constant/routes';
 import logger from '@/lib/logger';
 import { Metadata } from 'next';
-
+import { LANG } from '@/constant/language';
 export const metadata: Metadata = {
   title: siteConfig.eventListPgtitle,
   description: siteConfig.eventPgDec,

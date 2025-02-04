@@ -319,8 +319,8 @@ export default function Events() {
       <main id='main'>
         <div className='main-inner event-detail-page'>
           <div className='inner-content'>
-            <div className='event-innr row gap-3'>
-              <Col xl='12' lg='12' md='12'>
+            <div className='event-innr gap-3'>
+              <Col xl='12' lg='12' md='12' className="pt-2">
                 <Breadcrumb className='new-breadcrumb web'>
                   <Breadcrumb.Item>
                     <Link href='/'>
@@ -340,23 +340,23 @@ export default function Events() {
                 </Breadcrumb>
               </Col>
               <Col xl='12' lg='12' md='12'>
-                <h1 className='podcastpageheading'>
-                  {t(
-                    'Use BlockZa to highlight Your Web3, Blockchain, and Crypto Events'
-                  )}
+                <h1 className='blue-title'>
+                {LANG === 'jp'
+      ? '2025年・2026年に開催されるWeb3イベント'
+      : 'Web3 Events Happening in 2025/2026'}
                 </h1>
                 {/* <p>{siteConfig.eventsPgDetail}</p> */}
-                <p
+               {/* <p
                   dangerouslySetInnerHTML={{
                     __html: siteConfig.eventsPgDetail,
                   }}
-                />
+                />*/}
 
-                <div className='spacer-20' />
+                <div className='spacer-10' />
               </Col>
              
               <Col xl='12' lg='12' md='12'>
-                <div className='flex-div-xs pb-3'>
+                <div className='flex-div-xs pb-3 fs-14'>
                   <div  style={{border:'1px solid #a1a1a1', borderRadius: '8px', height: '35px', padding: '5px 0px 0px 5px', display: 'flex',alignItems: 'center' 
   }}  className='seelect'>
                     <Form.Select style={{ paddingTop: '10px'}}
@@ -373,7 +373,7 @@ export default function Events() {
                     </Form.Select>
                   </div>
                   <div>
-                    <div className='d-flex'>
+                    <div className='d-flex ps-5 pt-3 p-sm-0 d-none d-sm-block'>
                       {/* <div className='search-pnl small'>
                         <input
                           type='text'
@@ -384,7 +384,7 @@ export default function Events() {
                           <i className='fa fa-search'/>
                         </button>
                       </div> */}
-                      <div className='search-pnl small'>
+                      <div className='search-pnl small  '>
                         <input
                           type='text'
                           className='form-control'
@@ -408,32 +408,32 @@ export default function Events() {
                         </button>
                       </div>
 
-                      <div className='dropdown grey'>
+                      {/*<div className='dropdown grey'>
                         <Button onClick={() => handleSearch()}>
                           <i className='fa fa-sliders' /> {t('filter')}
                         </Button>
-                      </div>
+                      </div>*/}
                     </div>
-                    <div className='spacer-20' />
+                    <div className='spacer-10' />
                   </div>
                 </div>
                 <div>
                   <Row>
-                    <Col xl='2' lg='3' md='3' sm='6'>
-                      <div className='flex-div align-items-center'>
-                        <h6 className='m-0'>
-                          <b>{t('Countries')}</b>
-                        </h6>
-                        <Button
+                    <Col className="d-none d-sm-block" xl='2' lg='3' md='3' sm='6'>
+                      <div className='flex-div align-items-center '>
+                        <span className="fs-14">
+                          {t('Countries')}
+                        </span>
+                        {/*<Button
                           onClick={() => {
                             setCcVals((prev) => {
                               return { city: '', country: '' };
                             });
                           }}
-                          className='red-link text-decoration-no m-0'
+                          className='red-link fs-14 fw-light'
                         >
                           {t('Clear')}
-                        </Button>
+                        </Button>*/}
                       </div>
                       {/* <CountryDropdown
                       
@@ -459,12 +459,12 @@ export default function Events() {
                       </select>
                     </Col>
 
-                    <Col xl='2' lg='3' md='3' sm='6'>
+                    <Col className="d-none d-sm-block" xl='2' lg='3' md='3' sm='6'>
                       <div className='flex-div align-items-center'>
-                        <h6 className='m-0'>
-                          <b>{t('Cities')}</b>
-                        </h6>
-                        <Button
+                      <span className="fs-14">
+                         {t('Cities')}
+                        </span>
+                       {/* <Button
                           onClick={() => {
                             setCcVals((prev) => {
                               return { ...prev, city: '' };
@@ -473,7 +473,7 @@ export default function Events() {
                           className='red-link text-decoration-no m-0'
                         >
                           {t('Clear')}
-                        </Button>
+                        </Button>*/}
                       </div>
                       {/* <RegionDropdown
                         country={ccVals.country}
@@ -502,18 +502,18 @@ export default function Events() {
                           })}
                       </select>
                     </Col>
-                    <Col xl='2' lg='3' md='3' sm='6'>
+                    <Col className="d-none d-sm-block" xl='2' lg='3' md='3' sm='6'>
                       <div className='flex-div align-items-center'>
-                        <h6 className='m-0'>
-                          <b>{t('Months')}</b>
-                        </h6>
+                      <span className="fs-14">
+                         {t('Months')}
+                        </span>
                         <Button
                           onClick={() => {
                             setFilters((prev) => {
                               return { ...prev, month: '' };
                             });
                           }}
-                          className='red-link text-decoration-no m-0'
+                          className='red-link text-decoration-no fs-14 fw-light'
                         >
                           {t('Clear')}
                         </Button>
@@ -548,12 +548,12 @@ export default function Events() {
               </Col>
               <Col xl='12' lg='12'>
               <div className="event-list-main row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-  <h4 className="mb-3 w-100">
-    <span>
-      <Image src={iconcalender} alt="Calender" />{' '}
+
+    <h4 className="mb-3 w-100 fs-14"><span>
+    <i style={{ color: '#1e5fb3' }} className="fa fa-calendar"></i>{' '}
       {tempStatus.charAt(0).toUpperCase() + tempStatus.slice(1)}
-    </span>
-  </h4>
+    </span></h4>
+
 
   {!(topEvents && topEvents?.length > 0) && isLoading ? (
     <div className="d-flex justify-content-center my-4">
@@ -566,6 +566,9 @@ export default function Events() {
           
           {/* Event Image */}
           <div className="position-relative">
+          <a href="/login/" className="star-icon">
+  <FaRegStar style={{ color: "#fff", fontSize: "16px" }} />
+</a>
             <Link href={event.isStatic ? `${Event_STATIC_PATH + event.id}` : `${Event_DINAMIC_PATH + event.id}`}>
               <Image
                 src={event.image || "/default-event.jpg"}
@@ -576,57 +579,88 @@ export default function Events() {
                 style={{ objectFit: "cover" }}
               />
             </Link>
+            {event?.date && event?.endDate ? (
+                (() => {
+                    const parseJapaneseDate = (dateStr) => {
+                        if (!dateStr) return moment();
+                        return moment(
+                            dateStr.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, ''),
+                            'YYYY-MM-DD'
+                        );
+                    };
+
+                    const startDate = LANG === 'jp' ? parseJapaneseDate(event?.date) : moment(event?.date);
+                    const endDate = LANG === 'jp' ? parseJapaneseDate(event?.endDate) : moment(event?.endDate);
+                    const now = moment();
+                    if (now.isBefore(startDate)) {
+                       return <span className="badge upcoming-badge ms-2 mt-2">  {LANG === 'jp' ? '今後の予定' : 'Upcoming'}</span>
+                    } else if (now.isBetween(startDate, endDate, "day", "[]")) {
+                      return <span className="badge ongoing-badge ms-2 mt-2">{LANG === 'jp' ? '進行中' : 'Ongoing'}</span>
+                    } else if (now.isAfter(endDate)) {
+                      return <span className="badge ended-badge ms-2 mt-2">{LANG === 'jp' ? '終了' : 'Ended'}</span>;
+                  }
+                    console.log("Parsed Start Date:", startDate.format());
+                    console.log("Parsed End Date:", endDate.format());
+
+                 
+                })()
+            ) : 'Date not available'}
           </div>
 
           {/* Event Content */}
           <div className="card-body d-flex flex-column">
-            <h5 className="card-title">{event.title}</h5>
-           
-            <span className="small-text fw-semibold">
-  <FaCalendarAlt style={{ color: '#1e5fb3' }} className="text-primary me-1" />
+    <h5 className="card-title">{event.title}</h5>
 
-  {event?.date && event?.endDate ? (
-    (() => {
-      // ✅ Parse Japanese dates correctly before using them
-      const parseJapaneseDate = (dateStr: string | null | undefined) => {
-        if (!dateStr) return moment(); // Fallback to current date
-        return moment(
-          dateStr.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, ''),
-          'YYYY-MM-DD'
-        );
-      };
+    {/* Date & Location Block with Borders */}
+    <div className="event_date_price_block">
+        <span className="fs-14 fw-semibold d-flex align-items-center">
+        <i style={{ color: '#1e5fb3', fontSize: '15px' }} className="fa fa-calendar me-2"></i>
+       
+            {event?.date && event?.endDate ? (
+                (() => {
+                    const parseJapaneseDate = (dateStr) => {
+                        if (!dateStr) return moment();
+                        return moment(
+                            dateStr.replace(/年/g, '-').replace(/月/g, '-').replace(/日/g, ''),
+                            'YYYY-MM-DD'
+                        );
+                    };
 
-      const startDate = LANG === 'jp' ? parseJapaneseDate(event?.date) : moment(event?.date);
-      const endDate = LANG === 'jp' ? parseJapaneseDate(event?.endDate) : moment(event?.endDate);
+                    const startDate = LANG === 'jp' ? parseJapaneseDate(event?.date) : moment(event?.date);
+                    const endDate = LANG === 'jp' ? parseJapaneseDate(event?.endDate) : moment(event?.endDate);
+                   
+                    console.log("Parsed Start Date:", startDate.format());
+                    console.log("Parsed End Date:", endDate.format());
 
-      console.log("Parsed Start Date:", startDate.format());
-      console.log("Parsed End Date:", endDate.format());
+                    if (startDate.isValid() && endDate.isValid()) {
+                      return startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY') === 
+                      endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')
+                   ? `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')}`
+                   : `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} - 
+                      ${endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')}`;
+               
+                    } else {
+                        return 'Invalid Date';
+                    }
+                })()
+            ) : 'Date not available'}
+        </span>
 
-      if (startDate.isValid() && endDate.isValid()) {
-        return startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY') === 
-               endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')
-          ? `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
-             (${startDate.format('hh:mm A')} - ${endDate.format('hh:mm A')})`
-          : `${startDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} - 
-             ${endDate.format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
-             (${startDate.format('hh:mm A')} - ${endDate.format('hh:mm A')})`;
-      } else {
-        return '';
-      }
-    })()
-  ) : 'Date not available'}
-</span>
+        {/* Location Block with Proper Alignment */}
+        <p className="fs-14 pt-2 d-flex align-items-start">
+        <i style={{ color: '#1e5fb3', fontSize: '15px' }} className="me-2 fa fa-map-marker"></i>
+    <span className="text-break">{event.eventLocation}</span>
+</p>
+    </div>
+</div>
+
+      
 
 
-            <p className="small pt-2">
-              <FaMapMarkerAlt  style={{ color: '#1e5fb3' }} className="text-primary me-1" /> {event.eventLocation}
-            </p>
-           
-          </div>
-          <hr></hr>
           {/* Event Actions */}
           <div className="card-footer bg-white border-top-0 mt-auto d-flex justify-content-between">
-            <Link className="btn btn-link text-decoration-none p-0" href={event.isStatic ? `${Event_STATIC_PATH + event.id}` : `${Event_DINAMIC_PATH + event.id}`}>
+
+            <Link className="btn icon-color-blue btn-link text-decoration-none pb-3 ps-0 fs-14" href={event.isStatic ? `${Event_STATIC_PATH + event.id}` : `${Event_DINAMIC_PATH + event.id}`}>
               <i  style={{ color: '#1e5fb3' }} className="fa fa-info-circle me-1"></i>  {LANG === 'jp' ? 'イベントの詳細を見る' : 'View Event Details'}
             </Link>
             {/*<button className="btn btn-light btn-sm">
@@ -638,7 +672,7 @@ export default function Events() {
       </div>
     ))
   ) : (
-    <p className="text-center">{t('No Events Found')}</p>
+    <p className="text-center fs-14">{t('No Events Found')}</p>
   )}
 </div>
 
@@ -660,7 +694,7 @@ export default function Events() {
               </Col>
               <Col xl='12' lg='12' md='12'>
                 {previewEvents && (
-                  <div className='eventlist-header'>
+                  <div className='eventlist-header pt-5'>
                     {previewEvents?.length > 0 && (
                       <>
                         {/* <div className='img-pnl'>

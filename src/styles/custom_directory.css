@@ -256,6 +256,14 @@ color: #0056b3;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+.fs-14 {
+  font-size: 0.875rem !important;
+}
+.join-expert:hover {
+  background-color: #fff !important;  /* Keep the same background color */
+  color: #000 !important;  /* Keep text color the same */
+  border: 1px solid #000;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

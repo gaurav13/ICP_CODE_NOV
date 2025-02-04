@@ -38,6 +38,7 @@ import { isUserConnected } from '@/components/utils/utcToLocal';
 import { ADD_WEB3, CONTACT_US } from '@/constant/routes';
 import { redirect } from 'next/navigation';	
 import '../../styles/custom_directory.css';
+import { Button } from 'jodit/esm/modules';
 export default function Article() {
   const { t, changeLocale } = useLocalization(LANG);
   const [user, setUser] = useState<User | null>();
@@ -680,7 +681,7 @@ else {
               </Col>
               <Col xl='8' lg='8'>
                
-                <h1 style={{ fontWeight: 700 }}>
+                <h1 className='blue-title'>
                   {t('List of Web3 Companies')}
                 </h1>
    
@@ -758,9 +759,10 @@ else {
           ? '登録して潜在的なクライアントと会議をスケジュールするか、専門家との1対1のビデオ通話を予約して個別のアドバイスを受けましょう。'
           : 'Sign up and schedule a meeting with a potential client or book a 1:1 video call with an expert to get personalized advice.'}
       </p>
-      <button className="btn btn-primary text-button-background mt-auto">
-        {LANG === 'jp' ? '法人アカウントを申し込む' : 'Apply for corporate account'}
-      </button>
+      <a href="/add-directory/" className="btn join-expert fs-14 text-white text-button-background mt-auto">
+  {LANG === 'jp' ? '法人アカウントを申し込む' : 'Apply for corporate account'}
+</a>
+
     </div>
   </div>
   <div className="col-md-4 d-flex">
@@ -784,11 +786,11 @@ else {
 </p>
 
               <Col xl="12" lg="12">
-              <div className="flex-details-pnl d-flex justify-content-between align-items-center py-3 flex-wrap border-0">
+              <div className="flex-details-pnl fs-14 d-flex justify-content-between align-items-center py-3 flex-wrap border-0">
   {/* Left Panel */}
   <div className="left-side-pnl d-flex align-items-center mb-3 mb-lg-0">
   <div
-                  className='w-90 search-post-pnl search-pnl small'
+                  className='w-90 search-post-pnl search-pnl small fs-14'
                   id='companySecrch'
                 >
                <input
@@ -819,18 +821,18 @@ else {
   </div>
 
   {/* Right Panel */}
-  <div className="right-side-pnl d-flex align-items-center flex-wrap justify-content-end">
+  <div className="right-side-pnl fs-14 d-flex align-items-center flex-wrap justify-content-end">
   
     <Link
       href={ADD_WEB3}
-      className="reg-btn trans me-2"
+      className="reg-btn trans me-2 fs-14"
     >
       {t("Submit your Listing")}
     </Link>
-    <Link href={CONTACT_US} className="reg-btn faq-btn">
-      {t("FAQ")}
-    </Link>
-    <div>  {LANG === 'jp' ? '合計' : 'Total'}: {/*{totalCompanies}*/} 420 results &nbsp;</div> 
+ <a href="/expert-registration/"  className="btn text-button-background join-expert text-white fs-14">
+  {LANG === 'jp' ? 'エキスパートとして参加' : 'Join as Expert'}
+</a>
+    <div className='ms-2'>  {LANG === 'jp' ? '合計' : 'Total'}: {/*{totalCompanies}*/} 420 results &nbsp;</div> 
   </div>
 </div>
 

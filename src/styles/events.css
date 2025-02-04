@@ -130,4 +130,70 @@
   .event-share-btn:hover {
     color: #3498db;
   }
-  
+  @media (max-width: 767px) {
+    .inner-content {
+      padding-left: 0 !important;
+      padding-right: 0px !important;
+
+    }
+    
+  }
+  .fs-14 {
+    font-size: 0.875rem !important;
+  }
+  .event_date_price_block {
+    border-top: 1px solid rgba(23, 23, 23, 0.10);
+    border-bottom: 1px solid rgba(23, 23, 23, 0.10);
+    padding: 15px 0 5px;
+}
+.ongoing-badge {
+  font-weight: 100;
+  color: #16C582;
+    font-size: 12px !important;
+    background: rgba(22, 197, 130, 0.10);
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+
+.upcoming-badge {
+  font-weight: 100;
+  background-color: rgba(253, 126, 20, 0.10);
+  color: #FD7E14; /* Dark orange */
+  padding: 6px 12px;
+  font-size: 12px!important;
+  border-radius: 6px;
+
+}
+.ended-badge {
+  font-weight: 100;
+  background-color: rgba(128, 128, 128, 0.2); /* Light gray */
+  color: #5a5a5a; /* Dark gray */
+  padding: 6px 12px;
+  font-size: 12px!important;
+  border-radius: 6px;
+ 
+}
+.mailclass {
+  color: inherit; /* Keeps default text color */
+  text-decoration: none; /* Removes underline */
+}
+
+.mailclass:hover {
+  color: #1e5fb3 !important; /* Changes color to blue on hover */
+  text-decoration: underline; /* Optional: Adds underline on hover */
+}
+.star-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6); /* Dark background */
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}

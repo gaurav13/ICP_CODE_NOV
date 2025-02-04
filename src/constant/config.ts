@@ -24,8 +24,8 @@ const siteConfigEng = {
     "Explore the key provisions of BlockZa's Terms of Use, including user eligibility, account management, intellectual property rights, and legal compliance. Stay informed about your rights and responsibilities as a user of this innovative platform.",
   termOfUseTwitterDes:
     'Your trust matters. Learn how we protect your personal information in the blockchain and web3.0 world. Committed to transparency and security in accordance with GDPR guidelines.',
-  eventPgDec: "With BlockZa event service, expand visibility of your Web3, blockchain, and cryptocurrency events to reach more than a million active members.",
-  eventListPgtitle: 'Use BlockZa to highlight Your Web3, Blockchain, and Crypto Events',
+  eventPgDec: "Explore 2025/2026 finest Web3 events! Learn about decentralized tech, blockchain, and cryptocurrency events across the world. Stay ahead of the Web3 revolution by establishing connections with leaders.",
+  eventListPgtitle: 'Web3 Events Happening in 2025/2026',
   leadertitle: 'NFT Article Leaderboard',
   leaderDec:
     'Explore the NFT Article Leaderboard at BlockZa. Discover the top contributors and enthusiasts in the NFT community. Dive into insightful articles, engage with content, and climb the ranks to become an NFT knowledge champion!',
@@ -110,7 +110,7 @@ const siteConfigEng = {
             To submit your press release with BlockZa, send your details at `,
   eventsPgDetail: ` BlockZa will promote your Web3, blockchain, and cryptocurrency events across the various channels. You may reach a lively, interested audience of over a million people from more than ten countries through our platform. We ensure your event receives the recognition it deserves in the vibrant cryptocurrency community.
 
-            Reach out at <a href="mailto:support@blockza.io">support@blockza.io</a> for your event promotion!`,
+            Reach out at <a class="mailclass" href="mailto:support@blockza.io">support@blockza.io</a> for your event promotion!`,
   twitterLink: "https://x.com/blockza_io/",
   phnumber:"+81362816114",
 address:"7F Nihonbashi Daiei Building, 1-2-6 Nihonbashi Muromachi, Chuo-ku, Tokyo 103-0022",
@@ -182,8 +182,8 @@ const siteConfigJP = {
     'ユーザー資格、アカウント管理、知的財産権、法令順守など、BlockZa利用規約の主要条項をご覧ください。革新的なプラットフォームのユーザーとしての権利と責任について、常に情報をご確認いただけますようお願いします。',
   termOfUseTwitterDes:
     'お客様の信頼が第一です。ブロックチェーンとWeb3.0の世界で、当社がどのようにお客様の個人情報を保護しているかをご確認ください。GDPRガイドラインに基づき、透明性とセキュリティに取り組んでいます。',
-  eventPgDec: "BlockZaイベントサービスを活用すれば、Web3、ブロックチェーン、暗号通貨イベントを広く宣伝できます。100万人以上のアクティブ会員にリーチできるチャンスです！",
-  eventListPgtitle: 'BlockZaを利用して、Web3、ブロックチェーン、暗号イベントをアピールしよう！',
+  eventPgDec: "2025年・2026年の最高のWeb3イベントを探索しましょう！分散型技術、ブロックチェーン、暗号通貨に関する世界中のイベントを学びましょう。業界のリーダーとつながり、Web3革命の最前線に立ちましょう。",
+  eventListPgtitle: '2025年・2026年に開催されるWeb3イベント',
   leadertitle: 'NFT記事リーダーボード',
   leaderDec:
     'BlockZaのNFT記事リーダーボードをご覧ください。NFTコミュニティのトップ投稿者や熱狂的なファンが見つかります。洞察に満ちた記事を読み、コンテンツに参加して下さい。そして、NFTナレッジチャンピオンを目指し、ランクを上げていきましょう。',

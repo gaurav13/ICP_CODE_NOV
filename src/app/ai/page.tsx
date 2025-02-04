@@ -1,635 +1,195 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { Row, Col, Breadcrumb, Dropdown, Spinner, Form } from 'react-bootstrap';
-import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import iconpodcast from '@/assets/Img/Icons/icon-podcast-1.png';
-import iconpressrelease from '@/assets/Img/Icons/icon-press-release.png';
-import iconhorn from '@/assets/Img/Icons/icon-horn.png';
-import iconthumb from '@/assets/Img/Icons/icon-thumb.png';
-import iconmessage from '@/assets/Img/Icons/icon-comment.png';
-import TakeQuiz from '@/components/TakeQuiz/TakeQuiz';
-import useLocalization from '@/lib/UseLocalization';
+
+import { useState } from 'react';
+import moment from 'moment';
+import { utcToLocal } from '@/components/utils/utcToLocal';
 import { LANG } from '@/constant/language';
-import { useConnectPlugWalletStore } from '@/store/useStore';
-import {
-  makeCommentActor,
-  makeEntryActor,
-  makeUserActor,
-} from '@/dfx/service/actor-locator';
-import { fromNullable } from '@dfinity/utils';
-import logger from '@/lib/logger';
-import { getImage, iframeimgThumbnail } from '@/components/utils/getImage';
-import HTMLReactParser from 'html-react-parser';
-import { ARTICLE_FEATURED_IMAGE_ASPECT } from '@/constant/sizes';
-import { canisterId as userCanisterId } from '@/dfx/declarations/user';
-import { canisterId as commentCanisterId } from '@/dfx/declarations/comment';
-import TopEvents from '@/components/TopEvents';
-import TrendingArticleSide from '@/components/TrendingArticleSide/TrendingArticleSide';
-import {
-  formatLikesCount,
-  isUserConnected,
-} from '@/components/utils/utcToLocal';
-import { toast } from 'react-toastify';
-import useSearchParamsHook from '@/components/utils/searchParamsHook';
-import ConnectModal from '@/components/Modal';
-import Tippy from '@tippyjs/react';
-import {
-  ARTICLE_DINAMIC_PATH,
-  ARTICLE_STATIC_PATH,
-  Podcast_DINAMIC_PATH,
-  Podcast_STATIC_PATH,
-} from '@/constant/routes';
-import ReactPaginate from 'react-paginate';
-import InfiniteScroll from 'react-infinite-scroll-component';
-let CATEGORY_ENTRIES_PERPAGE = 20;
-
-
-function EntryItem({ entry, entryActor }: { entry: any; entryActor: any }) {
-  const [likeCount, setLikeCount] = useState<number>(entry.likes);
-  const [isliked, setIsLiked] = useState(false);
-  const [showConnectModal, setShowConnectModal] = useState(false);
-
-  const { identity, auth } = useConnectPlugWalletStore((state) => ({
-    identity: state.identity,
-    auth: state.auth,
-  }));
-  const handleConnectModal = () => {
-    // e.preventDefault();
-    setShowConnectModal(true);
-    // setConnectLink(e);
-  };
-  const handleConnectModalClose = () => {
-    setShowConnectModal(false);
-  };
-
-  const likeEntry = async () => {
-    if (!isUserConnected(auth, handleConnectModal)) return;
-    if (!isliked) {
-      setLikeCount((pre: number) => pre + 1);
-      setIsLiked(true);
-    } else {
-      setLikeCount((pre: number) => pre - 1);
-      setIsLiked(false);
-    }
-
-    return new Promise(async (resolve, reject) => {
-      // if (!entry || !article[1].userId)
-      //   reject('NO Entry or user ID provided');
-
-      entryActor
-        .likeEntry(entry.id, userCanisterId, commentCanisterId)
-        .then(async (entry: any) => {
-          logger(entry, 'een');
-          resolve(entry);
-        })
-        .catch((err: any) => {
-          logger(err);
-          if (!isliked) {
-            setLikeCount((pre) => pre + 1);
-            setIsLiked(true);
-          } else {
-            setLikeCount((pre) => pre - 1);
-            setIsLiked(false);
-          }
-          reject(err);
-        });
-    });
-  };
-  const { t, changeLocale } = useLocalization(LANG);
-  useEffect(() => {
-    if (identity) {
-      let liked = entry.likedUsers.some(
-        (u: any) => u.toString() == identity.getPrincipal()
-      );
-      setIsLiked(liked);
-    }
-  }, [identity]);
-
-  return (
-    <>
-      <Col xl='6' lg='6' md='6' sm='12'  className='d-sm-flex justify-content-sm-center mx-auto'>
-        <div className='general-post auto'>
-          <Link
-            className='img-pnl categoryimg'
-            style={{
-              width: '100%',
-              aspectRatio: ARTICLE_FEATURED_IMAGE_ASPECT,
-              position: 'relative',
-            }}
-            href={
-              entry.isPodcast
-                ? entry.isStatic
-                  ? `${Podcast_STATIC_PATH + entry.id}`
-                  : `${Podcast_DINAMIC_PATH + entry.id}`
-                : entry.isStatic
-                ? `${ARTICLE_STATIC_PATH + entry.id}`
-                : `${ARTICLE_DINAMIC_PATH + entry.id}`
-            }
-          >
-            <Image fill src={entry?.image} alt='Post' />
-          </Link>
-          <div className='txt-pnl'>
-            <Link
-              href={
-                entry.isPodcast
-                  ? entry.isStatic
-                    ? `${Podcast_STATIC_PATH + entry.id}`
-                    : `${Podcast_DINAMIC_PATH + entry.id}`
-                  : entry.isStatic
-                  ? `${ARTICLE_STATIC_PATH + entry.id}`
-                  : `${ARTICLE_DINAMIC_PATH + entry.id}`
-              }
-            >
-              <h6>
-                {entry.pressRelease ? (
-                  <Image
-                    src={iconpressrelease}
-                    width={25}
-                    height={25}
-                    alt='Icon Press release'
-                  />
-                ) : entry.isPodcast ? (
-                  <Image
-                    src={iconpodcast}
-                    width={25}
-                    height={25}
-                    alt='Icon podcast'
-                  />
-                ) : (
-                  ''
-                )}{' '}
-                {entry?.title}
-              </h6>
-            </Link>
-            <p
-              style={{ maxHeight: '45px', overflow: 'hidden' }}
-              className='customstyle'
-            >
-              {/* {HTMLReactParser(entry?.description)} */}
-              {entry?.seoExcerpt}
-            </p>
-            <ul className='thumb-list'>
-              <li
-                style={{
-                  cursor: 'pointer',
-                }}
-                onClick={likeEntry}
-              >
-                <a
-                  style={{
-                    pointerEvents: 'none',
-                  }}
-                  href='#'
-                >
-                  <Image
-                    src={`${
-                      isliked ? '/images/liked.svg' : '/images/like.svg'
-                    }`}
-                    width={25}
-                    height={25}
-                    alt='Icon Thumb'
-                  />{' '}
-                  {formatLikesCount(likeCount) ?? 0}
-                </a>
-              </li>
-              <li>
-                <Link
-                  href={
-                    entry.isPodcast
-                      ? entry.isStatic
-                        ? `${Podcast_STATIC_PATH + entry.id}?route=comments`
-                        : `${Podcast_DINAMIC_PATH + entry.id}?route=comments`
-                      : entry.isStatic
-                      ? `${ARTICLE_STATIC_PATH + entry.id}?route=comments`
-                      : `${ARTICLE_DINAMIC_PATH + entry.id}&route=comments`
-                  }
-                >
-                  <Image src={iconmessage} alt='Icon Comment' />{' '}
-                  {entry?.comments} {t('Comments')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={
-                    entry.isPodcast
-                      ? entry.isStatic
-                        ? `${Podcast_STATIC_PATH + entry.id}?route=comments`
-                        : `${Podcast_DINAMIC_PATH + entry.id}?route=comments`
-                      : entry.isStatic
-                      ? `${ARTICLE_STATIC_PATH + entry.id}?route=comments`
-                      : `${ARTICLE_DINAMIC_PATH + entry.id}&route=comments`
-                  }
-                  className='ms-1'
-                >
-                  <div className='viewbox'>
-                    <i className='fa fa-eye fill blue-icon fa-lg me-1' />
-                    {t('Views')} <span className='mx-1'>|</span>
-                    {entry?.views ? formatLikesCount(entry?.views) : 0}
-                  </div>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </Col>
-      <ConnectModal
-        handleClose={handleConnectModalClose}
-        showModal={showConnectModal}
-      />
-    </>
-  );
+interface Message {
+  sender: 'user' | 'bot';
+  text: string;
 }
-export default function CategoryDetails() {
-  const [category, setCategory] = useState<any | undefined>();
-  const [search, setSearch] = useState('');
-  const [entries, setEntries] = useState<any[]>();
-  const [entriesSize, setEntriesSize] = useState(0);
-  const [HideTrendinpost, setHideTrendinpost] = useState<any>(true);
-  const [isLoading, setIsLoading] = useState(true);
 
-  const urlparama = useSearchParamsHook();
-  const searchParams = new URLSearchParams(urlparama);
-  const categoryId = LANG === 'jp' ? "1710821043195619936" : "1718645044417924753";
-  const latestnews = searchParams.get('news');
-  const [forcePaginate, setForcePaginate] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
-  const pageCount = Math.ceil(entriesSize / CATEGORY_ENTRIES_PERPAGE);
-  const { auth, identity } = useConnectPlugWalletStore((state) => ({
-    auth: state.auth,
-    identity: state.identity,
-  }));
-  const router = useRouter();
-  const entryActor = makeEntryActor({
-    agentOptions: {
-      identity,
-    },
-  });
+const Page: React.FC = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [userInput, setUserInput] = useState('');
 
-  const userActor = makeUserActor({
-    agentOptions: {
-      identity,
-    },
-  });
-  const commentsActor = makeCommentActor({
-    agentOptions: {
-      identity,
-    },
-  });
-  async function getCategory(newCategoryId?: string, oldCategory?: any) {
-    let id = newCategoryId ? newCategoryId : categoryId;
-    if (id == null) {
-      return;
-    }
+  // Function to search website content
+  const searchWebsiteContent = async (query: string): Promise<string | null> => {
+    const mockDatabase = [
+      { question: 'What is your refund policy?', answer: 'Our refund policy lasts 30 days.' },
+      { question: 'How to contact support?', answer: 'You can email us at support@example.com.' },
+    ];
 
-    const resp = await entryActor.get_list_category(id);
-    const _category: any | undefined = fromNullable(resp);
-    if (_category) {
-      _category.id = id;
-      if (newCategoryId) {
-        oldCategory.parents.unshift(_category);
-      } else {
-        _category.parents = [];
-        oldCategory = _category;
-      }
-    }
-    if (_category?.isChild) {
-      let parentId: string | undefined = fromNullable(
-        _category.parentCategoryId
-      );
-      if (parentId) return getCategory(parentId, oldCategory);
-    } else {
-      return oldCategory;
-    }
-  }
-  const getRefinedList = async (tempEntriesList: any[]) => {
-    if (!tempEntriesList || tempEntriesList?.length === 0) {
-      return [];
-    }
-    const refinedPromise = await Promise.all(
-      tempEntriesList?.map(async (entry: any) => {
-        let image = null;
-
-        if (entry[1].image) {
-          image = getImage(entry[1].image[0]);
-        }
-        if (entry[1].podcastImg.length != 0) {
-          image = getImage(entry[1].podcastImg[0]);
-        }
-        if (entry[1].podcastVideoLink != '') {
-          image = iframeimgThumbnail(entry[1].podcastVideoLink);
-        }
-        const userId = entry[1].user.toString();
-
-        // const user = await userActor.get_user_details([userId]);
-        const _comments = await commentsActor.getComments(entry[0]);
-        let comments = 0;
-        if (_comments.ok) {
-          comments = _comments.ok[0].length;
-        }
-
-        // let
-        let newItem = {
-          id: entry[0],
-          creation_time: entry[1].creation_time,
-          image: image,
-          title: entry[1].title,
-          description: entry[1].description,
-          isDraft: entry[1].isDraft,
-          isPromoted: entry[1].isPromoted,
-          userName: entry[1].userName,
-          userId,
-          status: entry[1].status,
-          pressRelease: entry[1].pressRelease,
-          comments,
-          likes: parseInt(entry[1].likes),
-          likedUsers: entry[1].likedUsers,
-          isStatic: entry[1].isStatic,
-          views: entry[1].views,
-          seoExcerpt: entry[1].seoExcerpt,
-          isPodcast: entry[1].isPodcast,
-        };
-        // if (user.ok) {
-        //   newItem.userName = user.ok[1].name ?? entry[1].userName;
-        // }
-        return newItem;
-      })
+    const result = mockDatabase.find((item) =>
+      item.question.toLowerCase().includes(query.toLowerCase())
     );
 
-    return refinedPromise;
+    return result ? result.answer : null;
   };
-  /**
-   * getEntries use to get list of entries
-   * @param {reset?: boolean, oldEntries?: any,startIndex:number}
-   * @returns array of entries
-   */
-  async function getEntries({reset, oldEntries,startIndex}:{reset?: boolean, oldEntries?: any,startIndex:number}) {
-    let searched = reset ? '' : search;
-    if (!categoryId) return;
-    if (latestnews == 'latest') {
-      const resp = await entryActor.getEntriesNewlatest(
-        searched,
-        startIndex,
-        CATEGORY_ENTRIES_PERPAGE
-      );
-      const { entries: _entries, amount } = resp;
-      let tempAmount = parseInt(amount);
-      setEntriesSize(tempAmount);
-      if (oldEntries) {
-        oldEntries.push(..._entries);
-      } else {
-        oldEntries = _entries;
-      }
-      return oldEntries;
-    } else {
-      const resp = await entryActor.getEntriesNew(
-        categoryId,
-        searched,
-        startIndex,
-        CATEGORY_ENTRIES_PERPAGE
-      );
-      const { entries: _entries, amount } = resp;
-      let tempAmount = parseInt(amount);
-      setEntriesSize(tempAmount);
-      if (oldEntries) {
-        oldEntries.push(..._entries);
-      } else {
-        oldEntries = _entries;
-      }
-      return oldEntries;
-    }
+  const testDateJP = "2024年9月11日"; // Japanese date format
+  const testDateEN = "2024-09-11";  // Standard ISO format
+  
+  console.log("JP Date Parsed:", moment(testDateJP, 'YYYY年M月D日').isValid());
+  console.log("EN Date Parsed:", moment(testDateEN).isValid());
+  
+  console.log("JP Formatted:", moment(testDateJP, 'YYYY年M月D日').format('YYYY-MM-DD'));
+  console.log("EN Formatted:", moment(testDateEN).format('YYYY-MM-DD'));
+  // Function to fetch ChatGPT response
+  const getChatGPTResponse = async (query: string): Promise<string> => {
+    const apiKey = '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'; // Replace with your OpenAI API key
+    const url = 'https://api.openai.com/v1/chat/completions';
 
-   
-  }
-
-  const { t, changeLocale } = useLocalization(LANG);
-  /**
-   * getNSetEntriesInfinate use for infinate load data
-   * @param Null
-   * @returns Null
-   */
-  const getNSetEntriesInfinate = async () => {
-    setIsLoading(true);
-  
-    // Fetch entries
-    const tempEntries = await getEntries({ startIndex: page });
-  
-    // Refine entries
-    const refinedEntries = await getRefinedList(tempEntries);
-  
-    setEntries((prevItems = []) => { // Default `prevItems` to an empty array
-      const allItems = [...prevItems, ...refinedEntries];
-  
-      // Ensure unique items by filtering duplicates based on `id`
-      const uniqueItems = allItems.filter((item, index, self) =>
-        index === self.findIndex((t) => t.id === item.id)
-      );
-  
-      return uniqueItems;
-    });
-  
-    // Determine if more items can be fetched
-    if (pageCount <= page) {
-      setHasMore(false);
-    } else {
-      setPage((prev) => prev + 1); // Increment the page
-    }
-  
-    setIsLoading(false); // Update loading state
-  };
-  
-  const getNSetEntries = async (reset?: boolean) => {
-    setIsLoading(true);
-    const tempEntries = await getEntries({reset:reset,startIndex:0});
-    const refinedEntries = await getRefinedList(tempEntries);
-    setEntries(refinedEntries);
-    setIsLoading(false);
-  };
-  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      getNSetEntries();
-    }
-  };
-  useEffect(() => {
-    const getnSetCategory = async () => {
-      const tempCategory = await getCategory();
-      setCategory(tempCategory);
-      getNSetEntries();
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
     };
-    getnSetCategory();
-  }, [categoryId, latestnews]);
+
+    const data = {
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: query }],
+    };
+
+    const response = await fetch(url, { method: 'POST', headers, body: JSON.stringify(data) });
+    const responseData = await response.json();
+    return responseData.choices[0].message.content;
+  };
+
+  // Handle user message
+  const handleSendMessage = async () => {
+    if (!userInput.trim()) return;
+
+    // Add user message to chat
+    setMessages((prev) => [...prev, { sender: 'user', text: userInput }]);
+
+    // Step 1: Search website content
+    const websiteResponse = await searchWebsiteContent(userInput);
+
+    if (websiteResponse) {
+      setMessages((prev) => [...prev, { sender: 'bot', text: websiteResponse }]);
+    } else {
+      // Step 2: Get ChatGPT response
+      try {
+        const chatGPTResponse = await getChatGPTResponse(userInput);
+        setMessages((prev) => [...prev, { sender: 'bot', text: chatGPTResponse }]);
+      } catch (error) {
+        console.error('Error fetching ChatGPT response:', error);
+        setMessages((prev) => [
+          ...prev,
+          { sender: 'bot', text: 'Sorry, something went wrong. Please try again.' },
+        ]);
+      }
+    }
+
+    setUserInput('');
+  };
 
   return (
-    <>
-      <main id='main'>
-        <div className='main-inner event-detail-page lis'>
+    <main id='main'>
+    <div className='main-inner'>
           <div className='inner-content'>
-            <Col xl='12' lg='12' md='12'>
-              <div className='event-innr'>
-                <div className='flex-div-sm align-items-center'>
-                  <Breadcrumb className='new-breadcrumb web'>
-                    <Breadcrumb.Item>
-                      <Link href='/'>
-                        <i className='fa fa-home' />
-                      </Link>
-                    </Breadcrumb.Item>
-                    {category?.parents &&
-                      category?.parents.length > 0 &&
-                      category?.parents.map((parent: any, index: number) => (
-                        <Breadcrumb.Item key={index}>
-                          <Link
-                            href='/ai/'
-                          >
-                            {parent.name}
-                          </Link>
-                        </Breadcrumb.Item>
-                      ))}
-                    {category && (
-                      <Breadcrumb.Item>
-                        <Tippy content={category.name}>
-                          <Link
-                            href={`/category-details?category=${category.id}`}
-                          >
-                            {category.name}
-                          </Link>
-                        </Tippy>
-                      </Breadcrumb.Item>
-                    )}
-                  </Breadcrumb>
-                  <div className='search-pnl small'>
-                    <input
-                      type='text'
-                      className='form-control'
-                      placeholder={t('Search News')}
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                      onKeyDown={handleSearch}
-                    />
-                    {search.length >= 1 && (
-                      <button
-                        onClick={() => {
-                          setSearch('');
-                          getNSetEntries(true);
-                        }}
-                      >
-                        <i className='fa fa-xmark mx-1' />
-                      </button>
-                    )}
-                    <button onClick={() => getNSetEntries()}>
-                      <i className='fa fa-search' />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <div className='event-innr'>
-              <Col xl='12' lg='12' md='12'>
-                {category ? (
-                  <>
-                    <h2>{category.name}</h2>
+          <span className="small-text fw-semibold"> 
  
-                    <div className='spacer-10' />
-                
-                    <p>{category.description}</p>
-                  </>
-                ) : (
-                  <div className='spinner-div'>
-                    <Spinner />
-                  </div>
-                )}
-                <div className='spacer-50' />
-                <h4>
-                  <Image src={iconhorn} alt='Horn' />{' '}
-                  {category && `${category?.name}`}
-                </h4>
-                <div className='spacer-20' />
-              </Col>
-              <Col xl='12' lg='12' md='12'>
-                <Row>
-                  <Col xxl='8' xl='12' lg='12'>
-                    <Row>
-                    <InfiniteScroll
-      dataLength={entries?.length ?? 0}
-      next={() => {
 
-        setTimeout(() => {
-          getNSetEntriesInfinate();
+  {moment("2024年9月11日", "YYYY年M月D日").isValid() && moment("2024年9月11日", "YYYY年M月D日").isValid() ? (
+    moment("2024年9月11日", "YYYY年M月D日").format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY') === 
+    moment("2024年9月11日", "YYYY年M月D日").format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')
+      ? `${moment("2024年9月11日", "YYYY年M月D日").format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
+         (${moment("2024年9月11日", "YYYY年M月D日").format('hh:mm A')} - ${moment("2024年9月11日", "YYYY年M月D日").format('hh:mm A')})`
+      : `${moment("2024年9月11日", "YYYY年M月D日").format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} - 
+         ${moment("2024年9月11日", "YYYY年M月D日").format(LANG === 'jp' ? 'YYYY年M月D日' : 'MMM D, YYYY')} 
+         (${moment("2024年9月11日", "YYYY年M月D日").format('hh:mm A')} - ${moment("2024年9月11日", "YYYY年M月D日").format('hh:mm A')})`
+  ) : 'Invalid Date'}
+</span>
 
-        }, 2000);
-      }}
-      scrollThreshold={0.6}
-      hasMore={hasMore}
-      loader={<div className='d-flex justify-content-center w-full w-100'>
-        <Spinner />
-      </div>}
-      endMessage={<div className='w-100'><p className='text-center'>{t("No more items to load")}</p></div>}
-      className='asRow d-sm-flex justify-content-sm-center'
-    >
-                      {
-                       entries && entries.map((entry: any) => (
-                          <EntryItem entry={entry} entryActor={entryActor} />
-                        ))}
-             </InfiniteScroll>
-                    </Row>
-                    <style jsx>{`
-        .asRow.infinite-scroll-component {    
-          justify-content: center !important;
+    <div className="chat-container">
+      <div className="chat-box">
+        {messages.map((message, index) => (
+          <div key={index} className={`message ${message.sender}`}>
+            {message.sender === 'bot' && (
+              <img
+                src="https://blockza.io/wp-content/uploads/2024/09/blockza-3.png" // Replace with the path to your avatar image
+                alt="Bot Avatar"
+                className="avatar"
+              />
+            )}
+            <div className="text">{message.text}</div>
+          </div>
+        ))}
+      </div>
+      <div className="input-container">
+        <input
+          type="text"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          placeholder="Type your message..."
+        />
+        <button onClick={handleSendMessage}>Send</button>
+      </div>
+      <style jsx>{`
+        .chat-container {
+          width: 100%;
+          max-width: 600px;
+          margin: 50px auto;
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          background: #f9f9f9;
         }
-          .event-detail-page.lis .general-post .img-pnl:not(.pressRelease,.categoryimg) { 
-          height: auto!important;
+        .chat-box {
+          max-height: 400px;
+          overflow-y: auto;
+          margin-bottom: 20px;
+        }
+        .message {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        .message.user .text {
+          background: #007bff;
+          color: white;
+          align-self: flex-end;
+        }
+        .message.bot .text {
+          background: #e6f7ff;
+          color: black;
+        }
+        .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+        .text {
+          padding: 10px 15px;
+          border-radius: 10px;
+          max-width: 70%;
+        }
+        .input-container {
+          display: flex;
+        }
+        input {
+          flex: 1;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin-right: 10px;
+        }
+        button {
+          padding: 10px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: #0056b3;
         }
       `}</style>
-                  </Col>
-
-                  <Col xxl='4' xl='5' lg='12'>
-                    <Row>
-                      <Col xxl='12' xl='12' lg='6' md='6' sm='12' className='d-sm-flex justify-content-sm-center '>
-                        <TakeQuiz />
-                      </Col>
-                      <Col xxl='12' xl='12' lg='12' md='12' className='heding'>
-                      
-                        <TopEvents />
-                      </Col>
-                      <Col xl='12' lg='12' className='heding'>
-                        <Dropdown
-                          onClick={() => setHideTrendinpost((pre: any) => !pre)}
-                        >
-                          <Dropdown.Toggle
-                            variant='success'
-                            className='fill'
-                            id='dropdown-basic'
-                          >
-                            {t('Trending')}{' '}
-                            {HideTrendinpost ? (
-                              <i className='fa fa-angle-down' />
-                            ) : (
-                              <i className='fa fa-angle-right' />
-                            )}
-                          </Dropdown.Toggle>
-                  
-                        </Dropdown>
-                        <div className='spacer-20' />
-                      </Col>
-                    
-
-                      <span
-                        className={
-                          HideTrendinpost ? 'content show' : 'content hide'
-                        }
-                      >
-                        <TrendingArticleSide isArticle={true} />
-                      </span>
-                    </Row>
-                  </Col>
-                </Row>
-              </Col>
-            </div>
-          </div>
-        </div>
-      </main>
-    </>
+    </div></div></div>
+    </main>
   );
-}
+};
+
+export default Page;

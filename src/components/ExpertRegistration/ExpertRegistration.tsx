@@ -102,11 +102,17 @@ export default function ExpertForm() {
   return (
     <div className="container-fluid">
       <Row>
-  <Col md={8} className="text-start form-container shadow-sm rounded">
+  <Col md={8} className="text-start form-container shadow rounded">
     <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <h2 className="blue-text-color text-center">
-        {LANG === 'jp' ? '専門家登録' : 'Expert Registration'}
-      </h2>
+    <h1 className="blue-title mt-3"> {LANG === 'jp' ? 'Web3エキスパートとして登録' : 'Register as a Web3 Expert'}</h1>
+      <p>
+      <p>
+  {LANG === 'jp'
+    ? 'オンラインで人とつながり、個別指導を提供し、あなたの専門知識を共有しましょう。他者を助け、意味のあるつながりを築き、あなたの知識を価値のある影響力のある機会に変えましょう。'
+    : 'Connect with people online, offer personal guidance, and share your expertise. Help others, build meaningful connections, and turn your knowledge into a valuable and impactful opportunity.'}
+</p>
+
+      </p>
 
       {/* Full Name */}
       <div className="form-group">
@@ -309,7 +315,7 @@ export default function ExpertForm() {
     </form>
   </Col>
   <Col md={4}>
-    <div className="contact-card p-3 shadow-sm rounded">
+    <div className="contact-card p-3 shadow rounded">
       <h6 className="fw-bold mb-2">
         {LANG === 'jp'
           ? '📧 営業チームに連絡してください'
