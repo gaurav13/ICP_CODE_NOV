@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const LANG = 'jp';
+const LANG = 'en';
 const siteUrl = LANG == "en" ? 'https://pro.blockza.io/' : 'https://jp.blockza.io/';
 
 let firstPartOfMain = `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/main-sitemap.xsl"?>

@@ -369,7 +369,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
               &times;
             </button>
             <h4 className="mb-3"> {LANG === 'jp' ? 'イベントを共有' : 'Share Event'}</h4>
-            <div className="d-flex justify-content-between mb-3 social-list">
+            <div className="d-flex justify-content-between mb-3 social-list-event">
               <a
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}`}
                 target="_blank"
@@ -564,7 +564,7 @@ export default function EventDetails({ eventId }: { eventId: string }) {
 
 
           <h4 className="mt-3">{LANG === 'jp' ? 'ソーシャルリンク' : 'Social Links'}</h4>
-          <div className="d-flex align-items-center gap-3 social-list">
+          <div className="d-flex align-items-center gap-3 social-list-event">
             {event?.facebook && (
               <Link href={event.facebook} target="_blank">
                 <i className='fa fa-facebook' />
