@@ -19,7 +19,7 @@ import client1 from '@/assets/Img/Logo/client-logo-1.jpg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import NewsComponent from '@/components/googlenews/news_old';
+
 
 export default function HinzaAsif() {
   const { t, changeLocale } = useLocalization(LANG);
@@ -43,7 +43,9 @@ export default function HinzaAsif() {
           : 'BlockZa AI Assistant makes blockchain and Web3 easy to understand. Get 24/7 support, simple explanations, and quick answers to navigate the decentralized world effortlessly. Start exploring today!'}
       </p>
             </div>
-           
+            <div>
+            Launching Soon...........
+    </div>
 
           </div>
         </div>

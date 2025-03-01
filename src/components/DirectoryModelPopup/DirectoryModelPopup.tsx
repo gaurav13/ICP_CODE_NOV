@@ -26,6 +26,8 @@ export default function DirectoryModelPopup({
     companyWebsite: '',
     companyType: '',
     meetingOption: 'Schedule a meeting to discuss business opportunities.', 
+    companyName: companyName || '',
+    submissionUrl:window.location.href,
   });
 
   const handleChange = (
@@ -43,7 +45,7 @@ export default function DirectoryModelPopup({
     setIsSending(true);
     const formDataWithFullUrl = {
       formData,
-      companyName,
+      companyName:companyName,
       websiteUrl: window.location.origin,
       submissionUrl: window.location.href, // Full URL of the page
     };
@@ -65,7 +67,10 @@ export default function DirectoryModelPopup({
           linkedIn: '',
           companyWebsite: '',
           companyType: '',
-          meetingOption: '', // Reset meeting option
+          meetingOption: '',
+          companyName:'',
+          submissionUrl:'',
+
         });
         handleClose();
       } else {
@@ -163,9 +168,11 @@ export default function DirectoryModelPopup({
           }}
           className="badge text-white shadow-sm p-1 ms-auto"
         >
-          {LANG === 'jp'
-            ? `プラットフォームの料金: ${platformPrice}`
-            : `Starting at: ${platformPrice}`}
+      {LANG === 'jp'
+    ? `プラットフォームの料金: ${platformPrice && platformPrice.trim() !== '' ? platformPrice : '$50'}`
+    : `Starting at: ${platformPrice && platformPrice.trim() !== '' ? platformPrice : '$50'}`}
+
+
         </span></div>
       )}
 
@@ -194,9 +201,10 @@ export default function DirectoryModelPopup({
           }}
           className="badge text-white shadow-sm p-1 ms-auto"
         >
-          {LANG === 'jp'
-            ? `専門家の料金: ${expertPrice}`
-            : `Starting at: ${expertPrice}`}
+         {LANG === 'jp'
+    ? `専門家の料金: ${expertPrice && expertPrice.trim() !== '' ? expertPrice : '$100'}`
+    : `Starting at: ${expertPrice && expertPrice.trim() !== '' ? expertPrice : '$100'}`}
+
         </span></div>
       )}
     </div>
@@ -304,8 +312,8 @@ export default function DirectoryModelPopup({
                     <option value="DEFI">DEFI</option>
                     <option value="DAO">DAO</option>
                     <option value="NFT">NFT</option>
-                    <option value="Metavers">
-                      {LANG === 'jp' ? 'メタバース' : 'Metavers'}
+                    <option value="Metaverse">
+                      {LANG === 'jp' ? 'メタバース' : 'Metaverse'}
                     </option>
                     <option value="Blockchain Gain">
                       {LANG === 'jp' ? 'ブロックチェーン利得' : 'Blockchain Gain'}

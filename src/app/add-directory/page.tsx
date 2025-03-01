@@ -48,6 +48,7 @@ import ConnectModal from '@/components/Modal';
 import Link from 'next/link';
 import { FaLinkedin, FaTwitter, FaTelegram, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import Tippy from '@tippyjs/react';
+import ConfirmationModel from '@/components/Modal/ConfirmationModel';
 function ScrollToError() {
   const formik = useFormikContext();
   const submitting = formik?.isSubmitting;
@@ -70,6 +71,7 @@ export default function AddCompanyForm() {
       principal: state.principal,
     })
   );
+  const [loginModalShow, setLoginModalShow] = useState(false);
 
   const [tempweb3PreviewImg, setTempweb3PreviewImg] = useState('');
   const { t, changeLocale } = useLocalization(LANG);
@@ -317,6 +319,13 @@ export default function AddCompanyForm() {
 
   let submitWeb3form = (e: any) => {
     e.preventDefault();
+    
+    if (!identity) {
+      toast.error('Please log in using Internet Identity.');
+      setLoginModalShow(true); // Open the login modal
+      return;
+    }
+  
     if (!founderLink) {
       setFounderError(true);
     }
@@ -326,13 +335,15 @@ export default function AddCompanyForm() {
     if (!logoLink) {
       setLogoError(true);
     }
+    
     let isDec = isDescription(web3Content);
-
     if (isDec.length <= 0) {
       setDiscriptionErr(true);
     }
+    
     web3FormikRef.current?.handleSubmit();
   };
+  
   const resetWeb3 = () => {
     setTempweb3BannerPreviewImg('');
     setPreviewweb3BannerFile(null);
@@ -346,55 +357,41 @@ export default function AddCompanyForm() {
     setLogoLink(undefined);
   };
   let addWeb3 = async (e: any) => {
-    if (!identity)
-      return toast.error(t('Please connect to internet identity.'));
-
+    if (!identity) {
+      setLoginModalShow(true); // Trigger login modal if not authenticated
+      return;
+    }
+  
     let founderImgArray = null;
     let web3BannerArray = null;
     let web3CompanyLogoArray = null;
     let isDec = isDescription(web3Content);
-
+  
     if (isDec.length <= 0) {
       setDiscriptionErr(true);
       return;
     }
     if (e.catagory === 'Please Select Category') {
-      return toast.error(t('Please select at least one  category'));
+      return toast.error(t('Please select at least one category'));
     }
-    if (
-      previewweb3File !== null ||
-      (founderLink != undefined && founderLink != null)
-    ) {
-      // founderImgArray = await fileToCanisterBinaryStoreFormat(previewweb3File);
+    if (previewweb3File !== null || (founderLink !== undefined && founderLink !== null)) {
       founderImgArray = BASE_IMG_URL + founderLink;
     } else {
       return toast.error(t('Please select a Founder Image.'));
     }
-
-    if (
-      previewweb3BannerFile !== null ||
-      (bannerLink != undefined && bannerLink != null)
-    ) {
-      // web3BannerArray = await fileToCanisterBinaryStoreFormat(
-      //   previewweb3BannerFile
-      // );
+  
+    if (previewweb3BannerFile !== null || (bannerLink !== undefined && bannerLink !== null)) {
       web3BannerArray = BASE_IMG_URL + bannerLink;
     } else {
-      return toast.error(t('Please select company Banner Image.'));
+      return toast.error(t('Please select a Company Banner Image.'));
     }
-    if (
-      previewweb3companyLogoFile !== null ||
-      (logoLink != undefined && logoLink != null)
-    ) {
-      // web3CompanyLogoArray = await fileToCanisterBinaryStoreFormat(
-      //   previewweb3companyLogoFile
-      // );
+  
+    if (previewweb3companyLogoFile !== null || (logoLink !== undefined && logoLink !== null)) {
       web3CompanyLogoArray = BASE_IMG_URL + logoLink;
-      logger(logoLink, 'logoLink');
     } else {
-      return toast.error(t('Please select Company Logo.'));
+      return toast.error(t('Please select a Company Logo.'));
     }
-    logger(e, 'web3form');
+  
     setisWeb3Submitting(true);
     let tempWeb3 = {
       company: e.company,
@@ -415,20 +412,11 @@ export default function AddCompanyForm() {
       twitter: e.twitter,
       founderEmail: e.founderEmail,
     };
-    let entryActor = makeEntryActor({
-      agentOptions: {
-        identity,
-      },
-    });
+  
+    let entryActor = makeEntryActor({ agentOptions: { identity } });
+  
     if (directoryId) {
-      entryActor
-        .insertWeb3(
-          tempWeb3,
-          userCanisterId,
-          commentCanisterId,
-          directoryId,
-          true
-        )
+      entryActor.insertWeb3(tempWeb3, userCanisterId, commentCanisterId, directoryId, true)
         .then((e: any) => {
           setisWeb3Submitting(false);
           if (e.ok) {
@@ -444,16 +432,11 @@ export default function AddCompanyForm() {
           resetWeb3();
         });
     } else {
-      entryActor
-        .insertWeb3(tempWeb3, userCanisterId, commentCanisterId, '', false)
+      entryActor.insertWeb3(tempWeb3, userCanisterId, commentCanisterId, '', false)
         .then((e: any) => {
           setisWeb3Submitting(false);
           if (e.ok) {
-            toast.success(
-              t(
-                'Your directory has been published successfully. We will review it shortly and contact you with feedback. Thank you for your submission.'
-              )
-            );
+            toast.success(t('Your directory has been published successfully. We will review it shortly and contact you with feedback. Thank you for your submission.'));
             router.back();
             resetWeb3();
           } else {
@@ -463,15 +446,11 @@ export default function AddCompanyForm() {
         .catch((err: any) => {
           toast.error(t('Something went wrong.'));
           setisWeb3Submitting(false);
-          setTempweb3BannerPreviewImg('');
-          setPreviewweb3BannerFile(null);
-          setTempweb3PreviewImg('');
-          setPreviewweb3File(null);
-          setTempweb3ComapnyPreviewLogo('');
-          setPreviewweb3companyLogoFile(null);
+          resetWeb3();
         });
     }
   };
+  
   let getWeb3 = async (directoryId: String) => {
     logger(directoryId, 'directoryIddirectoryId');
 
@@ -1360,11 +1339,13 @@ export default function AddCompanyForm() {
           </div>
         </div>
       </main>
-      <ConnectModal
-        handleClose={handleConnectModalClose}
-        showModal={showConnectModal}
-        link={connectLink}
-      />
+      <ConfirmationModel
+  show={loginModalShow}
+  handleClose={() => setLoginModalShow(false)}
+  handleConfirm={() => setLoginModalShow(false)} // Ensure correct behavior
+/>
+
+
     </>
   );
 }

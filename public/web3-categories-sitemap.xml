@@ -1,117 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/page_sitemap.xsl"?>
  <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
              <url>
-               <loc>https://pro.blockza.io/web3-directory/blockchain/</loc>
+               <loc>https://jp.blockza.io/web3-directory/blockchain/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/web3/</loc>
+               <loc>https://jp.blockza.io/web3-directory/web3/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/metaverse/</loc>
+               <loc>https://jp.blockza.io/web3-directory/metaverse/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/defi/</loc>
+               <loc>https://jp.blockza.io/web3-directory/defi/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/nft/</loc>
+               <loc>https://jp.blockza.io/web3-directory/nft/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/blockchain_games/</loc>
+               <loc>https://jp.blockza.io/web3-directory/blockchain_games/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/dao/</loc>
+               <loc>https://jp.blockza.io/web3-directory/dao/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/artificial_intelligence/</loc>
+               <loc>https://jp.blockza.io/web3-directory/artificial_intelligence/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/cryptocurrency/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_casinos/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_exchange/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/metaverse_event/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/decentralized_identity/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/play_to_earn_platform/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/yield_aggregators/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/stabelcoins/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/web3_quest_platforms/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/art_and_collectibles/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/trading_tools/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_staking/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_launchpad/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/rwa_token/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/ai_token/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/memes_token/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_influencer/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_researcher/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_wallets/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_payment/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/crypto_exchanges/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/game_yield/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/game_developers/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/game_nfts/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/esports/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/play_to_earn_platforms/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/ai_tools/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/tokenized_global_bonds/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/us_treasuries/</loc>
-               <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
-             </url>                        <url>
-               <loc>https://pro.blockza.io/web3-directory/tokenization_protocols/</loc>
+               <loc>https://jp.blockza.io/web3-directory/cryptocurrency/</loc>
                <lastmod>2024-04-24T12:24:24.000+00:00</lastmod>
              </url>            </urlset>
